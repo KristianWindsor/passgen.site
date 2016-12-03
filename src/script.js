@@ -263,6 +263,12 @@ function generatePassword() {
 	document.getElementById('password').value = passwordString;
 }
 
+// call generatePassword once the page loads
 window.onload = function() {
   generatePassword();
 };
+
+// call generatePassword once the refresh button is clicked
+document.getElementById('refresh').addEventListener('click', function() {
+    generatePassword();
+}, false);
