@@ -14,19 +14,22 @@ body {
   padding: 40px 0 40px;
   background-color: #FFF;
   color:#565656;
+  font-family: helvetica, sans-serif;
 }
 #content {
   margin-top: 0;
-  padding: 25vh 0 75vh;
+  padding: 25vh 0 75vh 30%;
   background-color: #7EC9AC;
 }
 #refresh {
-  height: 65px;
+  height: 55px;
+  position: relative;
+  top: 10px;
 }
 #password {
   font-size: 55px;
-  text-align: center;
   background-color: #7EC9AC;
   color:#FFF;
+  font-family: helvetica, sans-serif;
   border: 0;
 }
