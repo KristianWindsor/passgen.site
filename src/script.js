@@ -62,7 +62,200 @@ var lastChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p",
 
 function generatePassword() {
 	var passwordString;
+	// choose first character
+	passwordString = firstChar[Math.floor(Math.random() * firstChar.length)];
 
+	// choose 6 more characters
+	var chosenArray;
+	var i = 0;
+	while (i < 6) {
+		switch (passwordString.substr(passwordString.length - 1)) {
+			case "a":
+				chosenArray = aChar;
+				break;
+			case "b":
+				chosenArray = bChar;
+				break;
+			case "c":
+				chosenArray = cChar;
+				break;
+			case "d":
+				chosenArray = dChar;
+				break;
+			case "e":
+				chosenArray = eChar;
+				break;
+			case "f":
+				chosenArray = fChar;
+				break;
+			case "g":
+				chosenArray = gChar;
+				break;
+			case "h":
+				chosenArray = hChar;
+				break;
+			case "i":
+				chosenArray = iChar;
+				break;
+			case "j":
+				chosenArray = jChar;
+				break;
+			case "k":
+				chosenArray = kChar;
+				break;
+			case "l":
+				chosenArray = lChar;
+				break;
+			case "m":
+				chosenArray = mChar;
+				break;
+			case "n":
+				chosenArray = nChar;
+				break;
+			case "o":
+				chosenArray = oChar;
+				break;
+			case "p":
+				chosenArray = pChar;
+				break;
+			case "q":
+				chosenArray = qChar;
+				break;
+			case "r":
+				chosenArray = rChar;
+				break;
+			case "s":
+				chosenArray = sChar;
+				break;
+			case "t":
+				chosenArray = tChar;
+				break;
+			case "u":
+				chosenArray = uChar;
+				break;
+			case "v":
+				chosenArray = vChar;
+				break;
+			case "w":
+				chosenArray = wChar;
+				break;
+			case "x":
+				chosenArray = xChar;
+				break;
+			case "y":
+				chosenArray = yChar;
+				break;
+			case "z":
+				chosenArray = zChar;
+				break;
+			case "A":
+				chosenArray = aCharC;
+				break;
+			case "B":
+				chosenArray = bCharC;
+				break;
+			case "C":
+				chosenArray = cCharC;
+				break;
+			case "D":
+				chosenArray = dCharC;
+				break;
+			case "E":
+				chosenArray = eCharC;
+				break;
+			case "F":
+				chosenArray = fCharC;
+				break;
+			case "G":
+				chosenArray = gCharC;
+				break;
+			case "H":
+				chosenArray = hCharC;
+				break;
+			case "I":
+				chosenArray = iCharC;
+				break;
+			case "J":
+				chosenArray = jCharC;
+				break;
+			case "K":
+				chosenArray = kCharC;
+				break;
+			case "L":
+				chosenArray = lCharC;
+				break;
+			case "M":
+				chosenArray = mCharC;
+				break;
+			case "N":
+				chosenArray = nCharC;
+				break;
+			case "O":
+				chosenArray = oCharC;
+				break;
+			case "P":
+				chosenArray = pCharC;
+				break;
+			case "Q":
+				chosenArray = qCharC;
+				break;
+			case "R":
+				chosenArray = rCharC;
+				break;
+			case "S":
+				chosenArray = sCharC;
+				break;
+			case "T":
+				chosenArray = tCharC;
+				break;
+			case "U":
+				chosenArray = uCharC;
+				break;
+			case "V":
+				chosenArray = vCharC;
+				break;
+			case "W":
+				chosenArray = wCharC;
+				break;
+			case "X":
+				chosenArray = xCharC;
+				break;
+			case "Y":
+				chosenArray = yCharC;
+				break;
+			case "Z":
+				chosenArray = zCharC;
+				break;
+			case "-":
+				chosenArray = dashChar;
+				break;
+			case "=":
+				chosenArray = equalChar;
+				break;
+			case ",":
+				chosenArray = commaChar;
+				break;
+			case ".":
+				chosenArray = periodChar;
+				break;
+			case "/":
+				chosenArray = slashChar;
+				break;
+			case "[":
+				chosenArray = forBracketChar;
+				break;
+			case "]":
+				chosenArray = backBracketChar;
+				break;
+			}
+		passwordString += chosenArray[Math.floor(Math.random() * chosenArray.length)];
+		i++;
+	}
+
+	// choose last character
+	passwordString += lastChar[Math.floor(Math.random() * lastChar.length)];
+	
+	// display results
 	document.getElementById('password').value = passwordString;
 }
 
