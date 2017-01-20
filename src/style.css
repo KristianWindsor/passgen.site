@@ -29,6 +29,14 @@ body {
   position: relative;
   top: 10px;
 }
+#refresh:hover {
+  -ms-transform: rotate(30deg);
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+#refresh:active {
+  filter: brightness(0);
+}
 #password {
   font-size: 55px;
   background-color: #7EC9AC;
