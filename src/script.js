@@ -299,8 +299,12 @@ function generatePassword() {
 	// choose last character
 	passwordString += lastChar[Math.floor(Math.random() * lastChar.length)];
 	
-	// display results
-	document.getElementById('password').value = passwordString;
+	// if the password passes the test, display the results
+	if (passwordString.replace(/[^0-9]/g,"").length == 1 && passwordString.replace(/[A-Z]/g, '').length == 7 && passwordString.replace(/\W/g, '').length == 7) {
+		document.getElementById('password').value = passwordString;
+	} else {
+		generatePassword();
+	}
 }
 
 // call generatePassword once the page loads
