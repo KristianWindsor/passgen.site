@@ -332,3 +332,8 @@ document.getElementById('refresh').addEventListener('click', function() {
 document.getElementById('refresh').addEventListener('touchstart', function() {
     generatePassword();
 }, false);
+
+// disable scrolling and zooming on mobile
+document.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+});
