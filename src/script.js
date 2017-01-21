@@ -1,4 +1,6 @@
+var isMobile = false;
 if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent) ) {
+	isMobile = true;
 	var head  = document.getElementsByTagName('head')[0];
 	var link  = document.createElement('link');
 	link.rel  = 'stylesheet';
@@ -321,7 +323,12 @@ window.onload = function() {
   generatePassword();
 };
 
-// call generatePassword once the refresh button is clicked
+// call generatePassword once the refresh button is clicked or tapped
 document.getElementById('refresh').addEventListener('click', function() {
+    if(!isMobile) {
+	    generatePassword();
+	}
+}, false);
+document.getElementById('refresh').addEventListener('touchstart', function() {
     generatePassword();
 }, false);

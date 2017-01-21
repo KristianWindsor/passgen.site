@@ -1,0 +1,22 @@
+body {
+	margin: 0;
+}
+#title {
+	font-size: 87px;
+	padding: 15% 50px;
+}
+#content {
+  padding: 5vh 0 75vh;
+}
+#refresh {
+	display: block;
+	height: 175px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	top: 35vh;
+}
+#password {
+	font-size: 175px;
+	max-width: 100%;
+	margin-left: 10%;
+}
