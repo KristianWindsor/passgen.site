@@ -6,7 +6,7 @@ body {
 	padding: 15% 50px;
 }
 #content {
-  padding: 5vh 0 75vh;
+  padding: 3vh 0 75vh;
 }
 #refresh {
 	display: block;
@@ -18,5 +18,5 @@ body {
 #password {
 	font-size: 175px;
 	max-width: 100%;
-	margin-left: 10%;
+	margin-left: 5%;
 }
