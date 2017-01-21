@@ -14,14 +14,14 @@ body {
 }
 #title {
   margin: 0;
-  padding: 50px 0 50px;
+  padding: 50px 15px;
   background-color: #FFF;
   color: #565656;
   font-family: helvetica, sans-serif;
 }
 #content {
   margin-top: 0;
-  padding: 25vh 0 75vh 30%;
+  padding: 25vh 0 75vh 17%;
   background-color: #7EC9AC;
 }
 #refresh {
@@ -39,8 +39,32 @@ body {
 }
 #password {
   font-size: 55px;
+  max-width: 420px;
   background-color: #7EC9AC;
   color:#FFF;
   font-family: helvetica, sans-serif;
   border: 0;
+  outline: none;
+}
+@media screen and (max-width: 1050px) {
+  body {
+    margin: 5% 0;
+  }
+}
+@media screen and (max-width: 620px) {
+  body {
+    margin: 0;
+  }
+  #content {
+    padding-top: 15vh;
+    padding-left: 0;
+  }
+  #refresh {
+    display: block;
+    margin: 0 auto;
+  }
+  #password {
+    margin-top: 15px;
+    margin-left: 18%;
+  }
 }
