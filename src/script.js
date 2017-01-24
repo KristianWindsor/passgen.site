@@ -1,11 +1,23 @@
 var isMobile = false;
 if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent) ) {
 	isMobile = true;
+	addStylesheet();
+}
+window.onresize = function() {
+	if(isMobile) {
+		addStylesheet();
+	}
+};
+function addStylesheet() {
 	var head  = document.getElementsByTagName('head')[0];
 	var link  = document.createElement('link');
 	link.rel  = 'stylesheet';
 	link.type = 'text/css';
-	link.href = 'mobile.css';
+	if (window.innerHeight > window.innerWidth) {
+		link.href = 'mobile.css';
+	} else {
+		link.href = 'mobile-landscape.css';
+	}
 	link.media = 'all';
 	head.appendChild(link);
 }
