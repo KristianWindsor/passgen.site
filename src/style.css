@@ -40,11 +40,6 @@ body {
   -o-user-select: none;
   user-select: none;
 }
-#refresh:hover {
-  -ms-transform: rotate(30deg);
-  -webkit-transform: rotate(30deg);
-  transform: rotate(30deg);
-}
 #refresh:active {
   filter: brightness(0);
 }

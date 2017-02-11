@@ -22,6 +22,19 @@ function addStylesheet() {
 	head.appendChild(link);
 	window.scrollTo(0, 0);
 }
+var rotateDegrees = 0;
+function rotateRefreshIcon(number) {
+	// 'number' is to temporarily increase the rotation, to create a hover effect
+	rotateDegrees += number;
+	var el = document.getElementById('refresh');
+	el.style.webkitTransform = 'rotate('+rotateDegrees+'deg)'; 
+	el.style.mozTransform = 'rotate('+rotateDegrees+'deg)'; 
+	el.style.msTransform = 'rotate('+rotateDegrees+'deg)'; 
+	el.style.oTransform = 'rotate('+rotateDegrees+'deg)'; 
+	el.style.transform = 'rotate('+rotateDegrees+'deg)';
+	rotateDegrees -= number;
+}
+
 var firstChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0","-","=",",",".",";","/","[","]"];
 var aChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0","-","=",",",".",";","/","[","]"];
 var bChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0","-","=",",",".",";","/","[","]"];
@@ -323,10 +336,19 @@ function generatePassword() {
 	// choose last character
 	passwordString += lastChar[Math.floor(Math.random() * lastChar.length)];
 	
-	// if the password passes the test, display the results
+	// test the password to make sure it meets the qualifications
 	if (passwordString.replace(/[^0-9]/g,"").length == 1 && passwordString.replace(/[A-Z]/g, '').length == 7 && passwordString.replace(/\W/g, '').length == 7) {
+		// display the password
 		document.getElementById('password').value = passwordString;
+		// rotate the refresh button
+		if (rotateDegrees < 305 ) {
+			rotateDegrees += 30;
+		} else {
+			rotateDegrees = 0;
+		}
+		rotateRefreshIcon(0);
 	} else {
+		// the test failed, try again
 		generatePassword();
 	}
 }
@@ -336,6 +358,15 @@ window.onload = function() {
   generatePassword();
 };
 
+// rotate the refresh button on hover
+document.getElementById('refresh').addEventListener("mouseover", function() {
+	var el = document.getElementById('refresh');
+	rotateRefreshIcon(15);
+}, false);
+document.getElementById('refresh').addEventListener("mouseout", function() {
+	rotateRefreshIcon(0);
+}, false);
+
 // call generatePassword once the refresh button is clicked or tapped
 document.getElementById('refresh').addEventListener('click', function() {
     if(!isMobile) {
@@ -344,6 +375,11 @@ document.getElementById('refresh').addEventListener('click', function() {
 }, false);
 document.getElementById('refresh').addEventListener('touchstart', function() {
     generatePassword();
+    rotateRefreshIcon(15);
+}, false);
+document.getElementById('refresh').addEventListener('touchend', function() {
+    generatePassword();
+    rotateRefreshIcon(0);
 }, false);
 
 // allow selecting password on mobile
