@@ -375,11 +375,6 @@ document.getElementById('refresh').addEventListener('click', function() {
 }, false);
 document.getElementById('refresh').addEventListener('touchstart', function() {
     generatePassword();
-    rotateRefreshIcon(15);
-}, false);
-document.getElementById('refresh').addEventListener('touchend', function() {
-    generatePassword();
-    rotateRefreshIcon(0);
 }, false);
 
 // allow selecting password on mobile
