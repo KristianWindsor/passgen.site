@@ -19,6 +19,12 @@ body {
   color: #565656;
   font-family: helvetica, sans-serif;
 }
+#title::selection {
+  background: #7EC9AC;
+}
+#title::-moz-selection {
+  background: #7EC9AC;
+}
 #content {
   margin-top: 0;
   padding: 25vh 0 75vh 17%;
@@ -50,6 +56,12 @@ body {
   font-family: helvetica, sans-serif;
   border: 0;
   outline: none;
+}
+#content::selection, #password::selection {
+  background: #fff;
+}
+#content::selection, #password::-moz-selection {
+  background: #fff;
 }
 @media screen and (max-width: 1050px) {
   body {
