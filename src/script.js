@@ -1,13 +1,19 @@
+// a password generator . website
+// by kristian windsor
+
+// detect if mobile device
 var isMobile = false;
-if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent) ) {
+if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent)) {
 	isMobile = true;
 	addStylesheet();
 }
 window.onresize = function() {
-	if(isMobile) {
+	if (isMobile) {
 		addStylesheet();
 	}
 };
+
+// add mobile-specific stylesheet
 function addStylesheet() {
 	var head  = document.getElementsByTagName('head')[0];
 	var link  = document.createElement('link');
@@ -22,6 +28,8 @@ function addStylesheet() {
 	head.appendChild(link);
 	window.scrollTo(0, 0);
 }
+
+// rotate refresh icon 360 degrees
 var rotateDegrees = -30;
 function rotateRefreshIcon(number) {
 	// 'number' is to temporarily increase the rotation, to create a hover effect
@@ -32,9 +40,12 @@ function rotateRefreshIcon(number) {
 	el.style.msTransform = 'rotate('+rotateDegrees+'deg)'; 
 	el.style.oTransform = 'rotate('+rotateDegrees+'deg)'; 
 	el.style.transform = 'rotate('+rotateDegrees+'deg)';
-	rotateDegrees -= number;
+	if (number < 30) {
+		rotateDegrees -= number;
+	}
 }
 
+// declare possible following characters (eg: possible characters that can be the first letters, possible letters that can follow the letter 'a', etc.)
 var firstChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0","-","=",",",".",";","/","[","]"];
 var aChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0","-","=",",",".",";","/","[","]"];
 var bChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0","-","=",",",".",";","/","[","]"];
@@ -341,12 +352,7 @@ function generatePassword() {
 		// display the password
 		document.getElementById('password').value = passwordString;
 		// rotate the refresh button
-		if (rotateDegrees < 305 ) {
-			rotateDegrees += 30;
-		} else {
-			rotateDegrees = 0;
-		}
-		rotateRefreshIcon(0);
+		rotateRefreshIcon(30);
 	} else {
 		// the test failed, try again
 		generatePassword();
@@ -369,7 +375,7 @@ document.getElementById('refresh').addEventListener("mouseout", function() {
 
 // call generatePassword once the refresh button is clicked or tapped
 document.getElementById('refresh').addEventListener('click', function() {
-    if(!isMobile) {
+    if (!isMobile) {
 	    generatePassword();
 	}
 }, false);
