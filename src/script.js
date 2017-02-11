@@ -22,7 +22,7 @@ function addStylesheet() {
 	head.appendChild(link);
 	window.scrollTo(0, 0);
 }
-var rotateDegrees = 0;
+var rotateDegrees = -30;
 function rotateRefreshIcon(number) {
 	// 'number' is to temporarily increase the rotation, to create a hover effect
 	rotateDegrees += number;

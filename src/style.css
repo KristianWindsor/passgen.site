@@ -39,6 +39,10 @@ body {
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
+  -webkit-transition: all 0.04s ease-in-out;
+  -moz-transition: all 0.04s ease-in-out;
+  -o-transition: all 0.04s ease-in-out;
+  transition: all 0.04s ease-in-out;
 }
 #refresh:active {
   filter: brightness(0);
