@@ -346,7 +346,19 @@ document.getElementById('refresh').addEventListener('touchstart', function() {
     generatePassword();
 }, false);
 
+// allow selecting password on mobile
+var tempEnableTouch = false;
+document.getElementById('password').addEventListener('touchstart', function(e) {
+    tempEnableTouch = true;
+    this.focus();
+    this.setSelectionRange(0, this.value.length);
+    e.preventDefault();
+}, false);
+
 // disable scrolling and zooming on mobile
 document.addEventListener('touchstart', function (e) {
-    e.preventDefault();
+	if (!tempEnableTouch) {
+	    e.preventDefault();
+	}
+	tempEnableTouch = false;
 });
