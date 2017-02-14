@@ -117,6 +117,12 @@ var equalChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p"
 var periodChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"];
 var lastChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0","!","."];
 
+// test for vowels
+function hasVowels(str) {
+  var m = str.toLowerCase().match(/[aeiou]/gi);
+  return m === null ? false : true;
+}
+
 function generatePassword() {
 	var passwordString;
 	// choose first character
@@ -340,7 +346,7 @@ function generatePassword() {
 	passwordString += lastChar[Math.floor(Math.random() * lastChar.length)];
 	
 	// test the password to make sure it meets the qualifications
-	if (passwordString.replace(/[^0-9]/g,"").length == 1 && passwordString.replace(/[A-Z]/g, '').length == 7 && passwordString.replace(/\W/g, '').length == 7) {
+	if (passwordString.replace(/[^0-9]/g,"").length == 1 && passwordString.replace(/[A-Z]/g, '').length == 7 && passwordString.replace(/\W/g, '').length == 7 && hasVowels(passwordString.substring(0,4)) && hasVowels(passwordString.substring(4,8))) {
 		// display the password
 		document.getElementById('password').value = passwordString;
 		// rotate the refresh button
