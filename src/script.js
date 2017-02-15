@@ -30,7 +30,7 @@ function addStylesheet() {
 }
 
 // rotate refresh icon 360 degrees
-var rotateDegrees = -30;
+var rotateDegrees = -45;
 function rotateRefreshIcon(number) {
 	// 'number' is to temporarily increase the rotation, to create a hover effect
 	rotateDegrees += number;
@@ -40,7 +40,7 @@ function rotateRefreshIcon(number) {
 	el.style.msTransform = 'rotate('+rotateDegrees+'deg)'; 
 	el.style.oTransform = 'rotate('+rotateDegrees+'deg)'; 
 	el.style.transform = 'rotate('+rotateDegrees+'deg)';
-	if (number < 30) {
+	if (number < 45) {
 		rotateDegrees -= number;
 	}
 }
@@ -255,7 +255,7 @@ function generatePassword() {
 		// display the password
 		document.getElementById('password').value = passwordString;
 		// rotate the refresh button
-		rotateRefreshIcon(30);
+		rotateRefreshIcon(45);
 	} else {
 		// the test failed, try again
 		generatePassword();
@@ -270,7 +270,7 @@ window.onload = function() {
 // rotate the refresh button on hover
 document.getElementById('refresh').addEventListener("mouseover", function() {
 	var el = document.getElementById('refresh');
-	rotateRefreshIcon(15);
+	rotateRefreshIcon(22);
 }, false);
 document.getElementById('refresh').addEventListener("mouseout", function() {
 	rotateRefreshIcon(0);
