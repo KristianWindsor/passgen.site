@@ -268,11 +268,21 @@ window.onload = function() {
 };
 
 // change from single view to list view
+var listView = false;
 document.getElementById('list').addEventListener('click', function() {
-	if(this.src.indexOf("list3") !== -1) {
-		this.src = "list1.png";
+	if(listView) {
+		this.src = "list3.png";
+		listView = false;
+		document.getElementById('singleview').style.display = 'block';
+		document.getElementById('listview').style.display = 'none';
+		document.body.style.overflow = 'hidden';
+		window.scrollTo(0, 0);
 	} else {
-	    this.src = "list3.png";
+	    this.src = "list1.png";
+	    listView = true;
+		document.getElementById('singleview').style.display = 'none';
+		document.getElementById('listview').style.display = 'block';
+		document.body.style.overflow = 'visible';
 	}
 }, false);
 
