@@ -267,6 +267,15 @@ window.onload = function() {
   generatePassword();
 };
 
+// change from single view to list view
+document.getElementById('list').addEventListener('click', function() {
+	if(this.src.indexOf("list3") !== -1) {
+		this.src = "list1.png";
+	} else {
+	    this.src = "list3.png";
+	}
+}, false);
+
 // rotate the refresh button on hover
 document.getElementById('refresh').addEventListener("mouseover", function() {
 	var el = document.getElementById('refresh');

@@ -6,6 +6,15 @@ body {
 	font-size: 87px;
 	padding: 15% 50px;
 }
+#menu {
+  float: right;
+  margin-top: 32px;
+  margin-right: 64px;
+}
+#list {
+  height: 80px;
+  padding: 20px;
+}
 #content {
 	padding: 0 0 75vh;
 }

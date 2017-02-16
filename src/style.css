@@ -25,6 +25,24 @@ body {
 #title::-moz-selection {
   background: #7EC9AC;
 }
+#menu {
+  float: right;
+  margin-top: 8px;
+  margin-right: 32px;
+}
+#list {
+  height: 32px;
+  padding: 10px; 
+  opacity: 0.8;
+}
+#list:hover {
+  height: 38px;
+  padding: 7px;
+  opacity: 1;
+}
+#list:active {
+  filter: brightness(0);
+}
 #content {
   margin-top: 0;
   padding: 25vh 0 75vh 17%;
