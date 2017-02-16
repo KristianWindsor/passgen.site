@@ -43,7 +43,7 @@ body {
 #list:active {
   filter: brightness(0);
 }
-#content {
+.content {
   margin-top: 0;
   padding: 25vh 0 75vh 17%;
   background-color: #7EC9AC;
@@ -74,10 +74,10 @@ body {
   border: 0;
   outline: none;
 }
-#content::selection, #password::selection {
+.content::selection, #password::selection {
   background: #fff;
 }
-#content::selection, #password::-moz-selection {
+.content::selection, #password::-moz-selection {
   background: #fff;
 }
 @media screen and (max-width: 1050px) {
@@ -89,7 +89,7 @@ body {
   body {
     margin: 0;
   }
-  #content {
+  .content {
     padding-top: 15vh;
     padding-left: 0;
   }

@@ -15,7 +15,7 @@ body {
   height: 80px;
   padding: 20px;
 }
-#content {
+.content {
 	padding: 0 0 75vh;
 }
 #refresh {
