@@ -27,7 +27,7 @@ body {
 	bottom: auto;
 	right: auto;
 }
-#password {
+.password {
 	font-size: 175px;
 	max-width: 100%;
 	margin-left: 5%;

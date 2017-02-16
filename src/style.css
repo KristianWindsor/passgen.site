@@ -65,7 +65,7 @@ body {
 #refresh:active {
   filter: brightness(0);
 }
-#password {
+.password {
   font-size: 55px;
   max-width: 420px;
   background-color: #7EC9AC;
@@ -74,10 +74,10 @@ body {
   border: 0;
   outline: none;
 }
-.content::selection, #password::selection {
+.content::selection, .password::selection {
   background: #fff;
 }
-.content::selection, #password::-moz-selection {
+.content::selection, .password::-moz-selection {
   background: #fff;
 }
 @media screen and (max-width: 1050px) {
@@ -97,7 +97,7 @@ body {
     display: block;
     margin: 0 auto;
   }
-  #password {
+  .password {
     margin-top: 15px;
     margin-left: 18%;
   }
