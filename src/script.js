@@ -98,173 +98,178 @@ function hasVowels(str) {
 }
 
 function generatePassword() {
-	var passwordString;
-	// choose first character
-	passwordString = firstChar[Math.floor(Math.random() * firstChar.length)];
+	var succeeded = false;
+	while (true) {
+		var passwordString;
+		// choose first character
+		passwordString = firstChar[Math.floor(Math.random() * firstChar.length)];
 
-	// choose 6 more characters
-	var chosenArray;
-	var i = 0;
-	while (i < 6) {
-		switch (passwordString.substr(passwordString.length - 1)) {
-			case "a":
-				chosenArray = aChar;
-				break;
-			case "b":
-				chosenArray = bChar;
-				break;
-			case "c":
-				chosenArray = cChar;
-				break;
-			case "d":
-				chosenArray = dChar;
-				break;
-			case "e":
-				chosenArray = eChar;
-				break;
-			case "f":
-				chosenArray = fChar;
-				break;
-			case "g":
-				chosenArray = gChar;
-				break;
-			case "h":
-				chosenArray = hChar;
-				break;
-			case "i":
-				chosenArray = iChar;
-				break;
-			case "j":
-				chosenArray = jChar;
-				break;
-			case "k":
-				chosenArray = kChar;
-				break;
-			case "l":
-				chosenArray = lChar;
-				break;
-			case "m":
-				chosenArray = mChar;
-				break;
-			case "n":
-				chosenArray = nChar;
-				break;
-			case "o":
-				chosenArray = oChar;
-				break;
-			case "p":
-				chosenArray = pChar;
-				break;
-			case "q":
-				chosenArray = qChar;
-				break;
-			case "r":
-				chosenArray = rChar;
-				break;
-			case "s":
-				chosenArray = sChar;
-				break;
-			case "t":
-				chosenArray = tChar;
-				break;
-			case "u":
-				chosenArray = uChar;
-				break;
-			case "v":
-				chosenArray = vChar;
-				break;
-			case "w":
-				chosenArray = wChar;
-				break;
-			case "x":
-				chosenArray = xChar;
-				break;
-			case "y":
-				chosenArray = yChar;
-				break;
-			case "z":
-				chosenArray = zChar;
-				break;
-			case "1":
-				chosenArray = one;
-				break;
-			case "2":
-				chosenArray = two;
-				break;
-			case "3":
-				chosenArray = three;
-				break;
-			case "4":
-				chosenArray = four;
-				break;
-			case "5":
-				chosenArray = five;
-				break;
-			case "6":
-				chosenArray = six;
-				break;
-			case "7":
-				chosenArray = seven;
-				break;
-			case "8":
-				chosenArray = eight;
-				break;
-			case "9":
-				chosenArray = nine;
-				break;
-			case "0":
-				chosenArray = zero;
-				break;
-			case "!":
-				chosenArray = exclamationChar;
-				break;
-			case "@":
-				chosenArray = atChar;
-				break;
-			case "$":
-				chosenArray = dollarChar;
-				break;
-			case "-":
-				chosenArray = dashChar;
-				break;
-			case "=":
-				chosenArray = equalChar;
-				break;
-			case ".":
-				chosenArray = periodChar;
-				break;
-			}
-		passwordString += chosenArray[Math.floor(Math.random() * chosenArray.length)];
-		i++;
-	}
-
-	// choose last character
-	passwordString += lastChar[Math.floor(Math.random() * lastChar.length)];
-	
-	// test the password to make sure it meets the qualifications
-	if (passwordString.replace(/[^0-9]/g,"").length == 1 && passwordString.replace(/\W/g, '').length == 7 && hasVowels(passwordString.substring(0,4)) && hasVowels(passwordString.substring(4,8))) {
-		// make one of the letters a capital letter
-		var capitalizing = true;
-		while (capitalizing) {
-			var randomNumber = Math.floor(Math.random() * (8 - 0) + 0);
-			if(passwordString.substring(randomNumber,randomNumber+1).match(/[a-z]/i)) {
-				passwordString = passwordString.substring(0,randomNumber) + passwordString.substring(randomNumber,randomNumber+1).toUpperCase() + passwordString.substring(randomNumber+1,8);
-				capitalizing = false;
-			}
+		// choose 6 more characters
+		var chosenArray;
+		var i = 0;
+		while (i < 6) {
+			switch (passwordString.substr(passwordString.length - 1)) {
+				case "a":
+					chosenArray = aChar;
+					break;
+				case "b":
+					chosenArray = bChar;
+					break;
+				case "c":
+					chosenArray = cChar;
+					break;
+				case "d":
+					chosenArray = dChar;
+					break;
+				case "e":
+					chosenArray = eChar;
+					break;
+				case "f":
+					chosenArray = fChar;
+					break;
+				case "g":
+					chosenArray = gChar;
+					break;
+				case "h":
+					chosenArray = hChar;
+					break;
+				case "i":
+					chosenArray = iChar;
+					break;
+				case "j":
+					chosenArray = jChar;
+					break;
+				case "k":
+					chosenArray = kChar;
+					break;
+				case "l":
+					chosenArray = lChar;
+					break;
+				case "m":
+					chosenArray = mChar;
+					break;
+				case "n":
+					chosenArray = nChar;
+					break;
+				case "o":
+					chosenArray = oChar;
+					break;
+				case "p":
+					chosenArray = pChar;
+					break;
+				case "q":
+					chosenArray = qChar;
+					break;
+				case "r":
+					chosenArray = rChar;
+					break;
+				case "s":
+					chosenArray = sChar;
+					break;
+				case "t":
+					chosenArray = tChar;
+					break;
+				case "u":
+					chosenArray = uChar;
+					break;
+				case "v":
+					chosenArray = vChar;
+					break;
+				case "w":
+					chosenArray = wChar;
+					break;
+				case "x":
+					chosenArray = xChar;
+					break;
+				case "y":
+					chosenArray = yChar;
+					break;
+				case "z":
+					chosenArray = zChar;
+					break;
+				case "1":
+					chosenArray = one;
+					break;
+				case "2":
+					chosenArray = two;
+					break;
+				case "3":
+					chosenArray = three;
+					break;
+				case "4":
+					chosenArray = four;
+					break;
+				case "5":
+					chosenArray = five;
+					break;
+				case "6":
+					chosenArray = six;
+					break;
+				case "7":
+					chosenArray = seven;
+					break;
+				case "8":
+					chosenArray = eight;
+					break;
+				case "9":
+					chosenArray = nine;
+					break;
+				case "0":
+					chosenArray = zero;
+					break;
+				case "!":
+					chosenArray = exclamationChar;
+					break;
+				case "@":
+					chosenArray = atChar;
+					break;
+				case "$":
+					chosenArray = dollarChar;
+					break;
+				case "-":
+					chosenArray = dashChar;
+					break;
+				case "=":
+					chosenArray = equalChar;
+					break;
+				case ".":
+					chosenArray = periodChar;
+					break;
+				}
+			passwordString += chosenArray[Math.floor(Math.random() * chosenArray.length)];
+			i++;
 		}
-		// return the password
-		document.getElementById('password').value = passwordString;
-		// rotate the refresh button
-		rotateRefreshIcon(45);
-	} else {
-		// the test failed, try again
-		generatePassword();
+
+		// choose last character
+		passwordString += lastChar[Math.floor(Math.random() * lastChar.length)];
+		
+		// test the password to make sure it meets the qualifications
+		if (passwordString.replace(/[^0-9]/g,"").length == 1 && passwordString.replace(/\W/g, '').length == 7 && hasVowels(passwordString.substring(0,4)) && hasVowels(passwordString.substring(4,8))) {
+			// make one of the letters a capital letter
+			var capitalizing = true;
+			while (capitalizing) {
+				var randomNumber = Math.floor(Math.random() * (8 - 0) + 0);
+				if(passwordString.substring(randomNumber,randomNumber+1).match(/[a-z]/i)) {
+					passwordString = passwordString.substring(0,randomNumber) + passwordString.substring(randomNumber,randomNumber+1).toUpperCase() + passwordString.substring(randomNumber+1,8);
+					capitalizing = false;
+				}
+			}
+			// rotate the refresh button
+			rotateRefreshIcon(45);
+			// return the password
+			return passwordString;
+		}
 	}
 }
 
-// call generatePassword once the page loads
+// update password for single view
+function updatePassword() {
+	document.getElementById('password').value = generatePassword();
+}
+
+// call updatePassword once the page loads
 window.onload = function() {
-	generatePassword();
+	updatePassword();
 };
 
 // change from single view to list view
@@ -299,7 +304,7 @@ function addPasswords(amount) {
 	var i = 0;
 	while (i<amount) {
 		var div = document.getElementById('listview');
-		div.innerHTML = div.innerHTML + '<input type="text" class="password" value="' + '' + '" onClick="select()" maxlength="8" spellcheck="false" /><br>'
+		div.innerHTML = div.innerHTML + '<input type="text" class="password" value="' + generatePassword() + '" onClick="select()" maxlength="8" spellcheck="false" /><br>'
 		i++;
 	}
 }
@@ -313,14 +318,14 @@ document.getElementById('refresh').addEventListener("mouseout", function() {
 	rotateRefreshIcon(0);
 }, false);
 
-// call generatePassword once the refresh button is clicked or tapped
+// call updatePassword once the refresh button is clicked or tapped
 document.getElementById('refresh').addEventListener('click', function() {
     if (!isMobile) {
-	    generatePassword();
+	    updatePassword();
 	}
 }, false);
 document.getElementById('refresh').addEventListener('touchstart', function() {
-    generatePassword();
+    updatePassword();
 }, false);
 
 // allow selecting password on mobile
