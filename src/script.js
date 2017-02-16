@@ -252,7 +252,7 @@ function generatePassword() {
 				capitalizing = false;
 			}
 		}
-		// display the password
+		// return the password
 		document.getElementById('password').value = passwordString;
 		// rotate the refresh button
 		rotateRefreshIcon(45);
@@ -264,7 +264,7 @@ function generatePassword() {
 
 // call generatePassword once the page loads
 window.onload = function() {
-  generatePassword();
+	generatePassword();
 };
 
 // change from single view to list view
@@ -283,8 +283,26 @@ document.getElementById('list').addEventListener('click', function() {
 		document.getElementById('singleview').style.display = 'none';
 		document.getElementById('listview').style.display = 'block';
 		document.body.style.overflow = 'visible';
+		addPasswords(10);
 	}
 }, false);
+
+// infinite scroll
+window.onscroll = function() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    	addPasswords(2);
+    }
+};
+
+// add more passwords to list view
+function addPasswords(amount) {
+	var i = 0;
+	while (i<amount) {
+		var div = document.getElementById('listview');
+		div.innerHTML = div.innerHTML + '<input type="text" class="password" value="' + '' + '" onClick="select()" maxlength="8" spellcheck="false" /><br>'
+		i++;
+	}
+}
 
 // rotate the refresh button on hover
 document.getElementById('refresh').addEventListener("mouseover", function() {
