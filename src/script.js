@@ -274,7 +274,7 @@ window.onload = function() {
 
 // change from single view to list view
 var listView = false;
-document.getElementById('list').addEventListener('click', function() {
+function switchView() {
 	if(listView) {
 		this.src = "list3.png";
 		listView = false;
@@ -290,6 +290,14 @@ document.getElementById('list').addEventListener('click', function() {
 		document.body.style.overflow = 'visible';
 		addPasswords(10);
 	}
+}
+document.getElementById('list').addEventListener('click', function() {
+	if(!isMobile) {
+		switchView();
+	}
+}, false);
+document.getElementById('list').addEventListener('touchstart', function() {
+    switchView();
 }, false);
 
 // infinite scroll
@@ -298,6 +306,11 @@ window.onscroll = function() {
     	addPasswords(2);
     }
 };
+window.addEventListener('scroll', function() { 
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    	addPasswords(5);
+    }
+});
 
 // add more passwords to list view
 function addPasswords(amount) {
@@ -339,7 +352,7 @@ document.getElementById('password').addEventListener('touchstart', function(e) {
 
 // disable scrolling and zooming on mobile
 document.addEventListener('touchstart', function (e) {
-	if (!tempEnableTouch) {
+	if (!tempEnableTouch && !listView) {
 	    e.preventDefault();
 	}
 	tempEnableTouch = false;
