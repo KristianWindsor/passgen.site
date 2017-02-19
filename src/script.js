@@ -286,7 +286,7 @@ document.getElementById('list').addEventListener('touchstart', function() {
 
 // infinite scroll
 window.onscroll = function() {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200 && listView) {
     	addPasswords(1);
     }
 };
