@@ -250,8 +250,6 @@ function generatePassword() {
 					capitalizing = false;
 				}
 			}
-			// rotate the refresh button
-			rotateRefreshIcon(45);
 			// return the password
 			return passwordString;
 		}
@@ -326,10 +324,12 @@ document.getElementById('refresh').addEventListener("mouseout", function() {
 document.getElementById('refresh').addEventListener('click', function() {
     if (!isMobile) {
 	    updatePassword();
+		rotateRefreshIcon(45);
 	}
 }, false);
 document.getElementById('refresh').addEventListener('touchstart', function() {
     updatePassword();
+	rotateRefreshIcon(45);
 }, false);
 
 // allow selecting password on mobile
