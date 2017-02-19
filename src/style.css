@@ -67,7 +67,7 @@ body {
 }
 .password {
   font-size: 55px;
-  max-width: 420px;
+  width: 440px;
   background-color: #7EC9AC;
   color:#FFF;
   font-family: helvetica, sans-serif;

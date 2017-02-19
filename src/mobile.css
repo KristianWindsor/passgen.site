@@ -19,7 +19,7 @@ body {
 }
 #refresh {
 	display: block;
-	height: 175px;
+	height: 145px;
 	margin: 0 auto;
 	top: 35vh;
 	position: relative;
@@ -27,7 +27,7 @@ body {
 	right: auto;
 }
 .password {
-	font-size: 175px;
-	max-width: 100%;
-	margin-left: 15px;
+	font-size: 145px;
+	width: 696px;
+    margin-left: 0;
 }
