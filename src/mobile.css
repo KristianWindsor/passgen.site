@@ -31,3 +31,6 @@ body {
 	width: 696px;
     margin-left: 0;
 }
+#listview {
+	padding-left: 0;
+}
