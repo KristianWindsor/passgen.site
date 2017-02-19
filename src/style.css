@@ -39,7 +39,7 @@ body {
 }
 .content {
   margin-top: 0;
-  padding: 25vh 0 75vh 13%;
+  padding: 25vh 0 75vh 0;
   background-color: #7EC9AC;
 }
 #refresh {
@@ -61,7 +61,7 @@ body {
 }
 .password {
   font-size: 55px;
-  width: 440px;
+  width: 300px;
   background-color: #7EC9AC;
   color:#FFF;
   font-family: helvetica, sans-serif;
@@ -77,8 +77,8 @@ body {
 }
 #listview {
   padding-bottom: 0;
+  padding-left: 0;
   display: none;
-  padding-left: 15%;
 }
 @media screen and (max-width: 1050px) {
   body {
@@ -94,27 +94,6 @@ body {
   }
   .content {
     padding-top: 15vh;
-    padding-left: 0;
-  }
-  #refresh {
-    display: block;
-    margin: 0 auto;
-  }
-  #password {
-    margin: 30px 0 0 27%;
-  }
-}
-@media screen and (max-width: 500px) {
-  #password {
-    margin-left: 17%;
-  }
-}
-@media screen and (max-width: 350px) {
-  #listview {
-    padding-left: 0;
-  }
-  .password, #password {
-    margin-left: 5%;
   }
 }
 @media (max-height: 500px) and (max-width: 430px) {
