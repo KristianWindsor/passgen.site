@@ -260,14 +260,14 @@ window.onload = function() {
 var listView = false;
 function switchView() {
 	if(listView) {
-		this.src = "list3.png";
+		document.getElementById('list').src = "list3.png";
 		listView = false;
 		document.getElementById('singleview').style.display = 'block';
 		document.getElementById('listview').style.display = 'none';
 		document.body.style.overflow = 'hidden';
 		window.scrollTo(0, 0);
 	} else {
-	    this.src = "list1.png";
+	    document.getElementById('list').src = "list1.png";
 	    listView = true;
 		document.getElementById('singleview').style.display = 'none';
 		document.getElementById('listview').style.display = 'block';
@@ -308,6 +308,20 @@ document.getElementById('refresh').addEventListener("mouseover", function() {
 }, false);
 document.getElementById('refresh').addEventListener("mouseout", function() {
 	rotateRefreshIcon(0);
+}, false);
+
+// simulate hover effect over #list
+// this is really dumb I know, but this is it looks good on mobile
+document.getElementById('list').style.opacity = 0.7;
+document.getElementById('list').addEventListener("mouseover", function() {
+	this.style.opacity = 1;
+	this.style.height = '38px';
+	this.style.padding = '7px';
+}, false);
+document.getElementById('list').addEventListener("mouseout", function() {
+	this.style.opacity = 0.7;
+	this.style.height = '32px';
+	this.style.padding = '10px';
 }, false);
 
 // call updatePassword once the refresh button is clicked or tapped

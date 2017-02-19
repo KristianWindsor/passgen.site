@@ -33,12 +33,6 @@ body {
 #list {
   height: 32px;
   padding: 10px; 
-  opacity: 0.8;
-}
-#list:hover {
-  height: 38px;
-  padding: 7px;
-  opacity: 1;
 }
 #list:active {
   filter: brightness(0);
