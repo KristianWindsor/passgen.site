@@ -298,15 +298,10 @@ document.getElementById('list').addEventListener('touchstart', function() {
 
 // infinite scroll
 window.onscroll = function() {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    	addPasswords(2);
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
+    	addPasswords(1);
     }
 };
-window.addEventListener('scroll', function() { 
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    	addPasswords(5);
-    }
-});
 
 // add more passwords to list view
 function addPasswords(amount) {
