@@ -348,3 +348,8 @@ document.addEventListener('touchstart', function (e) {
 	}
 	tempEnableTouch = false;
 });
+
+// scroll to top on refresh
+window.addEventListener('beforeunload',  function () {
+	window.scrollTo(0, 0);
+});
