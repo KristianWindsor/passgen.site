@@ -73,6 +73,7 @@ body {
   font-family: helvetica, sans-serif;
   border: 0;
   outline: none;
+  margin-top: 15px;
 }
 .content::selection, .password::selection {
   background: #fff;
@@ -111,7 +112,6 @@ body {
 }
 @media screen and (max-width: 500px) {
   #password {
-    margin-top: 15px;
     margin-left: 17%;
   }
 }
@@ -120,7 +120,6 @@ body {
     padding-left: 0;
   }
   .password, #password {
-    margin-top: 15px;
     margin-left: 5%;
   }
 }
