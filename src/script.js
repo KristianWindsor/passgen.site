@@ -19,11 +19,7 @@ function addStylesheet() {
 	var link  = document.createElement('link');
 	link.rel  = 'stylesheet';
 	link.type = 'text/css';
-	if (window.innerHeight > window.innerWidth) {
-		link.href = 'mobile.css';
-	} else {
-		link.href = 'mobile-landscape.css';
-	}
+	link.href = 'mobile.css';
 	link.media = 'all';
 	head.appendChild(link);
 	window.scrollTo(0, 0);
