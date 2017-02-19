@@ -89,6 +89,9 @@ body {
   body {
     margin: 5% 0;
   }
+  #menu {
+    margin-right: 8px;
+  }
 }
 @media screen and (max-width: 620px) {
   body {
@@ -102,8 +105,33 @@ body {
     display: block;
     margin: 0 auto;
   }
-  .password {
+  #password {
+    margin: 30px 0 0 27%;
+  }
+}
+@media screen and (max-width: 500px) {
+  #password {
     margin-top: 15px;
-    margin-left: 18%;
+    margin-left: 17%;
+  }
+}
+@media screen and (max-width: 350px) {
+  #listview {
+    padding-left: 0;
+  }
+  .password, #password {
+    margin-top: 15px;
+    margin-left: 5%;
+  }
+}
+@media (max-height: 500px) and (max-width: 430px) {
+  #title {
+    font-size: 20px;
+  }
+  #refresh, #list {
+    height: 20px;
+  }
+  .password {
+    font-size: 20px;
   }
 }
