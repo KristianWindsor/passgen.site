@@ -5,16 +5,7 @@
 var isMobile = false;
 if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent)) {
 	isMobile = true;
-	addStylesheet();
-}
-window.onresize = function() {
-	if (isMobile) {
-		addStylesheet();
-	}
-};
-
-// add mobile-specific stylesheet
-function addStylesheet() {
+	// add mobile-specific stylesheet
 	var head  = document.getElementsByTagName('head')[0];
 	var link  = document.createElement('link');
 	link.rel  = 'stylesheet';
@@ -22,11 +13,10 @@ function addStylesheet() {
 	link.href = 'mobile.css';
 	link.media = 'all';
 	head.appendChild(link);
-	window.scrollTo(0, 0);
 }
 
 // rotate refresh icon 360 degrees
-var rotateDegrees = -45;
+var rotateDegrees = 0;
 function rotateRefreshIcon(number) {
 	// 'number' is to temporarily increase the rotation, to create a hover effect
 	rotateDegrees += number;
@@ -338,15 +328,16 @@ document.getElementById('password').addEventListener('touchstart', function(e) {
     tempEnableTouch = true;
     this.focus();
     this.setSelectionRange(0, this.value.length);
-    e.preventDefault();
 }, false);
+document.getElementById('password').addEventListener('blur', function (e) {
+	tempEnableTouch = false;
+});
 
 // disable scrolling and zooming on mobile
 document.addEventListener('touchstart', function (e) {
 	if (!tempEnableTouch && !listView) {
 	    e.preventDefault();
 	}
-	tempEnableTouch = false;
 });
 
 // scroll to top on refresh
