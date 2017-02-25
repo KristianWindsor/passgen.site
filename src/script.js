@@ -248,7 +248,13 @@ function generatePassword() {
 
 // update password for single view
 function updatePassword() {
-	document.getElementById('password').value = generatePassword();
+ 	if (isMobile) {
+		// replace input element with paragraph element
+		var div = document.getElementById('password-container');
+		div.innerHTML = '<p id="password" class="password">' + generatePassword() + '</p>';
+	} else {
+		document.getElementById('password').value = generatePassword();
+	}
 }
 
 // call updatePassword once the page loads
@@ -296,7 +302,11 @@ function addPasswords(amount) {
 	var i = 0;
 	while (i<amount) {
 		var div = document.getElementById('listview');
-		div.innerHTML = div.innerHTML + '<input type="text" class="password" value="' + generatePassword() + '" onClick="select()" maxlength="8" spellcheck="false" /><br>'
+		if (isMobile) {
+			div.innerHTML = div.innerHTML + '<p class="password">' + generatePassword() + '</p>';
+		} else {
+			div.innerHTML = div.innerHTML + '<input type="text" class="password" value="' + generatePassword() + '" onClick="select()" maxlength="8" spellcheck="false" /><br>';
+		}
 		i++;
 	}
 }

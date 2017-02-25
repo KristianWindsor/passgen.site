@@ -8,6 +8,7 @@ body {
   text-align: center;
   font-size: 55px;
   background-color: #B5A5A4;
+  font-family: helvetica, sans-serif;
   -webkit-box-shadow: 0px 6px 75px 1px rgba(0,0,0,0.45);
   -moz-box-shadow: 0px 6px 75px 1px rgba(0,0,0,0.45);
   box-shadow: 0px 6px 75px 1px rgba(0,0,0,0.45);
@@ -59,7 +60,7 @@ body {
 #refresh:active {
   filter: brightness(0);
 }
-.password {
+input.password {
   font-size: 55px;
   width: 300px;
   background-color: #7EC9AC;
@@ -68,6 +69,11 @@ body {
   border: 0;
   outline: none;
   margin-top: 15px;
+}
+p.password {
+  font-size: 55px;
+  color:#FFF;
+  margin: 0;
 }
 .content::selection, .password::selection {
   background: #fff;
