@@ -341,28 +341,11 @@ document.getElementById('refresh').addEventListener('click', function() {
 		rotateRefreshIcon(45);
 	}
 }, false);
-document.getElementById('refresh').addEventListener('touchstart', function() {
+document.getElementById('refresh').addEventListener('touchstart', function(e) {
     updatePassword();
 	rotateRefreshIcon(45);
+	e.preventDefault();
 }, false);
-
-// allow selecting password on mobile
-var tempEnableTouch = false;
-document.getElementById('password').addEventListener('touchstart', function(e) {
-    tempEnableTouch = true;
-    this.focus();
-    this.setSelectionRange(0, this.value.length);
-}, false);
-document.getElementById('password').addEventListener('blur', function (e) {
-	tempEnableTouch = false;
-});
-
-// disable scrolling and zooming on mobile
-document.addEventListener('touchstart', function (e) {
-	if (!tempEnableTouch && !listView) {
-	    e.preventDefault();
-	}
-});
 
 // scroll to top on refresh
 window.addEventListener('beforeunload',  function () {
