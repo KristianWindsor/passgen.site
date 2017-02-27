@@ -16,16 +16,18 @@ body {
 	display: block;
 	height: 145px;
 	margin: 0 auto;
-	top: 35vh;
+	top: 26vh;
 	position: relative;
 	bottom: auto;
 	right: auto;
+}
+#password {
+	position: relative;
+	top: -145px;
 }
 p.password {
 	color:#FFF;
 	font-size: 145px;
 	padding: 50px 0;
 	margin: 0;
-	position: relative;
-	top: -50px;
 }
