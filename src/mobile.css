@@ -5,25 +5,8 @@ body {
 	font-size: 87px;
 	padding: 15% 50px;
 }
-#list {
-  height: 80px;
-  padding: 30px;
-}
-.content {
+#password-container {
 	padding: 0 0 38vh;
-}
-#refresh {
-	display: block;
-	height: 145px;
-	margin: 0 auto;
-	top: 26vh;
-	position: relative;
-	bottom: auto;
-	right: auto;
-}
-#password {
-	position: relative;
-	top: -145px;
 }
 p.password {
 	color:#FFF;

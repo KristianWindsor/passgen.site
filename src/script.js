@@ -15,22 +15,6 @@ if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent)) 
 	head.appendChild(link);
 }
 
-// rotate refresh icon 360 degrees
-var rotateDegrees = 0;
-function rotateRefreshIcon(number) {
-	// 'number' is to temporarily increase the rotation, to create a hover effect
-	rotateDegrees += number;
-	var el = document.getElementById('refresh');
-	el.style.webkitTransform = 'rotate('+rotateDegrees+'deg)'; 
-	el.style.mozTransform = 'rotate('+rotateDegrees+'deg)'; 
-	el.style.msTransform = 'rotate('+rotateDegrees+'deg)'; 
-	el.style.oTransform = 'rotate('+rotateDegrees+'deg)'; 
-	el.style.transform = 'rotate('+rotateDegrees+'deg)';
-	if (number < 45) {
-		rotateDegrees -= number;
-	}
-}
-
 // declare possible following characters (eg: possible characters that can be the first letters, possible letters that can follow the letter 'a', etc.)
 var firstChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var aChar = ["a","b","c","d","f","g","h","l","m","n","p","q","r","s","t","u","v","w","x","z","1","2","3","4","5","6","7","9","0","!","@","$","-","=","."];
@@ -246,51 +230,15 @@ function generatePassword() {
 	}
 }
 
-// update password for single view
-function updatePassword() {
- 	if (isMobile) {
-		// replace input element with paragraph element
-		var div = document.getElementById('password-container');
-		div.innerHTML = '<p id="password" class="password">' + generatePassword() + '</p>';
-	} else {
-		document.getElementById('password').value = generatePassword();
-	}
-}
 
 // call updatePassword once the page loads
 window.onload = function() {
-	updatePassword();
+	addPasswords(10);
 };
-
-// change from single view to list view
-var listView = false;
-function switchView() {
-	if(listView) {
-		listView = false;
-		document.getElementById('singleview').style.display = 'block';
-		document.getElementById('listview').style.display = 'none';
-		document.body.style.overflow = 'hidden';
-		window.scrollTo(0, 0);
-	} else {
-	    listView = true;
-		document.getElementById('singleview').style.display = 'none';
-		document.getElementById('listview').style.display = 'block';
-		document.body.style.overflow = 'visible';
-		addPasswords(10);
-	}
-}
-document.getElementById('list').addEventListener('click', function() {
-	if(!isMobile) {
-		switchView();
-	}
-}, false);
-document.getElementById('list').addEventListener('touchstart', function() {
-    switchView();
-}, false);
 
 // infinite scroll
 window.onscroll = function() {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200 && listView) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
     	addPasswords(1);
     }
 };
@@ -299,7 +247,7 @@ window.onscroll = function() {
 function addPasswords(amount) {
 	var i = 0;
 	while (i<amount) {
-		var div = document.getElementById('listview');
+		var div = document.getElementById('password-container');
 		if (isMobile) {
 			div.innerHTML = div.innerHTML + '<p class="password">' + generatePassword() + '</p>';
 		} else {
@@ -308,33 +256,6 @@ function addPasswords(amount) {
 		i++;
 	}
 }
-
-// rotate the refresh button on hover
-document.getElementById('refresh').addEventListener("mouseover", function() {
-	var el = document.getElementById('refresh');
-	rotateRefreshIcon(22);
-}, false);
-document.getElementById('refresh').addEventListener("mouseout", function() {
-	rotateRefreshIcon(0);
-}, false);
-
-// call updatePassword once the refresh button is clicked or tapped
-document.getElementById('refresh').addEventListener('click', function() {
-    if (!isMobile) {
-	    updatePassword();
-		rotateRefreshIcon(45);
-	}
-}, false);
-document.getElementById('refresh').addEventListener('touchstart', function(e) {
-    updatePassword();
-	rotateRefreshIcon(45);
-	e.preventDefault();
-}, false);
-
-// scroll to top on refresh
-window.addEventListener('beforeunload',  function () {
-	window.scrollTo(0, 0);
-});
 
 // google analytics
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
