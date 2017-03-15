@@ -5,14 +5,6 @@
 var isMobile = false;
 if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent)) {
 	isMobile = true;
-	// add mobile-specific stylesheet
-	var head  = document.getElementsByTagName('head')[0];
-	var link  = document.createElement('link');
-	link.rel  = 'stylesheet';
-	link.type = 'text/css';
-	link.href = 'mobile.css';
-	link.media = 'all';
-	head.appendChild(link);
 }
 
 // declare possible following characters (eg: possible characters that can be the first letters, possible letters that can follow the letter 'a', etc.)

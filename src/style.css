@@ -58,11 +58,21 @@ input.password {
     padding-top: 15vh;
   }
 }
-@media (max-height: 500px) and (max-width: 430px) {
-  #title {
-    font-size: 20px;
+@media screen and (max-width: 415px) {
+  body {
+    margin: 0;
   }
-  .password {
-    font-size: 20px;
+  #title {
+    font-size: 70px;
+    padding: 15% 50px;
+  }
+  #password-container {
+    padding: 0 0 38vh;
+  }
+  p.password {
+    color:#FFF;
+    font-size: 145px;
+    padding: 50px 0;
+    margin: 0;
   }
 }
