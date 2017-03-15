@@ -39,6 +39,12 @@ input.password {
   outline: none;
   margin-top: 15px;
 }
+p.password {
+  color:#FFF;
+  font-size: 145px;
+  padding: 50px 0;
+  margin: 0;
+}
 #password-container::selection, .password::selection {
   background: #fff;
 }
@@ -52,27 +58,6 @@ input.password {
 }
 @media screen and (max-width: 620px) {
   body {
-    margin: 0;
-  }
-  #password-container {
-    padding-top: 15vh;
-  }
-}
-@media screen and (max-width: 415px) {
-  body {
-    margin: 0;
-  }
-  #title {
-    font-size: 70px;
-    padding: 15% 50px;
-  }
-  #password-container {
-    padding: 0 0 38vh;
-  }
-  p.password {
-    color:#FFF;
-    font-size: 145px;
-    padding: 50px 0;
     margin: 0;
   }
 }
