@@ -6,11 +6,11 @@ body {
   margin: 5% 10% 0;
   text-align: center;
   font-size: 55px;
-  background-color: #B5A5A4;
+  background-color: #d0b7b6;
   font-family: helvetica, sans-serif;
-  -webkit-box-shadow: 0px 6px 75px 1px rgba(0,0,0,0.45);
-  -moz-box-shadow: 0px 6px 75px 1px rgba(0,0,0,0.45);
-  box-shadow: 0px 6px 75px 1px rgba(0,0,0,0.45);
+  -webkit-box-shadow: 0px 54px 46px 1px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 54px 46px 1px rgba(0,0,0,0.3);
+  box-shadow: 0px 54px 46px 1px rgba(0,0,0,0.3);
 }
 #title {
   margin: 0;
@@ -28,6 +28,7 @@ body {
 #password-container {
   padding-top: 50px;
   background-color: #7EC9AC;
+  min-height: 100vh;
 }
 input.password {
   font-size: 55px;
