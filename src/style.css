@@ -30,21 +30,23 @@ body {
   background-color: #7EC9AC;
   min-height: 100vh;
 }
-input.password {
+.password {
   font-size: 55px;
-  width: 300px;
-  background-color: #7EC9AC;
   color:#FFF;
+  margin-top: 15px;
+}
+input.password {
+  background-color: #7EC9AC;
   font-family: helvetica, sans-serif;
+  width: 300px;
   border: 0;
   outline: none;
-  margin-top: 15px;
 }
 p.password {
   color:#FFF;
-  font-size: 145px;
-  padding: 50px 0;
+  padding: 13px 0;
   margin: 0;
+  width: 100vw;
 }
 #password-container::selection, .password::selection {
   background: #fff;
@@ -60,5 +62,11 @@ p.password {
 @media screen and (max-width: 620px) {
   body {
     margin: 0;
+  }
+  #title {
+    font-size: 30px;
+  }
+  #password-container {
+    padding-top: 13px;
   }
 }
