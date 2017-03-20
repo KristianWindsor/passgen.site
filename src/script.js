@@ -53,6 +53,15 @@ var equalChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p"
 var periodChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0"];
 var lastChar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","!","."];
 
+// menu settings
+function changeSettings(divId) {
+	document.getElementById('p1').setAttribute("style", "background-color: #f1f2f2; color:#888;");
+	document.getElementById('p2').setAttribute("style", "background-color: #f1f2f2; color:#888;");
+	document.getElementById('p3').setAttribute("style", "background-color: #f1f2f2; color:#888;");
+	document.getElementById('p4').setAttribute("style", "background-color: #f1f2f2; color:#888;");
+	document.getElementById(divId).setAttribute("style", "background-color: #fff; color:#565656;");
+}
+
 // test for vowels
 function hasVowels(str) {
   var m = str.toLowerCase().match(/[aeiou]/gi);

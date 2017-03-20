@@ -15,15 +15,39 @@ body {
 #title {
   margin: 0;
   padding: 50px 15px;
-  background-color: #FFF;
+  background-color: #fff;
   color: #565656;
   font-family: helvetica, sans-serif;
 }
-#title::selection {
+#title::selection, #menu p::selection {
   background: #7EC9AC;
 }
-#title::-moz-selection {
+#title::-moz-selection, #menu p::-moz-selection {
   background: #7EC9AC;
+}
+#menu {
+  background-color: #f1f2f2;
+  font-size: 16px;
+  color: #888;
+  cursor: pointer;
+  overflow: hidden;
+}
+#menu p {
+  display: inline-block;
+  float: left;
+  width: 25%;
+  margin: 0;
+  padding: 25px 0;
+}
+#menu p:hover {
+  background-color: #fff !important;
+}
+#menu p:active {
+  color: #ccc !important;
+}
+#p2 {
+  color: #565656;
+  background-color: #fff;
 }
 #password-container {
   padding-top: 50px;
@@ -51,7 +75,7 @@ p.password {
 #password-container::selection, .password::selection {
   background: #fff;
 }
-#password-container::-moz-selection, .password::-moz-selection {
+#password-container::-moz-selection, .password::-moz-selection, #menu p::-moz-selection {
   background: #fff;
 }
 @media screen and (max-width: 1050px) {
@@ -68,5 +92,8 @@ p.password {
   }
   #password-container {
     padding-top: 13px;
+  }
+  #menu {
+    font-size: 12px;
   }
 }
