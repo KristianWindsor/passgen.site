@@ -84,7 +84,12 @@ function generatePassword() {
 	}
 }
 function generatePasswordSecure() {
-
+	var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()+-=[];,./?",
+        result = "";
+    for (var i = 0, n = charset.length; i < 10; ++i) {
+        result += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return result;
 }
 function generatePasswordPronouncable() {
 	var succeeded = false;
@@ -249,7 +254,7 @@ function generatePasswordPronouncable() {
 	}
 }
 function generatePasswordWords() {
-
+	
 }
 function generatePasswordCustom() {
 
