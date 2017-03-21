@@ -135,3 +135,9 @@ p.password {
     font-size: 30px;
   }
 }
+@media screen and (max-width: 420px) {  
+  #p1, #p4 {
+    padding: 32px 0 18px !important;
+    height: 28px;
+  }
+}
