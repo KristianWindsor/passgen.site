@@ -270,7 +270,33 @@ function generatePasswordWords() {
 	return verbs[Math.floor(Math.random() * verbs.length)] + "-" + adjectives[Math.floor(Math.random() * adjectives.length)] + "-" + nouns[Math.floor(Math.random() * nouns.length)];
 }
 function generatePasswordCustom() {
-
+	var customSettings = [];
+	customSettings[0] = document.getElementById('trackbar').value;
+	customSettings[1] = document.getElementById('set_lowercase').checked;
+	customSettings[2] = document.getElementById('set_uppercase').checked;
+	customSettings[3] = document.getElementById('set_numbers').checked;
+	customSettings[4] = document.getElementById('set_symbols').checked;
+	var alphabet = "abcdefghijklmnopqrstuvwxyz";
+	var numbers = "1234567890";
+	var symbols = "!@#$%^&*()+=-";
+	var options = "";
+	if (customSettings[1]) {
+		options = alphabet;
+	}
+	if (customSettings[2]) {
+		options += alphabet.toUpperCase();
+	}
+	if (customSettings[3]) {
+		options += numbers;
+	}
+	if (customSettings[4]) {
+		options += symbols;
+	}
+	var result = "";
+    for (var i = 0, n = options.length; i < customSettings[0]; ++i) {
+        result += options.charAt(Math.floor(Math.random() * n));
+    }
+    return result;
 }
 
 
