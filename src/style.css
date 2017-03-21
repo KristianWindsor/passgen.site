@@ -29,25 +29,59 @@ body {
   background-color: #f1f2f2;
   font-size: 16px;
   color: #888;
-  cursor: pointer;
   overflow: hidden;
 }
-#menu p {
+#menu>p {
   display: inline-block;
   float: left;
   width: 25%;
   margin: 0;
   padding: 25px 0;
+  cursor: pointer;
 }
-#menu p:hover {
+#menu>p:hover {
   background-color: #fff !important;
 }
-#menu p:active {
+#menu>p:active {
   color: #ccc !important;
 }
 #p2 {
   color: #565656;
   background-color: #fff;
+}
+#custom {
+  float: left;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  display: none;
+}
+#custom label {
+  margin-right: 15px;
+}
+#custom label:hover {
+  color: #565656;
+}
+#trackbar-container {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+}
+#trackbar-container p {
+  display: inline-block;
+  position: relative;
+  width: auto;
+  float: none;
+  top: -3px;
+  padding: 0; 
+}
+#trackbar {
+  width: 47%;
+}
+input[type="checkbox"] {
+  position: relative;
+  top: -1px;
+  right: -3px;
 }
 #password-container {
   padding-top: 50px;

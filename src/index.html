@@ -16,6 +16,20 @@
 			<p id="p2" onclick="changeSettings('p2',1);">Semi-Pronouncable</p>
 			<p id="p3" onclick="changeSettings('p3',2);">Word Combinations</p>
 			<p id="p4" onclick="changeSettings('p4',3);">Custom</p>
+			<div id="custom">
+				<div id="trackbar-container">
+					<p>length: <span id="length-span">8</span></p>
+					<input type="range" id="trackbar" value="8" min="3" max="128" />
+				</div>
+				<input type="checkbox" id="set_lowercase" />
+				<label for="set_lowercase">lowercase letters</label>
+				<input type="checkbox" id="set_uppercase" />
+				<label for="set_uppercase">uppercase letters</label>
+				<input type="checkbox" id="set_numbers" />
+				<label for="set_numbers">numeric numbers</label>
+				<input type="checkbox" id="set_symbols" />
+				<label for="set_symbols">special symbols</label>
+			</div>
 		</div>
 		<div id="password-container"></div>
 	</body>
