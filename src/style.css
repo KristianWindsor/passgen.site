@@ -55,14 +55,15 @@ body {
   min-height: 100vh;
 }
 .password {
-  font-size: 55px;
+  font-size: 45px;
   color:#FFF;
   margin-top: 15px;
 }
 input.password {
   background-color: #7EC9AC;
   font-family: helvetica, sans-serif;
-  width: 300px;
+  width: 100%;
+  text-align: center;
   border: 0;
   outline: none;
 }
@@ -95,5 +96,8 @@ p.password {
   }
   #menu {
     font-size: 12px;
+  }
+  .password {
+    font-size: 30px;
   }
 }
