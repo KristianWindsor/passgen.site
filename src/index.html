@@ -19,15 +19,15 @@
 			<div id="custom">
 				<div id="trackbar-container">
 					<p>length: <span id="length-span">8</span></p>
-					<input type="range" id="trackbar" value="8" min="3" max="128" />
+					<input type="range" id="trackbar" oninput="refresh();" onchange="refresh();" value="8" min="3" max="128" />
 				</div>
-				<input type="checkbox" id="set_lowercase" />
+				<input type="checkbox" id="set_lowercase" onclick="refresh();" />
 				<label for="set_lowercase">lowercase letters</label>
-				<input type="checkbox" id="set_uppercase" />
+				<input type="checkbox" id="set_uppercase" onclick="refresh();" />
 				<label for="set_uppercase">uppercase letters</label>
-				<input type="checkbox" id="set_numbers" />
+				<input type="checkbox" id="set_numbers" onclick="refresh();" />
 				<label for="set_numbers">numeric numbers</label>
-				<input type="checkbox" id="set_symbols" />
+				<input type="checkbox" id="set_symbols" onclick="refresh();" />
 				<label for="set_symbols">special symbols</label>
 			</div>
 		</div>
