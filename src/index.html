@@ -21,14 +21,14 @@
 					<p>length: <span id="length-span">8</span></p>
 					<input type="range" id="trackbar" oninput="refresh();" onchange="refresh();" value="8" min="3" max="64" />
 				</div>
-				<input type="checkbox" id="set_lowercase" onclick="refresh();" checked="checked" />
+				<span class="checkboxes"><input type="checkbox" id="set_lowercase" onclick="refresh();" checked="checked" />
 				<label for="set_lowercase">lowercase letters</label>
 				<input type="checkbox" id="set_uppercase" onclick="refresh();" checked="checked" />
-				<label for="set_uppercase">uppercase letters</label>
-				<input type="checkbox" id="set_numbers" onclick="refresh();" checked="checked" />
+				<label for="set_uppercase">uppercase letters</label></span>
+				<span class="checkboxes"><input type="checkbox" id="set_numbers" onclick="refresh();" checked="checked" />
 				<label for="set_numbers">numeric numbers</label>
 				<input type="checkbox" id="set_symbols" onclick="refresh();" checked="checked" />
-				<label for="set_symbols">special symbols</label>
+				<label for="set_symbols">special symbols</label></span>
 			</div>
 		</div>
 		<div id="password-container"></div>
