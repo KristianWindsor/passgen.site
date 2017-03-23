@@ -14,7 +14,7 @@ body {
 }
 #title {
   margin: 0;
-  padding: 50px 15px;
+  padding: 35px 15px;
   background-color: #fff;
   color: #565656;
   font-family: helvetica, sans-serif;
@@ -136,9 +136,11 @@ p.password {
   }
 }
 @media screen and (max-width: 420px) {  
+  #menu>p {
+    height: 30px;
+  }
   #menu>p:not(#p3) {
     padding: 32px 0 18px;
-    height: 28px;
   }
   #trackbar-container {
     text-align: left;
