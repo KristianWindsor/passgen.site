@@ -273,7 +273,9 @@ function generatePasswordPronouncable() {
 	}
 }
 function generatePasswordWords() {
-	return verbs[Math.floor(Math.random() * verbs.length)] + "-" + adjectives[Math.floor(Math.random() * adjectives.length)] + "-" + nouns[Math.floor(Math.random() * nouns.length)];
+	var result = verbs[Math.floor(Math.random() * verbs.length)] + "-" + adjectives[Math.floor(Math.random() * adjectives.length)] + "-" + nouns[Math.floor(Math.random() * nouns.length)] + numbers[Math.floor(Math.random() * numbers.length)];
+	result = result.charAt(0).toUpperCase() + result.slice(1);
+	return result;
 }
 function generatePasswordCustom() {
 	var customSettings = [];
