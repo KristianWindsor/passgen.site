@@ -273,9 +273,13 @@ function generatePasswordPronouncable() {
 	}
 }
 function generatePasswordWords() {
-	var result = verbs[Math.floor(Math.random() * verbs.length)] + "-" + adjectives[Math.floor(Math.random() * adjectives.length)] + "-" + nouns[Math.floor(Math.random() * nouns.length)] + numbers[Math.floor(Math.random() * numbers.length)];
-	result = result.charAt(0).toUpperCase() + result.slice(1);
-	return result;
+	while (true) {
+		var result = verbs[Math.floor(Math.random() * verbs.length)] + "-" + adjectives[Math.floor(Math.random() * adjectives.length)] + "-" + nouns[Math.floor(Math.random() * nouns.length)] + numbers[Math.floor(Math.random() * numbers.length)];
+		result = result.charAt(0).toUpperCase() + result.slice(1);
+		if (result.length < 17) {
+			return result;
+		}
+	}
 }
 function generatePasswordCustom() {
 	var customSettings = [];
