@@ -19,10 +19,10 @@ body {
   color: #565656;
   font-family: helvetica, sans-serif;
 }
-#title::selection, #menu p::selection {
+#title::selection, #menu p::selection, #menu label::selection {
   background: #7EC9AC;
 }
-#title::-moz-selection, #menu p::-moz-selection {
+#title::-moz-selection, #menu p::-moz-selection, #menu label::-moz-selection {
   background: #7EC9AC;
 }
 #menu {
