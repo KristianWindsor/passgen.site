@@ -329,7 +329,7 @@ function addPasswords(amount) {
 		if (isMobile) {
 			div.innerHTML = div.innerHTML + '<p class="password">' + generatePassword() + '</p>';
 		} else {
-			div.innerHTML = div.innerHTML + '<input type="text" class="password" value="' + generatePassword() + '" onClick="select()" maxlength="8" spellcheck="false" /><br>';
+			div.innerHTML = div.innerHTML + '<input type="text" class="password" value="' + generatePassword() + '" onClick="select()" maxlength="32" spellcheck="false" /><br>';
 		}
 		i++;
 	}
