@@ -113,6 +113,11 @@ p.password {
 #password-container::-moz-selection, .password::-moz-selection, #menu p::-moz-selection {
   background: #fff;
 }
+.error {
+  width: 100%;
+  font-size: 40px;
+  color:#fff;
+}
 @media screen and (max-width: 1050px) {
   body {
     margin: 0;
