@@ -34,7 +34,7 @@ body {
 #menu>p {
   display: inline-block;
   float: left;
-  width: 25%;
+  width: 33.333%;
   margin: 0;
   padding: 25px 0;
   cursor: pointer;
@@ -45,7 +45,7 @@ body {
 #menu>p:active {
   color: #ccc !important;
 }
-#p2 {
+#p1 {
   color: #565656;
   background-color: #fff;
 }
@@ -144,7 +144,7 @@ p.password {
   #menu>p {
     height: 30px;
   }
-  #menu>p:not(#p3) {
+  #menu>p:not(#p2) {
     padding: 32px 0 18px;
   }
   #trackbar-container {

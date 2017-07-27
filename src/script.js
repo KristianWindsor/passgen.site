@@ -69,7 +69,6 @@ function changeSettings(divId, settingsInt) {
 	document.getElementById('p1').setAttribute("style", "background-color: #f1f2f2; color:#888;");
 	document.getElementById('p2').setAttribute("style", "background-color: #f1f2f2; color:#888;");
 	document.getElementById('p3').setAttribute("style", "background-color: #f1f2f2; color:#888;");
-	document.getElementById('p4').setAttribute("style", "background-color: #f1f2f2; color:#888;");
 	document.getElementById('custom').style.display = 'none';
 	document.getElementById(divId).setAttribute("style", "background-color: #fff; color:#565656;");
 	settings = settingsInt;
