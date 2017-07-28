@@ -51,10 +51,27 @@ body {
 }
 #custom {
   float: left;
-  padding: 10px 0 20px 20px;
   text-align: center;
   width: 100%;
   display: none;
+  padding: 10px 0;
+}
+.half {
+  width: 25%;
+}
+.half.left {
+  margin-left: 25%;
+  text-align: center;
+}
+.center-this {
+  display: inline-block;
+  width: auto;
+  text-align: left;
+}
+.checkboxes {
+  display: block;
+  margin: 5px 0;
+  text-align: left;
 }
 #custom label {
   margin-right: 15px;
@@ -63,20 +80,29 @@ body {
   color: #565656;
 }
 #trackbar-container {
-  width: 100%;
+  width: 50%;
+  margin: 0 auto;
+  padding: 3px;
   text-align: center;
   padding-bottom: 5px;
 }
+.tr-left {
+  width:auto;
+  padding: 0 3px;
+  overflow:hidden;
+}
+.tr-right {
+    float:left;
+}
 #trackbar-container p {
   display: inline-block;
-  position: relative;
   width: auto;
+  margin: 0 5px 0 0;
+  padding-left: 5.8px;
   float: none;
-  top: -3px;
-  padding: 0; 
 }
 #trackbar {
-  width: 47%;
+  width: 100%;
 }
 input[type="checkbox"] {
   position: relative;
@@ -123,6 +149,17 @@ p.password {
     margin: 0;
   }
 }
+@media screen and (max-width: 800px) {
+  #trackbar-container {
+    width: 80%;
+  }
+  .half {
+    width: 40%;
+  }
+  .half.left {
+    margin-left: 10%;
+  }
+}
 @media screen and (max-width: 620px) {
   body {
     margin: 0;
@@ -140,24 +177,25 @@ p.password {
     font-size: 30px;
   }
 }
-@media screen and (max-width: 420px) {  
-  #menu>p {
-    height: 30px;
-  }
-  #menu>p:not(#p2) {
-    padding: 32px 0 18px;
-  }
+@media screen and (max-width: 420px) {
   #trackbar-container {
+    width: 90%;
     text-align: left;
   }
   #trackbar-container p {
     top: -5px;
   }
-  #trackbar {
-    width: 70%;
-  }
   .checkboxes {
     display: block;
     text-align: left;
+  }
+  .half {
+    width: 45%;
+  }
+  .half.left {
+    margin-left: 5%;
+  }
+  .tr-right {
+    padding-top: 3px;
   }
 }

@@ -18,17 +18,33 @@
 			<p id="p3" onclick="changeSettings('p3',3);">Custom</p>
 			<div id="custom">
 				<div id="trackbar-container">
-					<p>length: <span id="length-span">8</span></p>
-					<input type="range" id="trackbar" oninput="refresh();" onchange="refresh();" value="8" min="3" max="32" />
+					<div class="tr-right">
+						<p>length: <span id="length-span">8</span></p>
+					</div>
+					<div class="tr-left">
+						<input type="range" id="trackbar" oninput="refresh();" onchange="refresh();" value="8" min="3" max="32" />
+					</div>
 				</div>
-				<span class="checkboxes"><input type="checkbox" id="set_lowercase" onclick="refresh();" checked="checked" />
-				<label for="set_lowercase">lowercase letters</label>
-				<input type="checkbox" id="set_uppercase" onclick="refresh();" checked="checked" />
-				<label for="set_uppercase">uppercase letters</label></span>
-				<span class="checkboxes"><input type="checkbox" id="set_numbers" onclick="refresh();" checked="checked" />
-				<label for="set_numbers">numeric numbers</label>
-				<input type="checkbox" id="set_symbols" onclick="refresh();" checked="checked" />
-				<label for="set_symbols">special symbols</label></span>
+				<div class="half left">
+					<div class="center-this">
+						<span class="checkboxes">
+							<input type="checkbox" id="set_lowercase" onclick="refresh();" checked="checked" />
+							<label for="set_lowercase">abcdef</label>
+						</span>
+						<span class="checkboxes">
+							<input type="checkbox" id="set_uppercase" onclick="refresh();" checked="checked" />
+							<label for="set_uppercase">ABCDEF</label>
+						</span>
+						<span class="checkboxes">
+							<input type="checkbox" id="set_numbers" onclick="refresh();" checked="checked" />
+							<label for="set_numbers">123456</label>
+						</span>
+						<span class="checkboxes">
+							<input type="checkbox" id="set_symbols" onclick="refresh();" />
+							<label for="set_symbols">!@#$%&</label>
+						</span>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div id="password-container">
