@@ -57,10 +57,11 @@ body {
   padding: 10px 0;
 }
 .half {
+  display: inline-block;
   width: 25%;
+  vertical-align: middle;
 }
 .half.left {
-  margin-left: 25%;
   text-align: center;
 }
 .center-this {
@@ -109,6 +110,27 @@ input[type="checkbox"] {
   top: -1px;
   right: -3px;
 }
+.button {
+  cursor: pointer;
+}
+.button:hover {
+  color: #565656;
+}
+
+#personal {
+  text-align: left;
+}
+#personal p {
+  margin: 0;
+}
+#personal input {
+  width: 100%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #565656;
+}
+
 #password-container {
   padding-top: 50px;
   background-color: #7EC9AC;
@@ -156,9 +178,6 @@ p.password {
   .half {
     width: 40%;
   }
-  .half.left {
-    margin-left: 10%;
-  }
 }
 @media screen and (max-width: 620px) {
   body {
@@ -191,9 +210,6 @@ p.password {
   }
   .half {
     width: 45%;
-  }
-  .half.left {
-    margin-left: 5%;
   }
   .tr-right {
     padding-top: 3px;

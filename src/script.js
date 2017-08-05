@@ -1,5 +1,6 @@
 // a password generator . website
 // by kristian windsor
+// oh god this code is so messy please don't judge my coding skills based on this script
 
 // detect if mobile device
 var isMobile = false;
@@ -76,6 +77,16 @@ function changeSettings(divId, settingsInt) {
 		document.getElementById('custom').style.display = 'block';
 	}
 	refresh();
+}
+
+// phone number input changed
+var previousNumber = "";
+function phoneChanged() {
+	var phone = document.getElementById('phone').value.replace(/\D/g,'');
+	if (phone != previousNumber && (phone.length == 0 || phone.length == 3 || phone.length == 6 || phone.length == 10)) {
+		previousNumber = phone;
+		refresh();
+	}
 }
 
 // refresh
@@ -287,6 +298,7 @@ function generatePasswordCustom() {
 	customSettings[2] = document.getElementById('set_uppercase').checked;
 	customSettings[3] = document.getElementById('set_numbers').checked;
 	customSettings[4] = document.getElementById('set_symbols').checked;
+	customSettings[5] = document.getElementById('phone').value;
 	var options = "";
 	if (customSettings[1]) {
 		options = alphabet;
@@ -304,9 +316,122 @@ function generatePasswordCustom() {
     for (var i = 0, n = options.length; i < customSettings[0]; ++i) {
         result += options.charAt(Math.floor(Math.random() * n));
     }
+
+    // use personal information
+
+    // influence the generated passords with the given phone number
+	var phoneInput = customSettings[5].replace(/\D/g,'');
+	if (phoneInput.length > 2 && randomChance(9)) {
+
+		// first we replace some of the numbers with letters
+		var phoneNumber = [];
+		function replaceNumbersWithLetters(chance, from, to) {
+			if (randomChance(chance)) {
+				phoneNumber[i] = phoneNumber[i].replace(from,to);
+			}
+		}
+		for (var i = 0; i < phoneInput.length; i++) {
+			phoneNumber.push(phoneInput.substring(i,i+1));
+			replaceNumbersWithLetters(1,   "1", "i");
+			replaceNumbersWithLetters(1,   "1", "I");
+			replaceNumbersWithLetters(1,   "1", "l");
+			replaceNumbersWithLetters(1.5, "0", "o");
+			replaceNumbersWithLetters(1.5, "0", "O");
+			replaceNumbersWithLetters(1.5, "2", "z");
+			replaceNumbersWithLetters(1.5, "2", "Z");
+			replaceNumbersWithLetters(1.5, "4", "A");
+			replaceNumbersWithLetters(1.5, "5", "s");
+			replaceNumbersWithLetters(1.5, "5", "S");
+			replaceNumbersWithLetters(1.5, "6", "G");
+			replaceNumbersWithLetters(3,   "8", "B");
+			replaceNumbersWithLetters(0.5, "9", "q");
+			replaceNumbersWithLetters(1.5, "9", "g");
+		}
+
+		// format the phone number into segments. eg ['4O8','6B3','4007']
+		var numberSplit = [];
+		function splitNumbersIntoThree(numberSplitLocation, charStart, charEnd) {
+			numberSplit[numberSplitLocation] = "";
+			for (var i = charStart; i < charEnd; i++) {
+				numberSplit[numberSplitLocation] += phoneNumber[i];			
+			}
+		}
+		splitNumbersIntoThree(0,0,3);
+		if (phoneNumber.length >= 6) {
+			splitNumbersIntoThree(1,3,6);
+		}
+		if (phoneNumber.length >= 10) {
+			splitNumbersIntoThree(2,6,10);
+		}
+
+		// decide which segments of the phone number to use
+		var numberOptions = [];
+		function pickNumberSegments(set, get) {
+			numberOptions[set] = numberSplit[get];
+		}
+		var max = 1;
+		if (customSettings[0] > 6 && numberSplit.length > 1) {
+			max++;
+			if (customSettings[0] > 10 && numberSplit.length > 2) {
+				max++;
+			}
+		}
+		var howManyToUse = generateRandomNumber(1,max);
+
+		if (howManyToUse == 1) {
+			pickNumberSegments(0,generateRandomNumber(0,numberSplit.length-1));
+		}
+		if (howManyToUse == 2) {
+			if (randomChance(5) && numberSplit.length > 2) {
+				pickNumberSegments(0,1);
+				pickNumberSegments(1,2);
+			} else {
+				pickNumberSegments(0,0);
+				pickNumberSegments(1,1);
+			}
+		}
+		if (howManyToUse == 3) {
+			pickNumberSegments(0,0);
+			pickNumberSegments(1,1);
+			pickNumberSegments(2,2);
+		}
+
+		// decide on the position of the password to insert the chosen phone number segments
+		var position = [];
+		function choosePosition(start, stop) {
+			position.push(generateRandomNumber(start, stop));
+		}
+		if (numberOptions.length == 1) {
+			choosePosition(0, customSettings[0] - numberOptions[0].length);
+		} else if (numberOptions.length == 2) {
+			choosePosition(0, (customSettings[0] / 2) - numberOptions[0].length);
+			choosePosition((customSettings[0] / 2)+1, customSettings[0] - numberOptions[1].length);
+		} else {
+			choosePosition(0, (customSettings[0] / 3) - numberOptions[0].length);
+			choosePosition((customSettings[0] / 3)+1, (customSettings[0] * 2/3) - numberOptions[1].length);
+			choosePosition((customSettings[0] * 2/3)+1, customSettings[0] - numberOptions[2].length);
+		}
+
+		// then implement them here
+		for (var i = 0; i < numberOptions.length; i++) {
+			result = result.substr(0, position[i]) + numberOptions[i] + result.substr(position[i] + numberOptions[i].length);
+		}
+	}
     return result;
 }
 
+
+function generateRandomNumber(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+// return percentage
+function randomChance(percent) {
+    if (generateRandomNumber(0,10) <= percent) {
+    	return true;
+    } else {
+    	return false;
+    }
+}
 
 // call updatePassword once the page loads
 window.onload = function() {
