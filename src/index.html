@@ -1,64 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 		<title>
-			a password generator  . website
+			A Password Generator .website
 		</title>
-		<meta name="description" content="Generate secure, random, pronounceable, memorable, and customizable passwords instantly and easily!" />
-		<link rel="stylesheet" href="style.css">
+		<meta name="description" content="Generate secure, random, pronounceable, memorable, and customizable passwords instantly and easily!">
+		<link href="style.css" rel="stylesheet">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	</head>
 	<body>
-		<p id="title">
-			a password generator . website
-		</p>
-		<div id="menu">
-			<p id="p1" onclick="changeSettings('p1',1);">Gibberish</p>
-			<p id="p2" onclick="changeSettings('p2',2);">Word Combinations</p>
-			<p id="p3" onclick="changeSettings('p3',3);">Custom</p>
-			<div id="custom">
-				<div id="trackbar-container">
-					<div class="tr-right">
-						<p>length: <span id="length-span">8</span></p>
-					</div>
-					<div class="tr-left">
-						<input type="range" id="trackbar" oninput="refresh();" onchange="refresh();" value="8" min="3" max="32" />
-					</div>
+		<div class="body">
+			<div class="title">
+				<p>
+					A Password Generator .website
+				</p>
+			</div>
+			<noscript>
+				<p style="text-align:center;color:red">;
+					You have Javascript disabled in your browser. You need to enable it for this password generator to work.
+				</p>
+			</noscript>
+			<div class="content">
+				<div class="action-area">
+					<p class="button">
+						Change Settings
+					</p>
+					<button id="generate" onclick="addPasswords(3)">
+						Generate
+					</button>
 				</div>
-				<div class="half left">
-					<div class="center-this">
-						<span class="checkboxes">
-							<input type="checkbox" id="set_lowercase" onclick="refresh();" checked="checked" />
-							<label for="set_lowercase">abcdef</label>
-						</span>
-						<span class="checkboxes">
-							<input type="checkbox" id="set_uppercase" onclick="refresh();" checked="checked" />
-							<label for="set_uppercase">ABCDEF</label>
-						</span>
-						<span class="checkboxes">
-							<input type="checkbox" id="set_numbers" onclick="refresh();" checked="checked" />
-							<label for="set_numbers">123456</label>
-						</span>
-						<span class="checkboxes">
-							<input type="checkbox" id="set_symbols" onclick="refresh();" />
-							<label for="set_symbols">!@#$%&</label>
-						</span>
-					</div>
-				</div>
-				<div class="half right">
-					<div id="personal">
-						<p>
-							Phone Number
-						</p>
-						<input type="text" id="phone" change="phoneChanged();" onKeyDown="phoneChanged();" input="phoneChanged();" onKeyUp="phoneChanged();" />
-					</div>
+				<p class="label">
+					Here are your passwords:
+				</p>
+				<div id="results">
 				</div>
 			</div>
-		</div>
-		<div id="password-container">
-			<noscript>
-				<p class="error">Your browser has Javascript disabled. You will need to enable Javascript for this password generator to work.</p>
-			</noscript>
+			<div class="about">
+				<p class="subtitle">
+					About
+				</p>
+				<p class="text shadow">
+					All passwords are generated locally in your browser and are not saved anywhere.
+					This password generator is built with Javascript and is all open source. You can <a href="https://github.com/Windso/apasswordgenerator.website" target="_blank">view the code here</a>.
+				</p>
+			</div>
+			<div class="footer">
+			</div>
 		</div>
 	</body>
 	<script type="text/javascript" src="script.js"></script>

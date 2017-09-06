@@ -435,21 +435,16 @@ function randomChance(percent) {
 
 // call updatePassword once the page loads
 window.onload = function() {
-	addPasswords(10);
-};
-
-// infinite scroll
-window.onscroll = function() {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
-    	addPasswords(1);
-    }
+	addPasswords(3);
 };
 
 // add more passwords to list view
 function addPasswords(amount) {
-	var i = 0;
+	var i = 0,
+	    div = document.getElementById('results');
+	    
+	div.innerHTML = "";
 	while (i<amount) {
-		var div = document.getElementById('password-container');
 		if (isMobile) {
 			div.innerHTML = div.innerHTML + '<p class="password">' + generatePassword() + '</p>';
 		} else {
