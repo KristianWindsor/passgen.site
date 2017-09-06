@@ -1,6 +1,5 @@
 body, html { 
   height: 100vh;
-  overflow: hidden; 
 }
 body {
   margin: 0;
@@ -76,22 +75,25 @@ p.button {
   display: none;
   margin: 10px 0;
 }
+.password {
+  padding: 12px 0;
+  font-weight: 700;
+  font-size: 28px;
+  text-align: center;
+}
 input.password {
   width: 100%;
-  padding: 12px 0;
   border: 0;
   outline: 0;
-  font-size: 24px;
-  font-weight: 700;
-  text-align: center;
   color: #565656;
+}
+p.password {
+  margin: 0;
 }
 .about {
   padding: 3%;
   font-weight: 700;
   background-color: #7EC9AC;
-}
-.about p {
 }
 .subtitle {
   font-weight: 700;
@@ -103,6 +105,7 @@ input.password {
   font-size: 20px;
   line-height: 1.6;
   text-align: justify;
+  box-sizing: border-box;
 }
 .text a {
   text-decoration: none;
@@ -113,9 +116,10 @@ input.password {
   border-bottom: 1px solid #fff;
   color: #fff;
 }
-.footer {
+#footer {
+  display: none;
+  height: 100vh;
   background-color: #7EC9AC;
-  height: 40vh;
 }
 
 @media (max-width: 1450px) {
@@ -138,10 +142,16 @@ input.password {
   }
 }
 @media (max-width: 800px) {
+  body {
+    background-color: #7EC9AC;
+  }
   .body {
     width: 100%;
     margin: 0;
     border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
   }
   .title {
     border-radius: 0;
@@ -154,9 +164,20 @@ input.password {
 @media (max-width: 450px) {
   .title {
     font-size: 25px;
+    font-size: 6vw;
+  }
+  .content {
+    width: 100%;
+    padding: 4%;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .action-area {
+    margin-bottom: 6px;
   }
   .text {
     width: 100%;
-    font-size: 18px;
+    padding: 4%;
+    font-size: 16px;
   }
 }
