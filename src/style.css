@@ -117,3 +117,46 @@ input.password {
   background-color: #7EC9AC;
   height: 40vh;
 }
+
+@media (max-width: 1450px) {
+  .body {
+    width: 80%;
+  }
+}
+@media (max-width: 1000px) {
+  .body {
+    width: 90%;
+  }
+  .text {
+    width: 547px;
+  }
+  .title {
+    font-size: 40px;
+  }
+  #generate {
+    font-size: 20px;
+  }
+}
+@media (max-width: 800px) {
+  .body {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  .title {
+    border-radius: 0;
+    font-size: 30px;
+  }
+  .text {
+    width: 410px;
+  }
+}
+@media (max-width: 450px) {
+  .title {
+    font-size: 25px;
+  }
+  .text {
+    width: 100%;
+    font-size: 18px;
+  }
+}
