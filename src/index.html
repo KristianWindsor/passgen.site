@@ -23,16 +23,18 @@
 			</noscript>
 			<div class="content">
 				<div class="action-area">
-					<p class="button">
-						Change Settings
+					<p class="label">
+						Length: <span id="lengthDisplay">8</span>
 					</p>
+					<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="refresh();" onchange="refresh();" />
+					<p class="label">
+						Word Structure: <span id="wordStructureLabel">w0rdy</span>
+					</p>
+					<input type="range" class="trackbar" id="wordStructure" min="0" max="100" value="80" oninput="refresh();" onchange="refresh();" />
 					<button id="generate" onclick="addPasswords(3)">
 						Generate
 					</button>
 				</div>
-				<p class="label">
-					Here are your passwords:
-				</p>
 				<div id="results">
 				</div>
 			</div>
@@ -44,8 +46,6 @@
 					All passwords are generated locally in your browser and are not saved anywhere.
 					This password generator is built with Javascript and is all open source. You can <a href="https://github.com/Windso/apasswordgenerator.website" target="_blank">view the code here</a>.
 				</p>
-			</div>
-			<div id="footer">
 			</div>
 		</div>
 	</body>

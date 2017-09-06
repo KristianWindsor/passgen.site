@@ -31,19 +31,18 @@ body {
 .content {
   padding: 5% 0;
 }
-.action-area {
-  margin-bottom: 40px;
+.label {
+  margin: 10px 0 0;
+  font-size: 18px;
 }
-p.button {
-  margin: 3px;
-  color: #00AFF0;
-  cursor: pointer;
-  display: none;
+.trackbar {
+  width: 100%;
 }
 #generate {
   position: relative;
   width: 100%;
   padding: 25px 80px;
+  margin: 25px 0;
   border: 0;
   outline: 0;
   font-size: 24px;
@@ -71,10 +70,6 @@ p.button {
 }
 #results {
 }
-.label {
-  display: none;
-  margin: 10px 0;
-}
 .password {
   padding: 12px 0;
   font-weight: 700;
@@ -91,7 +86,7 @@ p.password {
   margin: 0;
 }
 .about {
-  padding: 3%;
+  padding: 3% 3% 10%;
   font-weight: 700;
   background-color: #7EC9AC;
 }
