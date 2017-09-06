@@ -26,12 +26,12 @@
 					<p class="label">
 						Length: <span id="lengthDisplay">8</span>
 					</p>
-					<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="refresh();" onchange="refresh();" />
+					<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="generatePasswords();" onchange="generatePasswords();" />
 					<p class="label">
 						Word Structure: <span id="wordStructureLabel">w0rdy</span>
 					</p>
-					<input type="range" class="trackbar" id="wordStructure" min="0" max="100" value="80" oninput="refresh();" onchange="refresh();" />
-					<button id="generate" onclick="addPasswords(3)">
+					<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="generatePasswords();" onchange="generatePasswords();" />
+					<button id="generate" onclick="generatePasswords()">
 						Generate
 					</button>
 				</div>
