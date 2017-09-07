@@ -7,10 +7,10 @@
 		<meta name="description" content="Generate secure, random, pronounceable, memorable, and customizable passwords instantly and easily!">
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 		<link href="style.css" rel="stylesheet">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	</head>
 	<body>
-		<div class="body">
+		<div id="body">
 			<div class="title">
 				<p>
 					A Password Generator .website
@@ -22,15 +22,22 @@
 				</p>
 			</noscript>
 			<div class="content">
-				<div class="action-area">
-					<p class="label">
-						Length: <span id="lengthDisplay">8</span>
-					</p>
-					<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="generatePasswords();" onchange="generatePasswords();" />
-					<p class="label">
-						Word Structure: <span id="wordStructureLabel">w0rdy</span>
-					</p>
-					<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="generatePasswords();" onchange="generatePasswords();" />
+				<div id="actionArea">
+					<div>
+						<a id="settingsButton" onclick="showSettings()">
+							Customize Passwords
+						</a>
+					</div>
+					<div id="settings">
+						<p class="label">
+							Length: <span id="lengthDisplay">8</span>
+						</p>
+						<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="generatePasswords();" onchange="generatePasswords();" />
+						<p class="label">
+							Word Structure: <span id="wordStructureLabel">w0rdy</span>
+						</p>
+						<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="generatePasswords();" onchange="generatePasswords();" />
+					</div>
 					<button id="generate" onclick="generatePasswords()">
 						Generate
 					</button>
@@ -42,7 +49,7 @@
 				<p class="subtitle">
 					About
 				</p>
-				<p class="text shadow">
+				<p class="text">
 					All passwords are generated locally in your browser and are not saved anywhere.
 					This password generator is built with Javascript and is all open source. You can <a href="https://github.com/Windso/apasswordgenerator.website" target="_blank">view the code here</a>.
 				</p>

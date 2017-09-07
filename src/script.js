@@ -33,6 +33,25 @@ function generatePasswords() {
 		}
 		i++;
 	}
+	makeSureCssLooksGood();
+}
+
+function makeSureCssLooksGood() {
+	var bodyDiv = document.getElementById('body'),
+		bodyHeight = bodyDiv.offsetHeight,
+		viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+	if (bodyHeight > viewHeight) {
+		bodyDiv.style.position = "static";
+	} else {
+		bodyDiv.style.position = "absolute";
+	}
+}
+
+function showSettings() {
+	document.getElementById('settingsButton').style.display = "none";
+	document.getElementById('settings').style.display = "block";
+	makeSureCssLooksGood();
 }
 
 
