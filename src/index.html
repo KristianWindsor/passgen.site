@@ -22,7 +22,38 @@
 				</p>
 			</noscript>
 			<div class="content">
-				<div id="actionArea">
+				<div class="top">
+					<button id="generate" onclick="generatePasswords()">
+						Generate
+					</button>
+				</div>
+				<div class="left">
+					<div>
+						<p id="settingsButton" onclick="showSettings()">
+							Customize
+						</p>
+					</div>
+					<div id="settings">
+						<p class="label">
+							Length: <span id="lengthDisplay">8</span>
+						</p>
+						<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="generatePasswords();" onchange="generatePasswords();" />
+						<p class="label">
+							Word Structure: <span id="wordStructureLabel">w0rdy</span>
+						</p>
+						<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="generatePasswords();" onchange="generatePasswords();" />
+					</div>
+				</div>
+				<div id="right">
+
+				</div>
+
+
+
+
+
+
+				<!--<div id="actionArea">
 					<div>
 						<a id="settingsButton" onclick="showSettings()">
 							Customize Passwords
@@ -43,7 +74,7 @@
 					</button>
 				</div>
 				<div id="results">
-				</div>
+				</div>-->
 			</div>
 			<div class="about">
 				<p class="subtitle">

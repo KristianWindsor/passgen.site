@@ -32,10 +32,10 @@ body {
 }
 .title p {
   display: inline-block;
-  margin: 5vh 0;
+  margin: 5.5vh 0;
 }
 .content {
-  padding: 5vh 0;
+  padding: 5.5vh 0;
   margin: 0 auto;
   text-align: center;
 }
@@ -66,7 +66,7 @@ body {
   position: relative;
   max-width: 100%;
   padding: 25px 100px;
-  margin: 25px 0 31px;
+  margin: 0 0 31px;
   border: 0;
   outline: 0;
   font-size: 24px;
@@ -89,7 +89,7 @@ body {
   box-shadow: 0 0 #000;
 }
 #results {
-  min-height: 171px;
+  min-height: 85px;
 }
 .password {
   padding: 13px 0;
@@ -107,7 +107,7 @@ p.password {
   margin: 0;
 }
 .about {
-  padding: 5vh 0 10vh;
+  padding: 5.5vh 0 11vh;
   background-color: #7EC9AC;
   text-align: center;
 }
@@ -137,6 +137,18 @@ p.password {
   display: none;
   height: 100vh;
   background-color: #7EC9AC;
+}
+
+.left, #right {
+  display: inline-block;
+  box-sizing: border-box;
+}
+.left {
+  width: 47%;
+  padding: 0 3%;
+}
+#right {
+  width: 50%;
 }
 
 @media (max-width: 960px) {

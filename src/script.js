@@ -22,7 +22,7 @@ var allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@
 function generatePasswords() {
 	document.getElementById('lengthDisplay').innerHTML = document.getElementById('length').value;
 	var i = 0,
-	    div = document.getElementById('results');
+	    div = document.getElementById('right');
 
 	div.innerHTML = "";
 	while (i < 3) {
