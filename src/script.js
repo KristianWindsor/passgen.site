@@ -2,7 +2,8 @@
 // by Kristian Windsor
 
 // detect if mobile device
-var isMobile = false;
+var hasGenerated = false,
+	isMobile = false;
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 	isMobile = true;
 }
@@ -20,9 +21,9 @@ var allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@
 
 // generate passwords
 function generatePasswords() {
-	document.getElementById('lengthDisplay').innerHTML = document.getElementById('length').value;
+	hasGenerated = true;
 	var i = 0,
-	    div = document.getElementById('right');
+	    div = document.getElementById('results');
 
 	div.innerHTML = "";
 	while (i < 3) {
@@ -33,28 +34,17 @@ function generatePasswords() {
 		}
 		i++;
 	}
-	makeSureCssLooksGood();
 }
 
-function makeSureCssLooksGood() {
-	var bodyDiv = document.getElementById('body'),
-		bodyHeight = bodyDiv.offsetHeight,
-		viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-	if (bodyHeight > viewHeight) {
-		bodyDiv.style.position = "static";
-	} else {
-		bodyDiv.style.position = "absolute";
+// updated length/word structure
+function refresh() {
+	document.getElementById('lengthDisplay').innerHTML = document.getElementById('length').value;
+	if (hasGenerated) {
+		generatePasswords();
 	}
 }
 
-function showSettings() {
-	document.getElementById('settingsButton').style.display = "none";
-	document.getElementById('settings').style.display = "block";
-	makeSureCssLooksGood();
-}
-
-
+// generate single password
 function getPassword() {
 	var count = 0,
 		wordyPassword = "",
@@ -109,7 +99,7 @@ function getPassword() {
 	}
 }
 
-
+// random number
 function generateRandomNumber(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }

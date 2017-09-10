@@ -35,18 +35,22 @@ body {
   margin: 5.5vh 0;
 }
 .content {
+  max-width: 684px;
   padding: 5.5vh 0;
   margin: 0 auto;
   text-align: center;
+  overflow: hidden;
 }
-#actionArea {
-  margin: 0 auto;
+.left, .right {
+  display: inline-block;
+  width: 47%;
+  box-sizing: border-box;
 }
-#settingsButton {
-  font-size: 16px;
-  text-transform: uppercase;
-  color: #00AFF0;
-  cursor: pointer;
+.left {
+  float: left;
+}
+.right {
+  float: right;
 }
 #settings {
   display: none;
@@ -66,7 +70,7 @@ body {
   position: relative;
   max-width: 100%;
   padding: 25px 100px;
-  margin: 0 0 31px;
+  margin: 19px 0 0;
   border: 0;
   outline: 0;
   font-size: 24px;
@@ -88,8 +92,16 @@ body {
   top: 6px;
   box-shadow: 0 0 #000;
 }
+.placeholder {
+  margin: 75px 0;
+  font-size: 16px;
+  color: #ccc;
+}
 #results {
-  min-height: 85px;
+  float: left;
+  width: 100%;
+  min-height: 171px;
+  margin-top: 6%;
 }
 .password {
   padding: 13px 0;
@@ -112,12 +124,13 @@ p.password {
   text-align: center;
 }
 .subtitle {
+  margin-top: 0;
   font-weight: 700;
   text-align: center;
 }
 .text {
   display: inline-block;
-  max-width: 650px;
+  max-width: 684px;
   margin: 0 4%;
   font-size: 20px;
   line-height: 1.6;
@@ -139,18 +152,6 @@ p.password {
   background-color: #7EC9AC;
 }
 
-.left, #right {
-  display: inline-block;
-  box-sizing: border-box;
-}
-.left {
-  width: 47%;
-  padding: 0 3%;
-}
-#right {
-  width: 50%;
-}
-
 @media (max-width: 960px) {
   #body {
     position: relative;
@@ -169,20 +170,28 @@ p.password {
   .title {
     font-size: 40px;
   }
+  .content {
+    width: 100%;
+    padding: 5.5vh 4%;
+    box-sizing: border-box;
+  }
+  #generate, .left, .right {
+    width: 100%;
+  }
+  #generate {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@media (max-width: 570px) {
+  .title {
+    font-size: 30px;
+  }
 }
 @media (max-width: 450px) {
   .title {
     font-size: 25px;
     font-size: 6.5vw;
-  }
-  .content {
-    width: 100%;
-    box-sizing: border-box;
-  }
-  #generate {
-    width: 92%;
-    padding-left: 0;
-    padding-right: 0;
   }
   .text {
     width: 92%;
