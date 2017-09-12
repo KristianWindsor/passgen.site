@@ -56,21 +56,49 @@ function refresh() {
 // generate single password
 function createPassword() {
 	var password = {},
-		passwordLength = 0;
+		passLength = document.getElementById('length').value,
+		count = 0;
 
-	// Generate wordy password
-    while (passwordLength != 27) { // TODO: also make it look nice at the currently set length
+	// the actual part that generates the password
+	function buildPassword() {
+		count++;
     	password.verb = verbs[Math.floor(Math.random() * verbs.length)];
     	password.adj1 = adjectives[Math.floor(Math.random() * adjectives.length)];
     	password.adj2 = adjectives[Math.floor(Math.random() * adjectives.length)];
     	password.adj3 = adjectives[Math.floor(Math.random() * adjectives.length)];
     	password.noun = nouns[Math.floor(Math.random() * nouns.length)];
     	password.num = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
-
-    	passwordLength = password.verb.length + password.adj1.length + password.adj2.length + password.adj3.length + password.noun.length;
 	}
 
+	// keep generating passwords until it is the correct length
+	buildPassword();
+	if (passLength > 4) {
+		if (passLength > 28 && passLength < 32) {
+		    while (!isMagicLength(password, passLength)) {
+		    	buildPassword();
+			}
+		} else {
+		    while (!isMagicLength(password, passLength) || !isMagicLength(password, 32)) {
+		    	buildPassword();
+			}
+		}
+	} else {
+		while (!isMagicLength(password, 32)) {
+	    	buildPassword();
+		}
+	}
+
+	console.log("took " + count + " tries to make: " + customize(password) + " ("+passLength+")");
 	return password;
+}
+
+function isMagicLength(password, magicLength) {
+	magicLength = parseInt(magicLength);
+	return  magicLength == password.verb.length +1 ||
+			magicLength == (password.verb + "-" + password.adj1).length +1 ||
+			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2).length +1 ||
+			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3).length +1 ||
+			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun).length +1;
 }
 
 // apply settings to password
@@ -79,16 +107,22 @@ function customize(oldPassword) {
 		passLength = document.getElementById('length').value,
 		wordStructure = document.getElementById('wordStructure').value;
 
-	// apply length
+	// build the password
 	if (passLength < oldPassword.verb.length +1) {
-		newPassword = oldPassword.verb.substr(0, passLength-1);
+		newPassword = oldPassword.verb.substr(0, passLength);
 	} else {
 		newPassword = oldPassword.verb + "-" + oldPassword.adj1 + "-" + oldPassword.adj2 + "-" + oldPassword.adj3 + "-" + oldPassword.noun;
+		
+
 		if (passLength != 32) {
 			var pos = newPassword.substr(0, passLength).lastIndexOf("-");
 			newPassword = newPassword.substr(0, pos) + numberize(newPassword.substr(pos));
-			newPassword = newPassword.substr(0, passLength-1);
+			newPassword = newPassword.substr(0, passLength);
 		}
+	}
+	// make the last character the designated number if its not already a number
+	if (isNaN(parseInt(newPassword.substr(newPassword.length-1)))) {
+		newPassword = newPassword.substr(0, passLength-1) + oldPassword.num;
 	}
 
 	
@@ -102,14 +136,12 @@ function customize(oldPassword) {
 	newPassword = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);
 
 	// add number
-	newPassword += oldPassword.num;
 
 	// done
 	return newPassword;
 }
 
 var mapObj = {
-	'-': '0',
 	'a': '4',
 	'b': '6',
 	'c': '3',
