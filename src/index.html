@@ -21,21 +21,23 @@
 					You have Javascript disabled in your browser. You need to enable it for this password generator to work.
 				</p>
 			</noscript>
-			<div class="content">
-				<div class="left">
-					<p class="label">
-						Length: <span id="lengthDisplay">8</span>
-					</p>
-					<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="refresh();" onchange="refresh();" />
-					<p class="label">
-						Word Structure: <span id="wordStructureLabel">w0rdy</span>
-					</p>
-					<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="refresh();" onchange="refresh();" />
-				</div>
-				<div class="right">
-					<button id="generate" onclick="generatePasswords(1)">
-						Generate
-					</button>
+			<div id="content">
+				<div id="actions">
+					<div class="left">
+						<p class="label">
+							Length: <span id="lengthDisplay">8</span>
+						</p>
+						<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="refresh();" onchange="refresh();" />
+						<p class="label">
+							Word Structure: <span id="wordStructureLabel">w0rdy</span>
+						</p>
+						<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="refresh();" onchange="refresh();" />
+					</div>
+					<div class="right">
+						<button id="generate" onclick="generatePasswords(1)">
+							Generate
+						</button>
+					</div>
 				</div>
 				<div id="results">
 					<p class="placeholder">
@@ -48,7 +50,7 @@
 					About
 				</p>
 				<p class="text">
-					All passwords are generated locally in your browser and are not saved anywhere.
+					All passwords are generated locally in your browser and are not stored anywhere.
 					This password generator is built with Javascript and is all open source. You can <a href="https://github.com/Windso/apasswordgenerator.website" target="_blank">view the code here</a>.
 				</p>
 			</div>
