@@ -193,6 +193,12 @@ p.password {
     font-size: 25px;
     font-size: 6.5vw;
   }
+  .title p {
+    margin: 3.5vh 0;
+  }
+  .content {
+    padding: 3.5vh 4%;
+  }
   #content {
     display: flex;
     flex-direction: column-reverse;
