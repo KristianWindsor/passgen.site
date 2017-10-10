@@ -24,28 +24,27 @@ var destructMasterMap = {
 	9:{
 		// 90%
 		'a': ['e','i'],
-		'c': ['k','s'],
-		'e': ['a','i'],
+		'c': 'k',
+		'e': 'a',
 		'k': 'c',
-		's': 'z',
-		't': 'c',
 		'u': 'o',
-		'z': 's'
 	},
 	8:{
 		// 80%
 		'a': 'o',
 		'b': 'd',
+		'c': 's',
 		'd': 'b',
+		'e': 'i',
 		'i': ['a','e'],
 		'j': ['h','l'],
 		'k': 't',
 		'm': 'n',
 		'n': 'm',
-		'o': ['a','e','u'],
-		'r': ['d','f','m','s','t'],
+		'o': ['a','e','u','0'],
+		's': 'z',
 		'u': 'e',
-		'v': 'w'
+		'z': 's'
 
 	},
 	7:{
@@ -63,13 +62,14 @@ var destructMasterMap = {
 		'k': ['b','h','t','v'],
 		'l': ['d','f','r'],
 		'm': ['h','j'],
-		'o': ['i','0'],
+		'o': 'i',
 		'p': ['b','f','g'],
-		'r': ['b','g','h','k','n','p'],
+		'r': ['b','d','f','g','h','k','m','n','p','s','t'],
 		's': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','x','z'],
-		't': ['b','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','z'],
+		't': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','z'],
 		'u': ['a','i'],
-		'z': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','x','z']
+		'v': 'w',
+		'z': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','x','y','z']
 	},
 	6:{
 		// 60%
@@ -114,14 +114,12 @@ var destructMasterMap = {
 		'o': ['b','c','d','f','g','h','k','l','m','n','p','q','r','s','t','v','w','x','z'],
 		'p': ['a','e','h','i','l','o','r','s','t','u','w','x','y','z'],
 		'r': ['a','e','i','o','q','u','x','y','z'],
-		's': ['a','c','e','h','i','k','l','m','n','o','p','q','r','t','u','w','y','z'],
 		't': ['a','e','f','h','i','l','o','r','u','v','w','x','y','z'],
 		'u': ['b','c','d','f','g','h','k','l','m','n','p','q','r','s','t','v','x','z'],
 		'v': ['a','e','h','i','l','o','r','s','u','x','y','z'],
 		'w': ['a','e','h','i','o','r','u','y'],
 		'x': ['a','e','i','o','u','y','z'],
-		'y': ['c','i','l','m','n','s','z'],
-		'z': ['a','e','k','l','m','n','o','p','q','s','u','v','y']
+		'y': ['c','i','l','m','n','s','z']
 	},
 };
 
@@ -178,6 +176,10 @@ function newDestructRegex() {
 	return destructInstance;
 }
 
+function randomChance(chance) {
+	return chance > Math.floor(Math.random() * (10 - 0 + 1)) + 0;
+}
+
 function destruct(words) {
 	if (wordStructure < 10) {
 		// build a new key from destructMap so that same letters can get different outcomes
@@ -186,7 +188,11 @@ function destruct(words) {
 			newWord = "";
 
 		for (i = 0; i < words.length; i++) {
-			newWord += words[i].replace(re, function(matched){ return map[matched]; });
+			if (randomChance(6)) {
+				newWord += words[i].replace(re, function(matched){ return map[matched]; });
+			} else {
+				newWord += words[i];
+			}
 		}
 
 		return newWord;
