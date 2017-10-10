@@ -17,6 +17,184 @@ var alphabet = "abcdefghijklmnopqrstuvwxyz";
 var symbols = "!@#$%^&*()+=-";
 
 var allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()+-=[];,./?";
+var wordStructure = document.getElementById('wordStructure').value;
+var passLength = document.getElementById('length').value;
+var destructMap = {};
+var destructMasterMap = {
+	9:{
+		// 90%
+		'a': ['e','i'],
+		'c': ['k','s'],
+		'e': ['a','i'],
+		'k': 'c',
+		's': 'z',
+		't': 'c',
+		'u': 'o',
+		'z': 's'
+	},
+	8:{
+		// 80%
+		'a': 'o',
+		'b': 'd',
+		'd': 'b',
+		'i': ['a','e'],
+		'j': ['h','l'],
+		'k': 't',
+		'm': 'n',
+		'n': 'm',
+		'o': ['a','e','u'],
+		'r': ['d','f','m','s','t'],
+		'u': 'e',
+		'v': 'w'
+
+	},
+	7:{
+		// 70%
+		'a': 'u',
+		'b': ['r','t','p','v'],
+		'c': ['f','t'],
+		'd': ['n','m','p'],
+		'e': ['o','u'],
+		'f': 'l',
+		'g': ['h','l','n'],
+		'h': ['b','d','f','k','v'],
+		'i': ['o','u'],
+		'j': ['d','f'],
+		'k': ['b','h','t','v'],
+		'l': ['d','f','r'],
+		'm': ['h','j'],
+		'o': ['i','0'],
+		'p': ['b','f','g'],
+		'r': ['b','g','h','k','n','p'],
+		's': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','x','z'],
+		't': ['b','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','z'],
+		'u': ['a','i'],
+		'z': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','x','z']
+	},
+	6:{
+		// 60%
+		'a': 'y',
+		'b': ['c','d','t'],
+		'd': ['f','t'],
+		'e': 'y',
+		'f': 'r',
+		'g': ['b','m','r','t'],
+		'h': ['c','l','m','n','p','r','t'],
+		'i': 'y',
+		'j': ['b','c','h','i','k','m','n','p','r','s','t'],
+		'k': ['d','q','w'],
+		'l': ['b','c','g','h','j','k','m','n','p','s'],
+		'm': ['f','j','k','l','p','s','t'],
+		'n': ['f','j','k','l','p','t'],
+		'o': 'y',
+		'p': ['d','k','q','t','v'],
+		'q': ['a','e','i','o','u'],
+		'r': ['j','l'],
+		'u': 'y',
+		'v': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','x','z'],
+		'w': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','x','z'],
+		'y': ['a','e','o','u'],
+	},
+	5:{
+		// 50%
+		'a': ['b','c','d','f','g','h','l','m','n','p','q','r','s','t','v','w','x','z'],
+		'b': ['f','g','v','z'],
+		'c': ['g','j','l','o','r','u','x','y'],
+		'd': ['a','c','e','i','j','k','o','r','s','t','u','x','y'],
+		'e': ['b','c','d','f','g','h','l','m','n','p','q','r','s','t','v','w','x','z'],
+		'f': ['a','e','i','o','s','u','y'],
+		'g': ['a','d','e','f','i','o','p','q','s','u','y','z'],
+		'h': ['a','e','g','i','o','s','u','y'],
+		'i': ['b','c','d','f','g','k','l','m','n','p','q','r','s','t','v','w','z'],
+		'j': ['a','e','i','k','o','v','w','u','y'],
+		'k': ['a','e','f','g','h','i','j','l','m','n','p','r','s','u','x','y','z'],
+		'l': ['a','e','f','i','o','t','u','y','z'],
+		'm': ['a','b','c','e','i','o','p','r','t','u','y','z'],
+		'n': ['a','b','c','d','e','i','k','o','q','s','t','u','y'],
+		'o': ['b','c','d','f','g','h','k','l','m','n','p','q','r','s','t','v','w','x','z'],
+		'p': ['a','e','h','i','l','o','r','s','t','u','w','x','y','z'],
+		'r': ['a','e','i','o','q','u','x','y','z'],
+		's': ['a','c','e','h','i','k','l','m','n','o','p','q','r','t','u','w','y','z'],
+		't': ['a','e','f','h','i','l','o','r','u','v','w','x','y','z'],
+		'u': ['b','c','d','f','g','h','k','l','m','n','p','q','r','s','t','v','x','z'],
+		'v': ['a','e','h','i','l','o','r','s','u','x','y','z'],
+		'w': ['a','e','h','i','o','r','u','y'],
+		'x': ['a','e','i','o','u','y','z'],
+		'y': ['c','i','l','m','n','s','z'],
+		'z': ['a','e','k','l','m','n','o','p','q','s','u','v','y']
+	},
+};
+
+function isExisting(variable) {
+	return variable !== undefined;
+}
+function isArray(variable) {
+	return variable instanceof Array;
+}
+Array.prototype.extend = function (other_array) {
+    other_array.forEach(function(v) {this.push(v)}, this);    
+}
+
+function updateDestructMap() {
+	destructMap = {};
+	// create a map based on the word structure value
+	for (i = 9; i > wordStructure-1 && i > 4; i--) {
+		var percentileKeys = destructMasterMap[i];
+	    for (var letter in percentileKeys) {
+			if (!percentileKeys.hasOwnProperty(letter)) continue;
+		    var characterList = percentileKeys[letter];
+
+			if (isExisting(destructMap[letter])) {
+			    if (isArray(characterList)) {
+					destructMap[letter].extend(characterList);
+				} else {
+					// add string to array
+					destructMap[letter].push(characterList);
+				}
+			} else {
+			    if (isArray(characterList)) {
+			    	// set array
+					destructMap[letter] = characterList.slice(0);
+				} else {
+					// set array from string
+					destructMap[letter] = [characterList].slice(0);
+				}
+			}
+		}
+	}
+}
+
+function newDestructRegex() {
+	var destructInstance = {};
+    for (var key in destructMap) {
+	    var characterOptions = destructMap[key];
+	    if (isArray(characterOptions)) {
+			destructInstance[key] = characterOptions[Math.floor(Math.random() * characterOptions.length)];
+		} else {
+			destructInstance[key] = characterOptions;
+		}
+	}
+
+	return destructInstance;
+}
+
+function destruct(words) {
+	if (wordStructure < 10) {
+		// build a new key from destructMap so that same letters can get different outcomes
+		var map = newDestructRegex(),
+			re = new RegExp(Object.keys(map).join("|"),"gi"),
+			newWord = "";
+
+		for (i = 0; i < words.length; i++) {
+			newWord += words[i].replace(re, function(matched){ return map[matched]; });
+		}
+
+		return newWord;
+	} else {
+		return words;
+	}
+}
+
 
 // generate passwords
 var passwordsMaster = [];
@@ -39,7 +217,24 @@ function generatePasswords() {
 
 // updated length/word structure
 function refresh() {
+	// update global variables
+	wordStructure = document.getElementById('wordStructure').value;
+	passLength = document.getElementById('length').value;
+
+	// update html text
+	var wordStructureText;
+	if (wordStructure == 0) {
+		wordStructureText = wordStructure + "%";
+	} else {
+		wordStructureText = wordStructure + "0%";
+	}
 	document.getElementById('lengthDisplay').innerHTML = document.getElementById('length').value;
+	document.getElementById('wordStructureLabel').innerHTML = wordStructureText;
+
+	// update map with new settings
+	updateDestructMap();
+
+	// update html passwords
 	if (hasGenerated) {
 		if (isMobile) {
 			document.getElementById("p0").innerHTML = customize(passwordsMaster[0]);
@@ -88,7 +283,7 @@ function createPassword() {
 		}
 	}
 
-	console.log("took " + count + " tries to make: " + customize(password) + " ("+passLength+")");
+	//console.log("took " + count + " tries to make: " + customize(password) + " ("+passLength+")");
 	return password;
 }
 
@@ -125,7 +320,15 @@ function customize(oldPassword) {
 		newPassword = newPassword.substr(0, passLength-1) + oldPassword.num;
 	}
 
-	
+	var tmp = newPassword;
+	newPassword = destruct(newPassword);
+	console.log(tmp + " --> " + newPassword);
+
+
+	// -- section 2 --
+	// random letters, numbers, and symbols are scattered onto the password
+
+
 
 	// apply word structure
 	/*for (var i = 0, n = allChars.length; i < passLength; ++i) {
