@@ -20,6 +20,7 @@ var allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@
 var wordStructure = document.getElementById('wordStructure').value;
 var passLength = document.getElementById('length').value;
 var destructMap = {};
+var randomCharactersMap = {};
 var destructMasterMap = {
 	9:{
 		// 90%
@@ -122,6 +123,15 @@ var destructMasterMap = {
 		'y': ['c','i','l','m','n','s','z']
 	},
 };
+var randomCharactersMasterMap = {
+	0: ['~','\\'],
+	1: ['_',';',"'",',','.'],
+	2: ['^','*','(',')','[',']','{','}','<','>','/','+','=',':'],
+	3: ['@','#','$','%','&'],
+	4: ['-','!','?'],
+	5: ['1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+	// NOTE: at level 6, the dash characters should start being replaced with numbers (or letters?)
+};
 
 function isExisting(variable) {
 	return variable !== undefined;
@@ -162,6 +172,18 @@ function updateDestructMap() {
 	}
 }
 
+function updateRandomCharactersMap() {
+	randomCharactersMap = [];
+	if (wordStructure < 6) {
+		for (var i = 5; i > wordStructure-1; i--) {
+			for (j = 0; j < randomCharactersMasterMap[i].length; j++) {
+				randomCharactersMap.push(randomCharactersMasterMap[i][j]);
+			}
+		}
+	}
+}
+updateRandomCharactersMap();
+
 function newDestructRegex() {
 	var destructInstance = {};
     for (var key in destructMap) {
@@ -201,6 +223,31 @@ function destruct(words) {
 	}
 }
 
+function addRandomCharacters(password) {
+	// Choose n amount of characters based on the password length
+	var n = Math.floor( (password.length * 0.6) - (Math.floor(Math.random() * 3)) );
+	
+	// Choose the positions of where to place the characters
+	var positions = [];
+	for (var i=0; i < n; i++) {
+		positions.push(Math.floor(Math.random() * password.length));
+	}
+	
+	// Choose random characters
+	var characters = [];
+	for (var i=0; i < n; i++) {
+		var num = Math.floor(Math.random() * randomCharactersMap.length);
+		characters.push(randomCharactersMap[num]);
+	}
+
+	// scatter characters at positions
+	for (var i=0; i < n; i++) {
+		password = password.substr(0,positions[i]) + characters[i] + password.substr(positions[i]+1);
+	}
+
+	// done
+	return password;
+}
 
 // generate passwords
 var passwordsMaster = [];
@@ -237,8 +284,9 @@ function refresh() {
 	document.getElementById('lengthDisplay').innerHTML = document.getElementById('length').value;
 	document.getElementById('wordStructureLabel').innerHTML = wordStructureText;
 
-	// update map with new settings
+	// update maps with new settings
 	updateDestructMap();
+	updateRandomCharactersMap();
 
 	// update html passwords
 	if (hasGenerated) {
@@ -333,7 +381,9 @@ function customize(oldPassword) {
 
 	// -- section 2 --
 	// random letters, numbers, and symbols are scattered onto the password
-
+	if (wordStructure < 6) {
+		newPassword = addRandomCharacters(newPassword);
+	}
 
 
 	// apply word structure
