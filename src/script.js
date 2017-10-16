@@ -353,6 +353,7 @@ function isMagicLength(password, magicLength) {
 // apply settings to password
 function customize(oldPassword) {
 	var newPassword,
+		tmpPassword,
 		passLength = document.getElementById('length').value,
 		wordStructure = document.getElementById('wordStructure').value;
 
@@ -366,12 +367,22 @@ function customize(oldPassword) {
 		if (passLength != 32) {
 			var pos = newPassword.substr(0, passLength).lastIndexOf("-");
 			newPassword = newPassword.substr(0, pos) + numberize(newPassword.substr(pos));
+			tmpPassword = newPassword;
 			newPassword = newPassword.substr(0, passLength);
 		}
 	}
-	// make the last character the designated number if its not already a number
+	// modify the last character
 	if (isNaN(parseInt(newPassword.substr(newPassword.length-1)))) {
-		newPassword = newPassword.substr(0, passLength-1) + oldPassword.num;
+		var addThisChar;
+		if (passLength-1 <= oldPassword.verb.length) {
+			// replace dash with the designated number
+			addThisChar = oldPassword.num;
+		} else {
+			// replace dash with the numberized version of the previous character
+			addThisChar = numberize(newPassword.substr(newPassword.length-2,1));
+		}
+
+		newPassword = newPassword.substr(0, passLength-1) + addThisChar;
 	}
 
 	var tmp = newPassword;
