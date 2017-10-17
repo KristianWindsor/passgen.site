@@ -353,7 +353,6 @@ function isMagicLength(password, magicLength) {
 // apply settings to password
 function customize(oldPassword) {
 	var newPassword,
-		tmpPassword,
 		passLength = document.getElementById('length').value,
 		wordStructure = document.getElementById('wordStructure').value;
 
@@ -362,19 +361,17 @@ function customize(oldPassword) {
 		newPassword = oldPassword.verb.substr(0, passLength);
 	} else {
 		newPassword = oldPassword.verb + "-" + oldPassword.adj1 + "-" + oldPassword.adj2 + "-" + oldPassword.adj3 + "-" + oldPassword.noun;
-		
 
 		if (passLength != 32) {
 			var pos = newPassword.substr(0, passLength).lastIndexOf("-");
 			newPassword = newPassword.substr(0, pos) + numberize(newPassword.substr(pos));
-			tmpPassword = newPassword;
 			newPassword = newPassword.substr(0, passLength);
 		}
 	}
 	// modify the last character
 	if (isNaN(parseInt(newPassword.substr(newPassword.length-1)))) {
 		var addThisChar;
-		if (passLength-1 <= oldPassword.verb.length) {
+		if (passLength-1 <= oldPassword.verb.length || passLength == 32) {
 			// replace dash with the designated number
 			addThisChar = oldPassword.num;
 		} else {
@@ -396,16 +393,8 @@ function customize(oldPassword) {
 		newPassword = addRandomCharacters(newPassword);
 	}
 
-
-	// apply word structure
-	/*for (var i = 0, n = allChars.length; i < passLength; ++i) {
-        notWordyPassword += allChars.charAt(Math.floor(Math.random() * n));
-    }*/
-
 	// capitalize first letter
 	newPassword = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);
-
-	// add number
 
 	// done
 	return newPassword;
