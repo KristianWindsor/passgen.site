@@ -260,7 +260,7 @@ function generatePasswords() {
 	while (i < 3) {
 		passwordsMaster[i] = createPassword();
 		if (isMobile) {
-			div.innerHTML = div.innerHTML + '<p id="p' + i + '" class="password">' + customize(passwordsMaster[i]) + '</p>';
+			div.innerHTML = div.innerHTML + '<div class="password-wrapper"><p id="p' + i + '" class="password">' + customize(passwordsMaster[i]) + '</p></div>';
 		} else {
 			div.innerHTML = div.innerHTML + '<input type="text" id="p' + i + '" class="password" value="' + customize(passwordsMaster[i]) + '" onClick="select()" maxlength="32" spellcheck="false" /><br>';
 		}

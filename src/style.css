@@ -116,7 +116,15 @@ input.password {
   color: #565656;
 }
 p.password {
+  display: inline-block;
   margin: 0;
+  padding-left: 8%;
+  padding-right: 8%;
+}
+.password-wrapper {
+  overflow: scroll;
+  white-space: nowrap;
+  text-overflow: clip;
 }
 .about {
   padding: 5.5vh 0 11vh;
@@ -172,8 +180,11 @@ p.password {
   }
   #content {
     width: 100%;
-    padding: 5.5vh 4%;
+    padding: 5.5vh 0;
     box-sizing: border-box;
+  }
+  #actions {
+    padding: 0 8%;
   }
   #generate, .left, .right {
     width: 100%;
@@ -189,6 +200,9 @@ p.password {
   }
 }
 @media (max-width: 450px) {
+  .mobile-wrapper {
+    height: 100vh;
+  }
   .title {
     font-size: 25px;
     font-size: 6.5vw;
@@ -208,6 +222,9 @@ p.password {
   }
   #results {
     margin-top: 0;
+  }
+  .password {
+    padding: 10px 0;
   }
   .text {
     width: 92%;
