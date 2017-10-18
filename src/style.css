@@ -127,7 +127,7 @@ p.password {
   text-overflow: clip;
 }
 .about {
-  padding: 5.5vh 0 11vh;
+  padding: 11vh 0 11vh;
   background-color: #7EC9AC;
   text-align: center;
 }
@@ -184,7 +184,7 @@ p.password {
     box-sizing: border-box;
   }
   #actions {
-    padding: 0 8%;
+    padding: 0 10%;
   }
   #generate, .left, .right {
     width: 100%;
@@ -227,7 +227,7 @@ p.password {
     padding: 10px 0;
   }
   .text {
-    width: 92%;
+    width: 80%;
     font-size: 16px;
   }
 }
