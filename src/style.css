@@ -66,6 +66,9 @@ body {
   display: block;
   width: 100%;
 }
+input {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 #generate {
   position: relative;
   max-width: 100%;
@@ -83,6 +86,7 @@ body {
   background-color: #7EC9AC;
   color: #fff;
   text-align: center;
+  text-shadow: 1px 1px 1px #3e876c;
 }
 #generate:hover {
   top: 2px;
@@ -132,7 +136,7 @@ p.password {
   text-align: center;
 }
 .subtitle {
-  margin-top: 0;
+  margin: 0 0 20px 0;
   font-weight: 700;
   text-align: center;
 }
@@ -200,9 +204,6 @@ p.password {
   }
 }
 @media (max-width: 450px) {
-  .mobile-wrapper {
-    height: 100vh;
-  }
   .title {
     font-size: 25px;
     font-size: 6.5vw;
@@ -229,6 +230,11 @@ p.password {
   .text {
     width: 80%;
     font-size: 16px;
+  }
+}
+@media (max-width: 450px) and (max-height: 700px) {
+  .mobile-wrapper {
+    height: 100vh;
   }
 }
 
