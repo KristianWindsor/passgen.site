@@ -23,6 +23,12 @@ body {
   -moz-box-shadow: 0px 56px 46px 1px rgba(0,0,0,0.3);
   box-shadow: 0px 56px 46px 1px rgba(0,0,0,0.3);
 }
+.mobile-wrapper *::selection {
+  background-color: #7EC9AC;
+}
+.mobile-wrapper *::-moz-selection {
+  background-color: #7EC9AC;
+}
 .title {
   font-size: 50px;
   text-align: center;
@@ -134,6 +140,13 @@ p.password {
   padding: 11vh 0 11vh;
   background-color: #7EC9AC;
   text-align: center;
+
+}
+.about *::selection {
+  background-color: #fff;
+}
+.about *::-moz-selection {
+  background-color: #fff;
 }
 .subtitle {
   margin: 0 0 20px 0;
