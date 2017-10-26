@@ -19,8 +19,6 @@ var symbols = "!@#$%^&*()+=-";
 var allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()+-=[];,./?";
 var wordStructure = document.getElementById('wordStructure').value;
 var passLength = document.getElementById('length').value;
-var destructMap = {};
-var randomCharactersMap = {};
 var destructMasterMap = {
 	9:{
 		// 90%
@@ -60,13 +58,13 @@ var destructMasterMap = {
 		'h': ['b','d','f','k','v'],
 		'i': ['o','u'],
 		'j': ['d','f'],
-		'k': ['b','h','t','v'],
+		'k': ['b','h','v'],
 		'l': ['d','f','r'],
 		'm': ['h','j'],
 		'o': 'i',
 		'p': ['b','f','g'],
 		'r': ['b','d','f','g','h','k','m','n','p','s','t'],
-		's': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','x','z'],
+		's': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','x'],
 		't': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','z'],
 		'u': ['a','i'],
 		'v': 'w',
@@ -75,63 +73,114 @@ var destructMasterMap = {
 	6:{
 		// 60%
 		'a': 'y',
-		'b': ['c','d','t'],
+		'b': 'c',
 		'd': ['f','t'],
 		'e': 'y',
 		'f': 'r',
 		'g': ['b','m','r','t'],
 		'h': ['c','l','m','n','p','r','t'],
 		'i': 'y',
-		'j': ['b','c','h','i','k','m','n','p','r','s','t'],
+		'j': ['b','c','i','k','m','n','p','r','s','t'],
 		'k': ['d','q','w'],
 		'l': ['b','c','g','h','j','k','m','n','p','s'],
-		'm': ['f','j','k','l','p','s','t'],
+		'm': ['f','k','l','p','s','t'],
 		'n': ['f','j','k','l','p','t'],
 		'o': 'y',
 		'p': ['d','k','q','t','v'],
 		'q': ['a','e','i','o','u'],
 		'r': ['j','l'],
 		'u': 'y',
-		'v': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','x','z'],
+		'v': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','x','z'],
 		'w': ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','t','v','w','x','z'],
 		'y': ['a','e','o','u'],
+		'1': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'],
+		'2': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'],
+		'3': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'],
+		'4': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'],
+		'5': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'],
+		'6': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'],
+		'7': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'],
+		'8': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'],
+		'9': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'],
+		'0': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'],
+		'-': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9']
 	},
 	5:{
 		// 50%
 		'a': ['b','c','d','f','g','h','l','m','n','p','q','r','s','t','v','w','x','z'],
-		'b': ['f','g','v','z'],
+		'b': ['f','g','z'],
 		'c': ['g','j','l','o','r','u','x','y'],
-		'd': ['a','c','e','i','j','k','o','r','s','t','u','x','y'],
+		'd': ['a','c','e','i','j','k','o','r','s','u','x','y'],
 		'e': ['b','c','d','f','g','h','l','m','n','p','q','r','s','t','v','w','x','z'],
 		'f': ['a','e','i','o','s','u','y'],
 		'g': ['a','d','e','f','i','o','p','q','s','u','y','z'],
 		'h': ['a','e','g','i','o','s','u','y'],
 		'i': ['b','c','d','f','g','k','l','m','n','p','q','r','s','t','v','w','z'],
-		'j': ['a','e','i','k','o','v','w','u','y'],
-		'k': ['a','e','f','g','h','i','j','l','m','n','p','r','s','u','x','y','z'],
-		'l': ['a','e','f','i','o','t','u','y','z'],
-		'm': ['a','b','c','e','i','o','p','r','t','u','y','z'],
-		'n': ['a','b','c','d','e','i','k','o','q','s','t','u','y'],
+		'j': ['a','e','o','v','w','u','y'],
+		'k': ['a','e','f','g','i','j','l','m','n','p','r','s','u','x','y','z'],
+		'l': ['a','e','i','o','t','u','y','z'],
+		'm': ['a','b','c','e','i','o','r','u','y','z'],
+		'n': ['a','b','c','d','e','i','o','q','s','u','y'],
 		'o': ['b','c','d','f','g','h','k','l','m','n','p','q','r','s','t','v','w','x','z'],
-		'p': ['a','e','h','i','l','o','r','s','t','u','w','x','y','z'],
+		'p': ['a','e','h','i','l','o','r','s','u','w','x','y','z'],
 		'r': ['a','e','i','o','q','u','x','y','z'],
-		't': ['a','e','f','h','i','l','o','r','u','v','w','x','y','z'],
 		'u': ['b','c','d','f','g','h','k','l','m','n','p','q','r','s','t','v','x','z'],
-		'v': ['a','e','h','i','l','o','r','s','u','x','y','z'],
-		'w': ['a','e','h','i','o','r','u','y'],
+		'w': ['a','e','i','o','u','y'],
 		'x': ['a','e','i','o','u','y','z'],
-		'y': ['c','i','l','m','n','s','z']
-	},
+		'y': ['c','i','l','m','n','s','z'],
+	}
 };
 var randomCharactersMasterMap = {
-	0: ['~','\\'],
-	1: ['_',';',"'",',','.'],
-	2: ['^','*','(',')','[',']','{','}','<','>','/','+','=',':'],
-	3: ['@','#','$','%','&'],
-	4: ['-','!','?'],
-	5: ['1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-	// NOTE: at level 6, the dash characters should start being replaced with numbers (or letters?)
+	0: ['~','\\','_',';',"'",',','.'],
+	1: ['^','*','(',')','[',']','{','}','<','>','/','+','=',':'],
+	2: ['@','#','$','%','&'],
+	3: ['-','!','?'],
+	4: ['1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 };
+var randomCharactersMap = {};
+
+// build random characters map
+for (var i = 4; i > -1; i--) {
+	randomCharactersMap[i] = [];
+	for (j = 4; j > i-1; j--) {
+		for (k = 0; k < randomCharactersMasterMap[j].length; k++) {
+			randomCharactersMap[i].push(randomCharactersMasterMap[j][k]);
+			// double add the actual values so they're more likely to occur
+			if (i < 4 && j == i) {
+				randomCharactersMap[i].push(randomCharactersMasterMap[i][k]);
+			}
+		}
+	}
+}
+
+// build destruct map
+var destructMap = {};
+// each level (for building)
+for (var i = 9; i > 4; i--) {
+	destructMap[i] = {};
+	// each level that's higher (for retrieving)
+	for (j = 9; j > i-1; j--) {
+		// each character key
+	    for (var k in destructMasterMap[j]) {
+	    	if (typeof destructMap[i][k] == "undefined") {
+		    	destructMap[i][k] = [];
+	    	}
+			// each character value in array
+	   		for (var l = 0; l < destructMasterMap[j][k].length; l++) {
+				if (destructMap[i][k].indexOf(destructMasterMap[j][k][l]) === -1) {
+					if (i == 5) {
+						destructMap[i][k].push(destructMasterMap[j][k][l].toUpperCase());
+					} else {
+						destructMap[i][k].push(destructMasterMap[j][k][l]);
+					}
+				} else {
+					console.log("destructMasterMap["+j+"]["+k+"] has duplicate: "+destructMasterMap[j][k][l]);
+				}
+			}
+		}
+	}
+}
+
 
 function isExisting(variable) {
 	return variable !== undefined;
@@ -143,110 +192,40 @@ Array.prototype.extend = function (other_array) {
     other_array.forEach(function(v) {this.push(v)}, this);    
 }
 
-function updateDestructMap() {
-	destructMap = {};
-	// create a map based on the word structure value
-	for (i = 9; i > wordStructure-1 && i > 4; i--) {
-		var percentileKeys = destructMasterMap[i];
-	    for (var letter in percentileKeys) {
-			if (!percentileKeys.hasOwnProperty(letter)) continue;
-		    var characterList = percentileKeys[letter];
-
-			if (isExisting(destructMap[letter])) {
-			    if (isArray(characterList)) {
-					destructMap[letter].extend(characterList);
-				} else {
-					// add string to array
-					destructMap[letter].push(characterList);
-				}
-			} else {
-			    if (isArray(characterList)) {
-			    	// set array
-					destructMap[letter] = characterList.slice(0);
-				} else {
-					// set array from string
-					destructMap[letter] = [characterList].slice(0);
-				}
-			}
-		}
-	}
-}
-
-function updateRandomCharactersMap() {
-	randomCharactersMap = [];
-	if (wordStructure < 6) {
-		for (var i = 5; i > wordStructure-1; i--) {
-			for (j = 0; j < randomCharactersMasterMap[i].length; j++) {
-				randomCharactersMap.push(randomCharactersMasterMap[i][j]);
-			}
-		}
-	}
-}
-updateRandomCharactersMap();
-
-function newDestructRegex() {
-	var destructInstance = {};
-    for (var key in destructMap) {
-	    var characterOptions = destructMap[key];
+function newDestructMap(level) {
+	// level corresponds to wordstructure value
+	var newDestructMap = {};
+    for (var key in destructMap[level]) {
+	    var characterOptions = destructMap[level][key];
 	    if (isArray(characterOptions)) {
-			destructInstance[key] = characterOptions[Math.floor(Math.random() * characterOptions.length)];
+			newDestructMap[key] = characterOptions[Math.floor(Math.random() * characterOptions.length)];
 		} else {
-			destructInstance[key] = characterOptions;
+			newDestructMap[key] = characterOptions;
 		}
 	}
 
-	return destructInstance;
+	return newDestructMap;
 }
 
 function randomChance(chance) {
 	return chance > Math.floor(Math.random() * (10 - 0 + 1)) + 0;
 }
 
-function destruct(words) {
-	if (wordStructure < 10) {
-		// build a new key from destructMap so that same letters can get different outcomes
-		var map = newDestructRegex(),
-			re = new RegExp(Object.keys(map).join("|"),"gi"),
-			newWord = "";
-
-		for (i = 0; i < words.length; i++) {
-			if (randomChance(6)) {
-				newWord += words[i].replace(re, function(matched){ return map[matched]; });
-			} else {
-				newWord += words[i];
-			}
-		}
-
-		return newWord;
-	} else {
-		return words;
-	}
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function addRandomCharacters(password) {
-	// Choose n amount of characters based on the password length
-	var n = Math.floor( (password.length * 0.6) - (Math.floor(Math.random() * 3)) );
-	
-	// Choose the positions of where to place the characters
-	var positions = [];
-	for (var i=0; i < n; i++) {
-		positions.push(Math.floor(Math.random() * password.length));
-	}
-	
-	// Choose random characters
-	var characters = [];
-	for (var i=0; i < n; i++) {
-		var num = Math.floor(Math.random() * randomCharactersMap.length);
-		characters.push(randomCharactersMap[num]);
-	}
+function destruct(level, character) {
+	// build a new key from destructMap so that same letters can get different outcomes
+	var map = newDestructMap(level),
+		re = new RegExp(Object.keys(map).join("|"),"gi");
 
-	// scatter characters at positions
-	for (var i=0; i < n; i++) {
-		password = password.substr(0,positions[i]) + characters[i] + password.substr(positions[i]+1);
-	}
+	return character.replace(re, function(matched){ return map[matched]; });
+}
 
-	// done
-	return password;
+function randomCharacter(level) {
+	var character = randomCharactersMap[level][Math.floor(Math.random() * randomCharactersMap[level].length)];
+	return character;
 }
 
 // generate passwords
@@ -260,9 +239,9 @@ function generatePasswords() {
 	while (i < 3) {
 		passwordsMaster[i] = createPassword();
 		if (isMobile) {
-			div.innerHTML = div.innerHTML + '<div class="password-wrapper"><p id="p' + i + '" class="password">' + customize(passwordsMaster[i]) + '</p></div>';
+			div.innerHTML = div.innerHTML + '<div class="password-wrapper"><p id="p' + i + '" class="password">' + applyLength(passwordsMaster[i]["built"][wordStructure]) + '</p></div>';
 		} else {
-			div.innerHTML = div.innerHTML + '<input type="text" id="p' + i + '" class="password" value="' + customize(passwordsMaster[i]) + '" onClick="select()" maxlength="32" spellcheck="false" /><br>';
+			div.innerHTML = div.innerHTML + '<input type="text" id="p' + i + '" class="password" value="' + applyLength(passwordsMaster[i]["built"][wordStructure]) + '" onClick="select()" maxlength="32" spellcheck="false" /><br>';
 		}
 		i++;
 	}
@@ -284,20 +263,16 @@ function refresh() {
 	document.getElementById('lengthDisplay').innerHTML = document.getElementById('length').value;
 	document.getElementById('wordStructureLabel').innerHTML = wordStructureText;
 
-	// update maps with new settings
-	updateDestructMap();
-	updateRandomCharactersMap();
-
 	// update html passwords
 	if (hasGenerated) {
 		if (isMobile) {
-			document.getElementById("p0").innerHTML = customize(passwordsMaster[0]);
-			document.getElementById("p1").innerHTML = customize(passwordsMaster[1]);
-			document.getElementById("p2").innerHTML = customize(passwordsMaster[2]);
+			document.getElementById("p0").innerHTML = applyLength(passwordsMaster[0]["built"][wordStructure]);
+			document.getElementById("p1").innerHTML = applyLength(passwordsMaster[1]["built"][wordStructure]);
+			document.getElementById("p2").innerHTML = applyLength(passwordsMaster[2]["built"][wordStructure]);
 		} else {
-			document.getElementById("p0").setAttribute("value", customize(passwordsMaster[0]));
-			document.getElementById("p1").setAttribute("value", customize(passwordsMaster[1]));
-			document.getElementById("p2").setAttribute("value", customize(passwordsMaster[2]));
+			document.getElementById("p0").setAttribute("value", applyLength(passwordsMaster[0]["built"][wordStructure]));
+			document.getElementById("p1").setAttribute("value", applyLength(passwordsMaster[1]["built"][wordStructure]));
+			document.getElementById("p2").setAttribute("value", applyLength(passwordsMaster[2]["built"][wordStructure]));
 		}
 	}
 }
@@ -337,7 +312,98 @@ function createPassword() {
 		}
 	}
 
-	//console.log("took " + count + " tries to make: " + customize(password) + " ("+passLength+")");
+	// apply word structure and create 11 versions of the password
+	//for (var i=0; i<3; i++){
+		password.built = {};
+
+		var charReplaceMap = {
+			10: 0,
+			9: 7,
+			8: 6,
+			7: 7,
+			6: 6,
+			5: 6,
+			4: 7,
+			3: 6,
+			2: 6,
+			1: 7,
+			0: 6
+		};
+
+		// build level 10 password
+		var newPassword = password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun + password.num;
+		password.built[10] = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);
+
+		// replace each of the 32 characters one time from level 10 to level 5
+		var charsThatHaveAlreadyBeenChanged = [];
+		var countA = 0;
+		for (lev=9; lev>4; lev--) {
+
+			// on each level, replace 6 or 7 characters (defined by charReplaceMap)
+			for (k=0; k<charReplaceMap[lev]; k++) {
+				var charIsDone = false;
+				while (!charIsDone) {
+					countA++;
+					var randNum = randomNumber(0,31);
+					if (charsThatHaveAlreadyBeenChanged.indexOf(randNum) === -1) {
+						if (destruct(lev, newPassword[randNum]) !== newPassword[randNum] ){
+							// save the character replacement change
+							newPassword = newPassword.substr(0,randNum) + destruct(lev, newPassword[randNum]) + newPassword.substr(randNum+1);
+							// save the character position so the same character isn't replaced multiple times
+							charsThatHaveAlreadyBeenChanged.push(randNum);
+							// stop this loop
+							charIsDone = true;
+						} else {
+							// this character can't change here
+							if (lev>5) {
+								// skip now and get it later
+								charReplaceMap[lev-1]++;
+								charIsDone = true;
+							}
+						}
+					}
+				}
+			}
+
+			password.built[lev] = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);
+		}
+
+
+		charsThatHaveAlreadyBeenChanged = [];
+		for (lev=4; lev>-1; lev--) {
+
+			// on each level, replace 6 or 7 characters (defined by charReplaceMap)
+			for (k=0; k<charReplaceMap[lev]; k++) {
+				var charIsDone = false;
+				while (!charIsDone) {
+					var randNum = randomNumber(0,31);
+					if (charsThatHaveAlreadyBeenChanged.indexOf(randNum) === -1) {
+						if (randomCharacter(lev, newPassword[randNum]) !== newPassword[randNum] ){
+							// save the character replacement change
+							newPassword = newPassword.substr(0,randNum) + randomCharacter(lev, newPassword[randNum]) + newPassword.substr(randNum+1);
+							// save the character position so the same character isn't replaced multiple times
+							charsThatHaveAlreadyBeenChanged.push(randNum);
+							// stop this loop
+							charIsDone = true;
+						} else {
+							// this character can't change here
+							if (lev>0) {
+								// skip now and get it later
+								charReplaceMap[lev-1]++;
+								charIsDone = true;
+							}
+						}
+					}
+				}
+			}
+
+			password.built[lev] = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);
+		}
+
+	console.log("new password!");
+	console.log(password);
+	console.log(" ");
+
 	return password;
 }
 
@@ -350,12 +416,10 @@ function isMagicLength(password, magicLength) {
 			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun).length +1;
 }
 
-// apply settings to password
-function customize(oldPassword) {
-	var newPassword,
-		passLength = document.getElementById('length').value,
-		wordStructure = document.getElementById('wordStructure').value;
+function applyLength(oldPassword) {
+	var newPassword = oldPassword.substr(0,passLength);
 
+	/*
 	// build the password
 	if (passLength < oldPassword.verb.length +1) {
 		newPassword = oldPassword.verb.substr(0, passLength);
@@ -384,7 +448,6 @@ function customize(oldPassword) {
 
 	var tmp = newPassword;
 	newPassword = destruct(newPassword);
-	console.log(tmp + " --> " + newPassword);
 
 
 	// -- section 2 --
@@ -394,7 +457,7 @@ function customize(oldPassword) {
 	}
 
 	// capitalize first letter
-	newPassword = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);
+	newPassword = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);*/
 
 	// done
 	return newPassword;
