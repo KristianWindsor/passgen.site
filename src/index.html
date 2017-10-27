@@ -18,7 +18,7 @@
 					</p>
 				</div>
 				<noscript>
-					<p style="text-align:center;color:red">;
+					<p style="text-align:center;color:red;">
 						You have Javascript disabled in your browser. You need to enable it for this password generator to work.
 					</p>
 				</noscript>
@@ -28,14 +28,14 @@
 							<p class="label">
 								Length: <span id="lengthDisplay">8</span>
 							</p>
-							<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="refresh();" onchange="refresh();" />
+							<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="updateSettings();" onchange="updateSettings();" />
 							<p class="label">
 								Word Structure: <span id="wordStructureLabel">100%</span>
 							</p>
-							<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="refresh();" onchange="refresh();" />
+							<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="updateSettings();" onchange="updateSettings();" />
 						</div>
 						<div class="right">
-							<button id="generate" onclick="generatePasswords(1)">
+							<button id="generate" onclick="generatePasswords()">
 								Generate
 							</button>
 						</div>

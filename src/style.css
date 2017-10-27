@@ -25,9 +25,11 @@ body {
 }
 .mobile-wrapper *::selection {
   background-color: #7EC9AC;
+  color: #fff;
 }
 .mobile-wrapper *::-moz-selection {
   background-color: #7EC9AC;
+  color: #fff;
 }
 .title {
   font-size: 50px;
