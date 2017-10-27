@@ -14,7 +14,7 @@ var adjectives = ["used","every","large","popular","able","basic","known","vario
 var nouns = ["people","history","way","art","world","map","two","family","health","system","meat","year","thanks","music","person","reading","method","data","food","theory","law","bird","problem","control","power","ability","love","science","library","nature","fact","product","idea","area","society","story","media","thing","oven","safety","quality","player","variety","video","week","country","exam","movie","physics","policy","series","thought","basis","army","camera","freedom","paper","child","month","truth","writing","article","goal","news","fishing","growth","income","user","failure","meaning","teacher","night","disease","disk","energy","nation","road","role","soup","success","math","moment","event","student","wood","office","unit","context","driver","flight","length","cell","dealer","finding","lake","member","message","phone","scene","concept","death","housing","mood","woman","advice","blood","effort","opinion","payment","reality","skill","wealth","city","county","depth","estate","heart","photo","recipe","studio","topic","passion","setting","ad","agency","college","debt","memory","aspect","storage","version","alcohol","highway","loss","steak","union","cancer","entry","mixture","region","virus","actor","device","drama","engine","hotel","owner","tension","anxiety","bath","bread","climate","emotion","guest","height","mall","manager","sample","charity","cousin","editor","extent","guitar","leader","mom","outcome","revenue","session","singer","tennis","basket","bonus","cabinet","church","clothes","coffee","dinner","drawing","hair","hearing","lab","mode","mud","orange","poetry","police","queen","ratio","sector","song","tooth","town","vehicle","volume","wife","airport","arrival","chapter","error","farmer","gate","girl","hall","injury","meal","pie","poem","river","son","speech","tea","village","warning","winner","worker","writer","breath","buyer","chest","cookie","courage","dad","desk","drawer","garbage","grocery","honey","insect","king","ladder","menu","penalty","piano","potato","salad","sister","tongue","wedding","affair","analyst","apple","bedroom","beer","cheek","client","diamond","dirt","ear","fortune","funeral","gene","hat","lady"];
 
 var alphabet = "abcdefghijklmnopqrstuvwxyz";
-var symbols = "!@#$%^&*()+=-";
+var symbols = "!@#$&+=-";
 
 var allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()+-=[];,./?";
 var wordStructure = document.getElementById('wordStructure').value;
@@ -181,7 +181,6 @@ for (var i = 9; i > 4; i--) {
 	}
 }
 
-
 function isExisting(variable) {
 	return variable !== undefined;
 }
@@ -228,6 +227,10 @@ function randomCharacter(level) {
 	return character;
 }
 
+function randomValue(string) {
+	return string[randomNumber(0, string.length-1)];
+}
+
 // generate passwords
 var passwordsMaster = [];
 function generatePasswords() {
@@ -239,9 +242,9 @@ function generatePasswords() {
 	while (i < 3) {
 		passwordsMaster[i] = createPassword();
 		if (isMobile) {
-			div.innerHTML = div.innerHTML + '<div class="password-wrapper"><p id="p' + i + '" class="password">' + applyLength(passwordsMaster[i]["built"][wordStructure]) + '</p></div>';
+			div.innerHTML = div.innerHTML + '<div class="password-wrapper"><p id="p' + i + '" class="password">' + applyLength(passwordsMaster[i]["built"][wordStructure],passwordsMaster[i]["num"]) + '</p></div>';
 		} else {
-			div.innerHTML = div.innerHTML + '<input type="text" id="p' + i + '" class="password" value="' + applyLength(passwordsMaster[i]["built"][wordStructure]) + '" onClick="select()" maxlength="32" spellcheck="false" /><br>';
+			div.innerHTML = div.innerHTML + '<input type="text" id="p' + i + '" class="password" value="' + applyLength(passwordsMaster[i]["built"][wordStructure],passwordsMaster[i]["num"]) + '" onClick="select()" maxlength="32" spellcheck="false" /><br>';
 		}
 		i++;
 	}
@@ -266,13 +269,13 @@ function refresh() {
 	// update html passwords
 	if (hasGenerated) {
 		if (isMobile) {
-			document.getElementById("p0").innerHTML = applyLength(passwordsMaster[0]["built"][wordStructure]);
-			document.getElementById("p1").innerHTML = applyLength(passwordsMaster[1]["built"][wordStructure]);
-			document.getElementById("p2").innerHTML = applyLength(passwordsMaster[2]["built"][wordStructure]);
+			document.getElementById("p0").innerHTML = applyLength(passwordsMaster[0]["built"][wordStructure],passwordsMaster[0]["num"]);
+			document.getElementById("p1").innerHTML = applyLength(passwordsMaster[1]["built"][wordStructure],passwordsMaster[1]["num"]);
+			document.getElementById("p2").innerHTML = applyLength(passwordsMaster[2]["built"][wordStructure],passwordsMaster[2]["num"]);
 		} else {
-			document.getElementById("p0").setAttribute("value", applyLength(passwordsMaster[0]["built"][wordStructure]));
-			document.getElementById("p1").setAttribute("value", applyLength(passwordsMaster[1]["built"][wordStructure]));
-			document.getElementById("p2").setAttribute("value", applyLength(passwordsMaster[2]["built"][wordStructure]));
+			document.getElementById("p0").setAttribute("value", applyLength(passwordsMaster[0]["built"][wordStructure],passwordsMaster[0]["num"]));
+			document.getElementById("p1").setAttribute("value", applyLength(passwordsMaster[1]["built"][wordStructure],passwordsMaster[1]["num"]));
+			document.getElementById("p2").setAttribute("value", applyLength(passwordsMaster[2]["built"][wordStructure],passwordsMaster[2]["num"]));
 		}
 	}
 }
@@ -345,10 +348,11 @@ function createPassword() {
 					countA++;
 					var randNum = randomNumber(0,31);
 					if (charsThatHaveAlreadyBeenChanged.indexOf(randNum) === -1) {
-						if (destruct(lev, newPassword[randNum]) !== newPassword[randNum] ){
-							// save the character replacement change
-							newPassword = newPassword.substr(0,randNum) + destruct(lev, newPassword[randNum]) + newPassword.substr(randNum+1);
-							// save the character position so the same character isn't replaced multiple times
+						var newChar = destruct(lev, newPassword[randNum]);
+						if (newChar !== newPassword[randNum] ){
+							// implement the character replacement change
+							newPassword = newPassword.substr(0,randNum) + newChar + newPassword.substr(randNum+1);
+							// write the character position so the same character isn't replaced multiple times
 							charsThatHaveAlreadyBeenChanged.push(randNum);
 							// stop this loop
 							charIsDone = true;
@@ -377,10 +381,21 @@ function createPassword() {
 				while (!charIsDone) {
 					var randNum = randomNumber(0,31);
 					if (charsThatHaveAlreadyBeenChanged.indexOf(randNum) === -1) {
-						if (randomCharacter(lev, newPassword[randNum]) !== newPassword[randNum] ){
-							// save the character replacement change
-							newPassword = newPassword.substr(0,randNum) + randomCharacter(lev, newPassword[randNum]) + newPassword.substr(randNum+1);
-							// save the character position so the same character isn't replaced multiple times
+						var newChar = randomCharacter(lev, newPassword[randNum]);
+						if (newChar !== newPassword[randNum] ){
+							// the first three characters should be letter, symbol, number
+							if (randNum == 0) {
+								newChar = randomValue(alphabet);
+							}
+							if (randNum == 1) {
+								newChar = randomValue(symbols);
+							}
+							if (randNum == 2) {
+								newChar = password.num;
+							}
+							// implement the character replacement change
+							newPassword = newPassword.substr(0,randNum) + newChar + newPassword.substr(randNum+1);
+							// write the character position so the same character isn't replaced multiple times
 							charsThatHaveAlreadyBeenChanged.push(randNum);
 							// stop this loop
 							charIsDone = true;
@@ -415,9 +430,8 @@ function isMagicLength(password, magicLength) {
 			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun).length +1;
 }
 
-function applyLength(password) {
-	var newPassword = password,
-		num = password[password.length-1];
+function applyLength(password, passNum) {
+	var newPassword = password;
 
 	// numberize incomplete word
 	if (passLength != 32) {
@@ -437,10 +451,13 @@ function applyLength(password) {
 		if (password.substr(0, passLength).indexOf('-') != -1) {
 			lastChar = numberize(newPassword.substr(newPassword.length-2,1));
 		} else {
-			lastChar = num;
+			lastChar = passNum;
 		}
 		newPassword = newPassword.substr(0, passLength-1) + lastChar;
 
+	}
+	if (!/\d/.test(newPassword)) {
+		newPassword = newPassword.substr(0, passLength-1) + passNum;
 	}
 
 	// done
