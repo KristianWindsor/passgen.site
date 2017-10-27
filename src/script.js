@@ -18,7 +18,7 @@ var symbols = "!@#$%^&*()+=-";
 
 var allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()+-=[];,./?";
 var wordStructure = document.getElementById('wordStructure').value;
-var passLength = document.getElementById('length').value;
+var passLength = Number(document.getElementById('length').value);
 var destructMasterMap = {
 	9:{
 		// 90%
@@ -251,7 +251,7 @@ function generatePasswords() {
 function refresh() {
 	// update global variables
 	wordStructure = document.getElementById('wordStructure').value;
-	passLength = document.getElementById('length').value;
+	passLength = Number(document.getElementById('length').value);
 
 	// update html text
 	var wordStructureText;
@@ -280,7 +280,6 @@ function refresh() {
 // generate single password
 function createPassword() {
 	var password = {},
-		passLength = document.getElementById('length').value,
 		count = 0;
 
 	// the actual part that generates the password
@@ -332,7 +331,7 @@ function createPassword() {
 
 		// build level 10 password
 		var newPassword = password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun + password.num;
-		password.built[10] = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);
+		password.built[10] = newPassword;
 
 		// replace each of the 32 characters one time from level 10 to level 5
 		var charsThatHaveAlreadyBeenChanged = [];
@@ -365,7 +364,7 @@ function createPassword() {
 				}
 			}
 
-			password.built[lev] = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);
+			password.built[lev] = newPassword;
 		}
 
 
@@ -397,7 +396,7 @@ function createPassword() {
 				}
 			}
 
-			password.built[lev] = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);
+			password.built[lev] = newPassword;
 		}
 
 	console.log("new password!");
@@ -416,48 +415,33 @@ function isMagicLength(password, magicLength) {
 			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun).length +1;
 }
 
-function applyLength(oldPassword) {
-	var newPassword = oldPassword.substr(0,passLength);
+function applyLength(password) {
+	var newPassword = password,
+		num = password[password.length-1];
 
-	/*
-	// build the password
-	if (passLength < oldPassword.verb.length +1) {
-		newPassword = oldPassword.verb.substr(0, passLength);
-	} else {
-		newPassword = oldPassword.verb + "-" + oldPassword.adj1 + "-" + oldPassword.adj2 + "-" + oldPassword.adj3 + "-" + oldPassword.noun;
-
-		if (passLength != 32) {
+	// numberize incomplete word
+	if (passLength != 32) {
+		if (password.substr(0, passLength).indexOf('-') != -1 && wordStructure > 6) {
 			var pos = newPassword.substr(0, passLength).lastIndexOf("-");
 			newPassword = newPassword.substr(0, pos) + numberize(newPassword.substr(pos));
-			newPassword = newPassword.substr(0, passLength);
 		}
-	}
-	// modify the last character
-	if (isNaN(parseInt(newPassword.substr(newPassword.length-1)))) {
-		var addThisChar;
-		if (passLength-1 <= oldPassword.verb.length || passLength == 32) {
-			// replace dash with the designated number
-			addThisChar = oldPassword.num;
-		} else {
-			// replace dash with the numberized version of the previous character
-			addThisChar = numberize(newPassword.substr(newPassword.length-2,1));
-		}
-
-		newPassword = newPassword.substr(0, passLength-1) + addThisChar;
-	}
-
-	var tmp = newPassword;
-	newPassword = destruct(newPassword);
-
-
-	// -- section 2 --
-	// random letters, numbers, and symbols are scattered onto the password
-	if (wordStructure < 6) {
-		newPassword = addRandomCharacters(newPassword);
+		newPassword = newPassword.substr(0, passLength);
 	}
 
 	// capitalize first letter
-	newPassword = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);*/
+	newPassword = newPassword.charAt(0).toUpperCase() + newPassword.slice(1);
+
+	// modify the last character
+	if (isNaN(parseInt(newPassword.substr(newPassword.length-1))) && wordStructure > 6) {
+		var lastChar;
+		if (password.substr(0, passLength).indexOf('-') != -1) {
+			lastChar = numberize(newPassword.substr(newPassword.length-2,1));
+		} else {
+			lastChar = num;
+		}
+		newPassword = newPassword.substr(0, passLength-1) + lastChar;
+
+	}
 
 	// done
 	return newPassword;
