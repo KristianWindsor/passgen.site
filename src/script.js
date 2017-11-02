@@ -3,8 +3,6 @@
 
 
 
-
-
 //
 // declare variables
 //
@@ -190,6 +188,11 @@ var passwords = {};
 //
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 	isMobile = true;
+	document.getElementById("hint").innerHTML = "Tap the generate button below.";
+	var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+	if (h > 480 && h < 1020) {
+		document.getElementById("mobile-wrapper").style.height = h.toString() + "px";
+	}
 }
 
 //

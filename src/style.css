@@ -23,11 +23,11 @@ body {
   -moz-box-shadow: 0px 56px 46px 0 #8f7e7d;
   box-shadow: 0px 56px 38px 0 #8f7e7d;
 }
-.mobile-wrapper *::selection {
+#mobile-wrapper *::selection {
   background-color: #7EC9AC;
   color: #fff;
 }
-.mobile-wrapper *::-moz-selection {
+#mobile-wrapper *::-moz-selection {
   background-color: #7EC9AC;
   color: #fff;
 }
@@ -206,7 +206,7 @@ input {
   top: 6px;
   box-shadow: 0 0 #000;
 }
-.placeholder {
+#hint {
   margin: 75px 0;
   font-size: 16px;
   color: #ccc;
@@ -352,14 +352,9 @@ p.password {
     font-size: 16px;
   }
 }
-@media (max-width: 450px) and (max-height: 700px) {
-  .mobile-wrapper {
-    height: 100vh;
-  }
-}
 
 
-@media (max-height: 850px) {
+@media (max-height: 820px) {
   #body {
     position: relative;
   }
