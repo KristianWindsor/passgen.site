@@ -354,7 +354,7 @@ p.password {
 }
 
 
-@media (max-height: 820px) {
+@media (max-height: 1020px) {
   #body {
     position: relative;
   }
