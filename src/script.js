@@ -8,12 +8,14 @@
 //
 var settings = {
 	"hasGenerated": false,
+	"hasChangedSettings": false,
 	"isMobile": false,
 	"wordStructure": Number(document.getElementById('wordStructure').value),
 	"passLength": Number(document.getElementById('length').value)
 };
 var count = {
-	"generatePasswordAttempt": 0
+	"generateButtonClicks": 0,
+	"generatePasswordAttempt": 0,
 };
 var shortcuts = {
 	"alphabet": "abcdefghijklmnopqrstuvwxyz",
@@ -175,7 +177,11 @@ var maps = {
 		'z': '5'
 	},
 	"destruct": {},
-	"randomChar": {}
+	"randomChar": {},
+	"settingsValues": {
+		"length": [8,8,8,10,10,12,16,18,20,25,30,32],
+		"wordStructure": [0,1,2,3,8,8,9,9,10,10,10]
+	}
 };
 var passwords = {};
 
@@ -494,6 +500,9 @@ function createPassword() {
 					countA++;
 					var randNum = randomNumber(0,31);
 					if (charsThatHaveAlreadyBeenChanged.indexOf(randNum) === -1) {
+						console.log(newPassword);
+						console.log(newPassword.length);
+						console.log(lev + " : " + randNum + " : " + newPassword[randNum]);
 						var newChar = destruct(lev, newPassword[randNum]);
 						if (newChar !== newPassword[randNum] ){
 							// implement the character replacement change
@@ -572,8 +581,24 @@ function createPassword() {
 //
 function generatePasswords() {
 	settings.hasGenerated = true;
+	count.generateButtonClicks++;
 	var i = 0,
 	    div = document.getElementById('results');
+
+	// change length and word structure values
+	if (!settings.hasChangedSettings && count.generateButtonClicks > 1) {
+		var l,w;
+		if (count.generateButtonClicks < 6) {
+			l = maps["settingsValues"]["length"][Math.floor(Math.random() * maps["settingsValues"]["length"].length)];
+			w = maps["settingsValues"]["wordStructure"][Math.floor(Math.random() * maps["settingsValues"]["wordStructure"].length)];
+		} else {
+			l = randomNumber(3,32);
+			w = randomNumber(0,10);
+		}
+			document.getElementById("length").value = l;
+			document.getElementById("wordStructure").value = w;
+			updateSettingsValues();
+	}
 
 	div.innerHTML = "";
 	while (i < 3) {
@@ -588,9 +613,9 @@ function generatePasswords() {
 }
 
 //
-// updateSettings: the html sliders were changed by the user, update the settings
+// updateSettingsValues: the value of the sliders have changed
 //
-function updateSettings() {
+function updateSettingsValues() {
 	// update global variables
 	settings.wordStructure = Number(document.getElementById('wordStructure').value);
 	settings.passLength = Number(document.getElementById('length').value);
@@ -604,6 +629,15 @@ function updateSettings() {
 	}
 	document.getElementById('lengthDisplay').innerHTML = settings.passLength;
 	document.getElementById('wordStructureLabel').innerHTML = wordStructureText;
+}
+
+//
+// settingsChanged: the html sliders were changed by the user
+//
+function settingsChanged() {
+	settings.hasChangedSettings = true;
+	// update global variables
+	updateSettingsValues();
 
 	// update html passwords
 	if (settings.hasGenerated) {

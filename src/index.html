@@ -28,11 +28,11 @@
 							<p class="label">
 								Length: <span id="lengthDisplay">8</span>
 							</p>
-							<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="updateSettings();" onchange="updateSettings();" />
+							<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="settingsChanged();" onchange="settingsChanged();" />
 							<p class="label bottom">
 								Word Structure: <span id="wordStructureLabel">100%</span>
 							</p>
-							<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="updateSettings();" onchange="updateSettings();" />
+							<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="settingsChanged();" onchange="settingsChanged();" />
 						</div>
 						<div class="right">
 							<button id="generate" onclick="generatePasswords()">
