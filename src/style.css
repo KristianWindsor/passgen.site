@@ -122,6 +122,8 @@ input[type=range]::-webkit-slider-thumb {
   height: 36px;
   width: 15px;
   margin: -22px 0 6px;
+  border: none;
+  outline: none;
   position: relative;
   border-radius: 40px;
   background-color: #7EC9AC;
@@ -132,6 +134,8 @@ input[type=range]::-moz-range-thumb {
   height: 36px;
   width: 15px;
   margin: -22px 0 6px;
+  border: none;
+  outline: none;
   position: relative;
   border-radius: 40px;
   background-color: #7EC9AC;
@@ -142,6 +146,8 @@ input[type=range]::-ms-thumb {
   height: 36px;
   width: 15px;
   margin: -22px 0 6px;
+  border: none;
+  outline: none;
   position: relative;
   border-radius: 40px;
   background-color: #7EC9AC;
@@ -328,15 +334,16 @@ p.password {
   .title p {
     margin: 3.5vh 0;
   }
-  .content {
-    padding: 3.5vh 4%;
-  }
   #content {
     display: flex;
     flex-direction: column-reverse;
+    padding: 3.5vh 0;
   }
   #actions {
     margin-top: 5.5vh;
+  }
+  #generate {
+    margin-top: 25px;
   }
   #results {
     margin-top: 0;

@@ -193,10 +193,10 @@ var passwords = {};
 // detect if mobile device
 //
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-	isMobile = true;
+	settings.isMobile = true;
 	document.getElementById("hint").innerHTML = "Tap the generate button below.";
 	var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-	if (h > 480 && h < 1020) {
+	if (settings.isMobile && h > 480 && h < 1020) {
 		document.getElementById("mobile-wrapper").style.height = h.toString() + "px";
 	}
 }
@@ -376,6 +376,9 @@ function applyLength(password, passNum) {
 	if (settings.passLength != 32) {
 		if (password.substr(0, settings.passLength).indexOf('-') != -1 && settings.wordStructure > 6) {
 			var pos = newPassword.substr(0, settings.passLength).lastIndexOf("-");
+			// loop through each char
+			// to find the position (pos2) of the first int
+			// only numberize if pos is greater than pos2
 			newPassword = newPassword.substr(0, pos) + numberize(newPassword.substr(pos));
 		}
 		newPassword = newPassword.substr(0, settings.passLength);
@@ -413,11 +416,12 @@ function applyLength(password, passNum) {
 //
 function isMagicLength(password, magicLength) {
 	magicLength = parseInt(magicLength);
-	return  magicLength == password.verb.length +1 ||
+	return ((magicLength == password.verb.length +1 ||
 			magicLength == (password.verb + "-" + password.adj1).length +1 ||
 			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2).length +1 ||
 			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3).length +1 ||
-			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun).length +1;
+			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun).length +1)
+			       && 33 > (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun).length +1);
 }
 
 //
@@ -484,8 +488,13 @@ function createPassword() {
 			0: 6
 		};
 
-		// build level 10 password
+		// build password base
 		var newPassword = password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun + password.num;
+		// add extra characters for passwords with length 29,30,31
+		while (newPassword.length < 32) {
+			newPassword += randomNumber(0,9).toString();
+		}
+		// level 10 password
 		password.built[10] = newPassword;
 
 		// replace each of the 32 characters one time from level 10 to level 5
@@ -500,9 +509,6 @@ function createPassword() {
 					countA++;
 					var randNum = randomNumber(0,31);
 					if (charsThatHaveAlreadyBeenChanged.indexOf(randNum) === -1) {
-						console.log(newPassword);
-						console.log(newPassword.length);
-						console.log(lev + " : " + randNum + " : " + newPassword[randNum]);
 						var newChar = destruct(lev, newPassword[randNum]);
 						if (newChar !== newPassword[randNum] ){
 							// implement the character replacement change
