@@ -195,9 +195,9 @@ var passwords = {};
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 	settings.isMobile = true;
 	document.getElementById("hint").innerHTML = "Tap the generate button below.";
-	var h = Math.max(document.documentElement.clientHeight, window.screen.height, window.outerHeight);
-	var w = Math.max(document.documentElement.clientWidth, window.screen.width, window.outerWidth);
-	if (settings.isMobile && h > w && h > 480 && h < 1020) {
+	var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+	if (h > w && h > 480 && h < 1020) {
 		document.getElementById("mobile-wrapper").style.height = h.toString() + "px";
 	}
 }

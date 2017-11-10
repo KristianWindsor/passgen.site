@@ -343,7 +343,7 @@ p.password {
     margin-top: 18px;
   }
   #results {
-    margin-top: 0;
+    margin: 1.75vh 0;
   }
   .password {
     padding: 10px 0;
