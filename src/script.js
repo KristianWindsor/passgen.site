@@ -594,13 +594,21 @@ function generatePasswords() {
 
 	// change length and word structure values
 	if (!settings.hasChangedSettings && count.generateButtonClicks > 1) {
-		var l,w;
-		if (count.generateButtonClicks < 6) {
-			l = maps["settingsValues"]["length"][Math.floor(Math.random() * maps["settingsValues"]["length"].length)];
-			w = maps["settingsValues"]["wordStructure"][Math.floor(Math.random() * maps["settingsValues"]["wordStructure"].length)];
-		} else {
-			l = randomNumber(3,32);
-			w = randomNumber(0,10);
+		var l,
+			w,
+			isDifferent = false;
+
+		while (!isDifferent) {
+			if (count.generateButtonClicks < 6) {
+				l = maps["settingsValues"]["length"][Math.floor(Math.random() * maps["settingsValues"]["length"].length)];
+				w = maps["settingsValues"]["wordStructure"][Math.floor(Math.random() * maps["settingsValues"]["wordStructure"].length)];
+			} else {
+				l = randomNumber(3,32);
+				w = randomNumber(0,10);
+			}
+			if (l !== settings.passLength && w !== settings.wordStructure) {
+				isDifferent = true;
+			}
 		}
 			document.getElementById("length").value = l;
 			document.getElementById("wordStructure").value = w;
