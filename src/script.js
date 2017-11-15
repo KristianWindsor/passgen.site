@@ -3,19 +3,19 @@
 
 
 
-
-
 //
 // declare variables
 //
 var settings = {
 	"hasGenerated": false,
+	"hasChangedSettings": false,
 	"isMobile": false,
 	"wordStructure": Number(document.getElementById('wordStructure').value),
 	"passLength": Number(document.getElementById('length').value)
 };
 var count = {
-	"generatePasswordAttempt": 0
+	"generateButtonClicks": 0,
+	"generatePasswordAttempt": 0,
 };
 var shortcuts = {
 	"alphabet": "abcdefghijklmnopqrstuvwxyz",
@@ -23,9 +23,11 @@ var shortcuts = {
 	"allChars": ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9']
 };
 var words = {
-	verbs: ['has','get','see','need','know','would','find','take','want','does','learn','become','come','include','thank','provide','create','add','choose','develop','grow','allow','supply','bring','improve','begin','exist','tend','enjoy','perform','decide','protect','require','occur','write','avoid','prepare','build','achieve','believe','receive','seem','discuss','realize','contain','follow','refer','solve','prefer','prevent','ensure','expect','invest','reduce','speak','appear','explain','explore','involve','lose','afford','agree','hear','remain','apply','forget','rely','vary','obtain','accept','depend','enter','happen','suggest','survive','compare','imagine','manage','differ','expand','prove','react','relax','replace','borrow','earn','enable','operate','reflect','send','assume','engage','enhance','examine','install','intend','relate','settle','assure','attract','owe','succeed','suffer','throw','acquire','adapt','adjust','argue','arise','confirm','justify','ought','possess','relieve','retain','shut','compete','consult','deliver','extend','qualify','retire','rid','weigh','arrive','attach','behave','ignore','imply','insist','pursue','specify','warn','accuse','admire','admit','adopt','ance','approve','attend','belong','commit','deserve','destroy','inform','pour','propose','remind','shall','submit','suppose','be','have','use','make','look','help','go','being','think','read','keep','start','give','play','feel','put','set','change','say','cut','show','try','check','call','move','pay','let','turn','ask','buy','guard','hold','offer','travel','cook','dance','excuse','live','deal','mean','fall','produce','search','spend','talk','upset','tell','cost','drive','support','remove','return','run','reserve','leave','reach','rest','serve','watch','charge','break','stay','visit','affect','cover','report','rise','walk','pick','lift','mix','stop','teach','concern','fly','born','gain','save','stand','fail','lead','listen','worry','express','handle','meet','release','sell','finish','press','ride','spread','spring','wait','display','flow','hit','shoot','touch','cancel','cry','dump','push','select','die','eat','fill','jump','kick','pass','pitch','treat'],
-	adjectives: ['used','every','large','popular','able','basic','known','various','several','united','hot','useful','mental','scared','old','similar','healthy','medical','federal','entire','strong','actual','poor','happy','cute','helpful','recent','willing','nice','serious','huge','rare','typical','aware','global','legal','capable','foreign','hungry','severe','unusual','famous','pure','afraid','obvious','careful','latter','unhappy','boring','eastern','logical','strict','civil','former','massive','unfair','visible','alive','angry','lucky','sorry','ugly','anxious','curious','inner','sexual','sudden','unable','weak','wooden','asleep','decent','guilty','lonely','mad','nervous','odd','tall','tiny','more','some','one','all','many','most','other','such','even','new','just','good','any','each','much','own','great','another','same','few','free','right','still','best','public','human','both','local','sure','better','general','enough','long','small','less','high','certain','little','common','next','simple','hard','past','big','real','major','current','left','least','natural','short','last','single','main','lower','open','special','working','true','whole','clear','dry','easy','cold','full','low','primary','worth','present','close','green','late','fit','glad','proper','complex','content','due','middle','regular','fast','wide','active','safe','visual','wrong','ago','quick','ready','white','direct','extra','junior','pretty','unique','classic','final','overall','private','western','alone','perfect','bright','broad','flat','rich','warm','young','heavy','correct','leading','slow','clean','fresh','normal','secret','tough','brown','cheap','deep','secure','thin','cool','extreme','exact','fair','fine','formal','remote','total','vast','lost','smooth','dark','double','equal','firm','minor','raw','soft','solid','weird','amazing','annual','busy','dead','false','round','sharp','thick','wise','initial','narrow','nearby','proud','wild','adult','apart','brief','crazy','prior','rough','sad','sick','strange','illegal','loud','mobile','nasty','royal','senior','super','tight','upper','yellow','funny','gross','ill','spare','sweet','usual','brave','calm','dirty'],
-	nouns: ['people','history','way','art','world','map','two','family','health','system','meat','year','thanks','music','person','reading','method','data','food','theory','law','bird','problem','control','power','ability','love','science','library','nature','fact','product','idea','area','society','story','media','thing','oven','safety','quality','player','variety','video','week','country','exam','movie','physics','policy','series','thought','basis','army','camera','freedom','paper','child','month','truth','writing','article','goal','news','fishing','growth','income','user','failure','meaning','teacher','night','disease','disk','energy','nation','road','role','soup','success','math','moment','event','student','wood','office','unit','context','driver','flight','length','cell','dealer','finding','lake','member','message','phone','scene','concept','death','housing','mood','woman','advice','blood','effort','opinion','payment','reality','skill','wealth','city','county','depth','estate','heart','photo','recipe','studio','topic','passion','setting','ad','agency','college','debt','memory','aspect','storage','version','alcohol','highway','loss','steak','union','cancer','entry','mixture','region','virus','actor','device','drama','engine','hotel','owner','tension','anxiety','bath','bread','climate','emotion','guest','height','mall','manager','sample','charity','cousin','editor','extent','guitar','leader','mom','outcome','revenue','session','singer','tennis','basket','bonus','cabinet','church','clothes','coffee','dinner','drawing','hair','hearing','lab','mode','mud','orange','poetry','police','queen','ratio','sector','song','tooth','town','vehicle','volume','wife','airport','arrival','chapter','error','farmer','gate','girl','hall','injury','meal','pie','poem','river','son','speech','tea','village','warning','winner','worker','writer','breath','buyer','chest','cookie','courage','dad','desk','drawer','garbage','grocery','honey','insect','king','ladder','menu','penalty','piano','potato','salad','sister','tongue','wedding','affair','analyst','apple','bedroom','beer','cheek','client','diamond','dirt','ear','fortune','funeral','gene','hat','lady']
+	"verbs": ['has','get','see','need','know','would','find','take','want','does','learn','become','come','include','thank','provide','create','add','choose','develop','grow','allow','supply','bring','improve','begin','exist','tend','enjoy','perform','decide','protect','require','occur','write','avoid','prepare','build','achieve','believe','receive','seem','discuss','realize','contain','follow','refer','solve','prefer','prevent','ensure','expect','invest','reduce','speak','appear','explain','explore','involve','lose','afford','agree','hear','remain','apply','forget','rely','vary','obtain','accept','depend','enter','happen','suggest','survive','compare','imagine','manage','differ','expand','prove','react','relax','replace','borrow','earn','enable','operate','reflect','send','assume','engage','enhance','examine','install','intend','relate','settle','assure','attract','owe','succeed','suffer','throw','acquire','adapt','adjust','argue','arise','confirm','justify','ought','possess','relieve','retain','shut','compete','consult','deliver','extend','qualify','retire','rid','weigh','arrive','attach','behave','ignore','imply','insist','pursue','specify','warn','accuse','admire','admit','adopt','ance','approve','attend','belong','commit','deserve','destroy','inform','pour','propose','remind','shall','submit','suppose','be','have','use','make','look','help','go','being','think','read','keep','start','give','play','feel','put','set','change','say','cut','show','try','check','call','move','pay','let','turn','ask','buy','guard','hold','offer','travel','cook','dance','excuse','live','deal','mean','fall','produce','search','spend','talk','upset','tell','cost','drive','support','remove','return','run','reserve','leave','reach','rest','serve','watch','charge','break','stay','visit','affect','cover','report','rise','walk','pick','lift','mix','stop','teach','concern','fly','born','gain','save','stand','fail','lead','listen','worry','express','handle','meet','release','sell','finish','press','ride','spread','spring','wait','display','flow','hit','shoot','touch','cancel','cry','dump','push','select','die','eat','fill','jump','kick','pass','pitch','treat'],
+	"adjectives": ['used','every','large','popular','able','basic','known','various','several','united','hot','useful','mental','scared','old','similar','healthy','medical','federal','entire','strong','actual','poor','happy','cute','helpful','recent','willing','nice','serious','huge','rare','typical','aware','global','legal','capable','foreign','hungry','severe','unusual','famous','pure','afraid','obvious','careful','latter','unhappy','boring','eastern','logical','strict','civil','former','massive','unfair','visible','alive','angry','lucky','sorry','ugly','anxious','curious','inner','sexual','sudden','unable','weak','wooden','asleep','decent','guilty','lonely','mad','nervous','odd','tall','tiny','more','some','one','all','many','most','other','such','even','new','just','good','any','each','much','own','great','another','same','few','free','right','still','best','public','human','both','local','sure','better','general','enough','long','small','less','high','certain','little','common','next','simple','hard','past','big','real','major','current','left','least','natural','short','last','single','main','lower','open','special','working','true','whole','clear','dry','easy','cold','full','low','primary','worth','present','close','green','late','fit','glad','proper','complex','content','due','middle','regular','fast','wide','active','safe','visual','wrong','ago','quick','ready','white','direct','extra','junior','pretty','unique','classic','final','overall','private','western','alone','perfect','bright','broad','flat','rich','warm','young','heavy','correct','leading','slow','clean','fresh','normal','secret','tough','brown','cheap','deep','secure','thin','cool','extreme','exact','fair','fine','formal','remote','total','vast','lost','smooth','dark','double','equal','firm','minor','raw','soft','solid','weird','amazing','annual','busy','dead','false','round','sharp','thick','wise','initial','narrow','nearby','proud','wild','adult','apart','brief','crazy','prior','rough','sad','sick','strange','illegal','loud','mobile','nasty','royal','senior','super','tight','upper','yellow','funny','gross','ill','spare','sweet','usual','brave','calm','dirty'],
+	"nouns": ['people','history','way','art','world','map','two','family','health','system','meat','year','thanks','music','person','reading','method','data','food','theory','law','bird','problem','control','power','ability','love','science','library','nature','fact','product','idea','area','society','story','media','thing','oven','safety','quality','player','variety','video','week','country','exam','movie','physics','policy','series','thought','basis','army','camera','freedom','paper','child','month','truth','writing','article','goal','news','fishing','growth','income','user','failure','meaning','teacher','night','disease','disk','energy','nation','road','role','soup','success','math','moment','event','student','wood','office','unit','context','driver','flight','length','cell','dealer','finding','lake','member','message','phone','scene','concept','death','housing','mood','woman','advice','blood','effort','opinion','payment','reality','skill','wealth','city','county','depth','estate','heart','photo','recipe','studio','topic','passion','setting','ad','agency','college','debt','memory','aspect','storage','version','alcohol','highway','loss','steak','union','cancer','entry','mixture','region','virus','actor','device','drama','engine','hotel','owner','tension','anxiety','bath','bread','climate','emotion','guest','height','mall','manager','sample','charity','cousin','editor','extent','guitar','leader','mom','outcome','revenue','session','singer','tennis','basket','bonus','cabinet','church','clothes','coffee','dinner','drawing','hair','hearing','lab','mode','mud','orange','poetry','police','queen','ratio','sector','song','tooth','town','vehicle','volume','wife','airport','arrival','chapter','error','farmer','gate','girl','hall','injury','meal','pie','poem','river','son','speech','tea','village','warning','winner','worker','writer','breath','buyer','chest','cookie','courage','dad','desk','drawer','garbage','grocery','honey','insect','king','ladder','menu','penalty','piano','potato','salad','sister','tongue','wedding','affair','analyst','apple','bedroom','beer','cheek','client','diamond','dirt','ear','fortune','funeral','gene','hat','lady'],
+	"passwordWords": ["verb", "adj1", "adj2", "adj3", "noun", "num"],
+	"currentBatch": []
 };
 var maps = {
 	"master": {
@@ -177,7 +179,11 @@ var maps = {
 		'z': '5'
 	},
 	"destruct": {},
-	"randomChar": {}
+	"randomChar": {},
+	"settingsValues": {
+		"length": [8,8,8,10,10,12,16,18,20,25,30,32],
+		"wordStructure": [0,1,2,3,8,8,9,9,10,10,10]
+	}
 };
 var passwords = {};
 
@@ -189,7 +195,13 @@ var passwords = {};
 // detect if mobile device
 //
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-	isMobile = true;
+	settings.isMobile = true;
+	document.getElementById("hint").innerHTML = "Tap the generate button below.";
+	var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+	if (h > w && h > 480 && h < 1020) {
+		document.getElementById("mobile-wrapper").style.height = h.toString() + "px";
+	}
 }
 
 //
@@ -367,6 +379,9 @@ function applyLength(password, passNum) {
 	if (settings.passLength != 32) {
 		if (password.substr(0, settings.passLength).indexOf('-') != -1 && settings.wordStructure > 6) {
 			var pos = newPassword.substr(0, settings.passLength).lastIndexOf("-");
+			// loop through each char
+			// to find the position (pos2) of the first int
+			// only numberize if pos is greater than pos2
 			newPassword = newPassword.substr(0, pos) + numberize(newPassword.substr(pos));
 		}
 		newPassword = newPassword.substr(0, settings.passLength);
@@ -404,11 +419,28 @@ function applyLength(password, passNum) {
 //
 function isMagicLength(password, magicLength) {
 	magicLength = parseInt(magicLength);
-	return  magicLength == password.verb.length +1 ||
+	return ((magicLength == password.verb.length +1 ||
 			magicLength == (password.verb + "-" + password.adj1).length +1 ||
 			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2).length +1 ||
 			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3).length +1 ||
-			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun).length +1;
+			magicLength == (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun).length +1)
+			       && 33 > (password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun).length +1);
+}
+
+//
+// getValueFromArrayExcludingOtherArrayValues: choose a random value from array1 that is not also in array2
+//
+// arrayToPickFrom: array where a random value is chosen from
+// arrayToExcludeValuesFrom: blacklisted array to compare to
+//
+// return: value from array1
+//
+function getValueFromArrayExcludingOtherArrayValues(arrayToPickFrom, arrayToExcludeValuesFrom) {
+	var pickedValue;
+	while(pickedValue == undefined || arrayToExcludeValuesFrom.indexOf(pickedValue) !== -1 ) {
+		pickedValue = arrayToPickFrom[Math.floor(Math.random() * arrayToPickFrom.length)];
+	}
+	return pickedValue;
 }
 
 //
@@ -420,12 +452,14 @@ function buildPassword() {
 	var password = {};
 	count.generatePasswordAttempt++;
 
-	password.verb = words.verbs[Math.floor(Math.random() * words.verbs.length)];
-	password.adj1 = words.adjectives[Math.floor(Math.random() * words.adjectives.length)];
-	password.adj2 = words.adjectives[Math.floor(Math.random() * words.adjectives.length)];
-	password.adj3 = words.adjectives[Math.floor(Math.random() * words.adjectives.length)];
-	password.noun = words.nouns[Math.floor(Math.random() * words.nouns.length)];
-	password.num = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+	password.verb = getValueFromArrayExcludingOtherArrayValues( words.verbs, words.currentBatch );
+	password.adj1 = getValueFromArrayExcludingOtherArrayValues( words.adjectives, words.currentBatch );
+	password.adj2 = getValueFromArrayExcludingOtherArrayValues( words.adjectives, words.currentBatch );
+	password.adj3 = getValueFromArrayExcludingOtherArrayValues( words.adjectives, words.currentBatch );
+	password.noun = getValueFromArrayExcludingOtherArrayValues( words.nouns, words.currentBatch );
+	while(password.num == undefined || words.currentBatch.indexOf(password.num) !== -1 ) {
+		password.num = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+	}
 
 	return password;
 }
@@ -457,6 +491,11 @@ function createPassword() {
 		}
 	}
 
+	// write words used so there are no duplicates
+	for (var i = 0; i < words.passwordWords.length; i++) {
+		words.currentBatch.push(password[words.passwordWords[i]]);
+	}
+
 	// apply word structure and create 11 versions of the password
 	//for (var i=0; i<3; i++){
 		password.built = {};
@@ -475,8 +514,13 @@ function createPassword() {
 			0: 6
 		};
 
-		// build level 10 password
+		// build password base
 		var newPassword = password.verb + "-" + password.adj1 + "-" + password.adj2 + "-" + password.adj3 + "-" + password.noun + password.num;
+		// add extra characters for passwords with length 29,30,31
+		while (newPassword.length < 32) {
+			newPassword += randomNumber(0,9).toString();
+		}
+		// level 10 password
 		password.built[10] = newPassword;
 
 		// replace each of the 32 characters one time from level 10 to level 5
@@ -569,9 +613,36 @@ function createPassword() {
 //
 function generatePasswords() {
 	settings.hasGenerated = true;
+	count.generateButtonClicks++;
+	words.currentBatch = [];
 	var i = 0,
 	    div = document.getElementById('results');
+	console.log("== Generating new batch ==");
 
+	// change length and word structure values
+	if (!settings.hasChangedSettings && count.generateButtonClicks > 1) {
+		var l,
+			w,
+			isDifferent = false;
+
+		while (!isDifferent) {
+			if (count.generateButtonClicks < 6) {
+				l = maps["settingsValues"]["length"][Math.floor(Math.random() * maps["settingsValues"]["length"].length)];
+				w = maps["settingsValues"]["wordStructure"][Math.floor(Math.random() * maps["settingsValues"]["wordStructure"].length)];
+			} else {
+				l = randomNumber(3,32);
+				w = randomNumber(0,10);
+			}
+			if (l !== settings.passLength && w !== settings.wordStructure) {
+				isDifferent = true;
+			}
+		}
+			document.getElementById("length").value = l;
+			document.getElementById("wordStructure").value = w;
+			updateSettingsValues();
+	}
+
+	// generate 3 passwords
 	div.innerHTML = "";
 	while (i < 3) {
 		passwords[i] = createPassword();
@@ -585,9 +656,9 @@ function generatePasswords() {
 }
 
 //
-// updateSettings: the html sliders were changed by the user, update the settings
+// updateSettingsValues: the value of the sliders have changed
 //
-function updateSettings() {
+function updateSettingsValues() {
 	// update global variables
 	settings.wordStructure = Number(document.getElementById('wordStructure').value);
 	settings.passLength = Number(document.getElementById('length').value);
@@ -601,6 +672,15 @@ function updateSettings() {
 	}
 	document.getElementById('lengthDisplay').innerHTML = settings.passLength;
 	document.getElementById('wordStructureLabel').innerHTML = wordStructureText;
+}
+
+//
+// settingsChanged: the html sliders were changed by the user
+//
+function settingsChanged() {
+	settings.hasChangedSettings = true;
+	// update global variables
+	updateSettingsValues();
 
 	// update html passwords
 	if (settings.hasGenerated) {

@@ -19,15 +19,15 @@ body {
   margin-top: 5%;
   border-radius: 40px 40px 0 0;
   background-color: #fff;
-  -webkit-box-shadow: 0px 56px 46px 1px rgba(0,0,0,0.3);
-  -moz-box-shadow: 0px 56px 46px 1px rgba(0,0,0,0.3);
-  box-shadow: 0px 56px 46px 1px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0px 56px 46px 0 #8f7e7d;
+  -moz-box-shadow: 0px 56px 46px 0 #8f7e7d;
+  box-shadow: 0px 56px 38px 0 #8f7e7d;
 }
-.mobile-wrapper *::selection {
+#mobile-wrapper *::selection {
   background-color: #7EC9AC;
   color: #fff;
 }
-.mobile-wrapper *::-moz-selection {
+#mobile-wrapper *::-moz-selection {
   background-color: #7EC9AC;
   color: #fff;
 }
@@ -67,12 +67,120 @@ body {
   padding: 0 4%;
 }
 .label {
-  margin: 10px 0 0;
+  margin: 0 0 7px;
   font-size: 18px;
+}
+.label.bottom {
+  margin-top: 18px;
 }
 .trackbar {
   display: block;
   width: 100%;
+}
+/* trackbar element */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+input[type=range]:focus {
+  outline: none;
+}
+
+/* track */
+input[type=range]::-webkit-slider-runnable-track {
+  height: 5px;
+  width: 100%;
+  margin: 14px 0;
+  background-color: #d0b7b6;
+  border-top: 2px solid #8f7e7d;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-track {
+  height: 5px;
+  width: 100%;
+  margin: 14px 0;
+  background-color: #d0b7b6;
+  border-top: 2px solid #8f7e7d;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  height: 5px;
+  width: 100%;
+  margin: 14px 0;
+  background-color: #d0b7b6;
+  border-top: 2px solid #8f7e7d;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* thumb */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 36px;
+  width: 15px;
+  margin: -22px 0 6px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 40px;
+  background-color: #7EC9AC;
+  box-shadow: 0 3px #3e876c;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+  height: 36px;
+  width: 15px;
+  margin: -22px 0 6px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 40px;
+  background-color: #7EC9AC;
+  box-shadow: 0 3px #3e876c;
+  cursor: pointer;
+}
+input[type=range]::-ms-thumb {
+  height: 36px;
+  width: 15px;
+  margin: -22px 0 6px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 40px;
+  background-color: #7EC9AC;
+  box-shadow: 0 3px #3e876c;
+  cursor: pointer;
+}
+
+/* thumb hover */
+input[type=range]:hover::-webkit-slider-thumb {
+  margin: -21px 0 4px;
+  box-shadow: 0 2px #3e876c;
+}
+input[type=range]:hover::-moz-range-thumb {
+  margin: -21px 0 4px;
+  box-shadow: 0 2px #3e876c;
+}
+input[type=range]:hover::-ms-thumb {
+  margin: -21px 0 4px;
+  box-shadow: 0 2px #3e876c;
+}
+
+/* thumb active */
+input[type=range]:active::-webkit-slider-thumb {
+  margin: -19px 0 0;
+  box-shadow: 0 0 #3e876c;
+}
+input[type=range]:active::-moz-range-thumb {
+  margin: -19px 0 0;
+  box-shadow: 0 0 #3e876c;
+}
+input[type=range]:active::-ms-thumb {
+  margin: -19px 0 0;
+  box-shadow: 0 0 #3e876c;
 }
 input {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -81,7 +189,7 @@ input {
   position: relative;
   max-width: 100%;
   padding: 25px 100px;
-  margin: 19px 0 0;
+  margin-top: 32px;
   border: 0;
   outline: 0;
   font-size: 24px;
@@ -104,7 +212,7 @@ input {
   top: 6px;
   box-shadow: 0 0 #000;
 }
-.placeholder {
+#hint {
   margin: 75px 0;
   font-size: 16px;
   color: #ccc;
@@ -226,18 +334,16 @@ p.password {
   .title p {
     margin: 3.5vh 0;
   }
-  .content {
-    padding: 3.5vh 4%;
-  }
   #content {
     display: flex;
     flex-direction: column-reverse;
+    padding: 1.75vh 0 3.5vh;
   }
-  #actions {
-    margin-top: 5.5vh;
+  #generate {
+    margin-top: 18px;
   }
   #results {
-    margin-top: 0;
+    margin: 1.75vh 0;
   }
   .password {
     padding: 10px 0;
@@ -250,14 +356,9 @@ p.password {
     font-size: 16px;
   }
 }
-@media (max-width: 450px) and (max-height: 700px) {
-  .mobile-wrapper {
-    height: 100vh;
-  }
-}
 
 
-@media (max-height: 850px) {
+@media (max-height: 1020px) {
   #body {
     position: relative;
   }
