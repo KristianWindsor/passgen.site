@@ -356,10 +356,3 @@ p.password {
     font-size: 16px;
   }
 }
-
-
-@media (max-height: 1020px) {
-  #body {
-    position: relative;
-  }
-}

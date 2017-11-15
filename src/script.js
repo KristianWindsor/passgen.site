@@ -205,6 +205,24 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 }
 
 //
+// change body position to relative/absolute depending on screen size
+//
+function adjustBodyPosition() {
+	var screenHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+	var bodyHeight = document.getElementById("body").clientHeight;
+
+	if (screenHeight > bodyHeight && bodyHeight > 700) {
+		document.getElementById("body").style.position = "absolute";
+	} else {
+		document.getElementById("body").style.position = "relative";
+	}
+}
+adjustBodyPosition();
+window.addEventListener('resize', function(event){
+	adjustBodyPosition();
+});
+
+//
 // define regex
 //
 var re = new RegExp(Object.keys(maps.numberize).join("|"),"gi");
