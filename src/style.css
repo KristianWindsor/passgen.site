@@ -223,28 +223,36 @@ input {
   min-height: 171px;
   margin-top: 5.5vh;
 }
-.password {
-  padding: 13px 0;
-  font-weight: 700;
-  font-size: 26px;
-  text-align: center;
-}
-input.password {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  color: #565656;
-}
-p.password {
-  display: inline-block;
-  margin: 0;
-  padding-left: 8%;
-  padding-right: 8%;
-}
 .password-wrapper {
-  overflow: scroll;
+  position: relative;
+  padding: 13px 0;
+}
+.password-wrapper.mobile {
   white-space: nowrap;
   text-overflow: clip;
+}
+.password {
+  text-align: center;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: 700;
+  font-size: 26px;
+  color: #565656;
+}
+.copy-button {
+  position: absolute;
+  top: 47px;
+  left: 47%;
+  display: none;
+  margin-top: -6px;
+  font-size: 16px;
+  color: #2196f3;
+  cursor: pointer;
+}
+.password-wrapper:hover .copy-button {
+  display: block;
 }
 .about {
   padding: 5.5vh 0 9vh;
@@ -339,11 +347,17 @@ p.password {
     flex-direction: column-reverse;
     padding: 1.75vh 0 3.5vh;
   }
+  .copy-button {
+    left: 44%;
+  }
   #generate {
     margin-top: 18px;
   }
   #results {
     margin: 1.75vh 0;
+  }
+  .password-wrapper {
+    padding: 0 8%;
   }
   .password {
     padding: 10px 0;

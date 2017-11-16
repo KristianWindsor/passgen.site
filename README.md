@@ -4,4 +4,5 @@ It's a website that generates passwords.
 
 ## To Do List
 
-* Add copy to clipboard button
+* Make console log detailed and look pretty
+* Create API?

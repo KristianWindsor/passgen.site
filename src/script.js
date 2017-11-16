@@ -664,13 +664,15 @@ function generatePasswords() {
 	div.innerHTML = "";
 	while (i < 3) {
 		passwords[i] = createPassword();
+		var mobilemaybe ="";
 		if (settings.isMobile) {
-			div.innerHTML = div.innerHTML + '<div class="password-wrapper"><p id="p' + i + '" class="password">' + applyLength(passwords[i]["built"][settings.wordStructure], passwords[i]["num"]) + '</p></div>';
-		} else {
-			div.innerHTML = div.innerHTML + '<input type="text" id="p' + i + '" class="password" value="' + applyLength(passwords[i]["built"][settings.wordStructure], passwords[i]["num"]) + '" onClick="select()" maxlength="32" spellcheck="false" /><br>';
+			mobilemaybe =" mobile";
 		}
+		div.innerHTML = div.innerHTML + '<div class="password-wrapper'+mobilemaybe+'"><input type="text" id="p' + i + '" class="password" value="' + applyLength(passwords[i]["built"][settings.wordStructure], passwords[i]["num"]) + '" onClick="select()" maxlength="32" spellcheck="false" /><a id="copy'+i+'" class="copy-button">COPY</a></div>';
 		i++;
 	}
+
+	setupCopyToClipBoard();
 }
 
 //
@@ -690,6 +692,11 @@ function updateSettingsValues() {
 	}
 	document.getElementById('lengthDisplay').innerHTML = settings.passLength;
 	document.getElementById('wordStructureLabel').innerHTML = wordStructureText;
+
+	// reset COPY buttons
+	for (var i = 0; i < 3; i++) {
+		document.getElementById("copy"+i.toString()).innerHTML = "COPY";
+	}
 }
 
 //
@@ -702,15 +709,36 @@ function settingsChanged() {
 
 	// update html passwords
 	if (settings.hasGenerated) {
-		if (settings.isMobile) {
-			document.getElementById("p0").innerHTML = applyLength(passwords[0]["built"][settings.wordStructure],passwords[0]["num"]);
-			document.getElementById("p1").innerHTML = applyLength(passwords[1]["built"][settings.wordStructure],passwords[1]["num"]);
-			document.getElementById("p2").innerHTML = applyLength(passwords[2]["built"][settings.wordStructure],passwords[2]["num"]);
-		} else {
-			document.getElementById("p0").setAttribute("value", applyLength(passwords[0]["built"][settings.wordStructure],passwords[0]["num"]));
-			document.getElementById("p1").setAttribute("value", applyLength(passwords[1]["built"][settings.wordStructure],passwords[1]["num"]));
-			document.getElementById("p2").setAttribute("value", applyLength(passwords[2]["built"][settings.wordStructure],passwords[2]["num"]));
-		}
+		document.getElementById("p0").setAttribute("value", applyLength(passwords[0]["built"][settings.wordStructure],passwords[0]["num"]));
+		document.getElementById("p1").setAttribute("value", applyLength(passwords[1]["built"][settings.wordStructure],passwords[1]["num"]));
+		document.getElementById("p2").setAttribute("value", applyLength(passwords[2]["built"][settings.wordStructure],passwords[2]["num"]));
+	}
+}
+
+
+
+
+
+//
+// Copy to clipboard button
+//
+function setupCopyToClipBoard() {
+	for (var i = 0; i < 3; i++) {
+		(function () {
+			var copyName = "#copy" + i.toString();
+			var passName = "#p" + i.toString();
+			document.querySelector(copyName).addEventListener("click", function(event) {
+			  document.querySelector(passName).select();
+			  try {
+			    var successful = document.execCommand("copy");
+			    var msg = successful ? "successful!" : "unsuccessful";
+			    console.log("Copying password to clipboard was " + msg);
+			    document.getElementById(copyName).innerHTML = "Copied!";
+			  } catch (err) {
+			    console.log("Oops! Looks like copying to clipbaord didn't work?");
+			  }
+			});
+		}());
 	}
 }
 
