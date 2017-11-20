@@ -214,14 +214,14 @@ input {
   box-shadow: 0 0 #000;
 }
 #hint {
-  margin: 75px 0;
+  margin: 68px 0;
   font-size: 16px;
   color: #ccc;
 }
 #results {
   float: left;
   width: 100%;
-  min-height: 171px;
+  min-height: 156px;
   margin-top: 5vh;
 }
 .password-wrapper {
@@ -229,8 +229,6 @@ input {
   padding: 13px 0;
 }
 .password-wrapper.mobile {
-  overflow: hidden;
-  width: 100%;
   white-space: nowrap;
   text-overflow: clip;
 }
@@ -256,12 +254,6 @@ input {
 }
 .password-wrapper:hover .copy-button {
   display: block;
-}
-#sudoPassword {
-  visibility: hidden;
-  white-space: pre;
-  font-weight: 700;
-  font-size: 26px;
 }
 .about {
   padding: 5vh 0 9vh;
@@ -363,7 +355,7 @@ input {
     margin-top: 18px;
   }
   #results {
-    margin: 3.5vh 0 0;
+    margin: 3.5vh 0;
   }
   .password-wrapper {
     padding: 0;
