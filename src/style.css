@@ -40,11 +40,11 @@ body {
 }
 .title p {
   display: inline-block;
-  margin: 5.5vh 0;
+  margin: 5vh 0;
 }
 #content {
   max-width: 684px;
-  padding: 5.5vh 0;
+  padding: 5vh 0;
   margin: 0 auto;
   text-align: center;
   overflow: hidden;
@@ -184,6 +184,7 @@ input[type=range]:active::-ms-thumb {
 }
 input {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  font-family: 'Lato', sans-serif;
 }
 #generate {
   position: relative;
@@ -221,13 +222,15 @@ input {
   float: left;
   width: 100%;
   min-height: 171px;
-  margin-top: 5.5vh;
+  margin-top: 5vh;
 }
 .password-wrapper {
   position: relative;
   padding: 13px 0;
 }
 .password-wrapper.mobile {
+  overflow: hidden;
+  width: 100%;
   white-space: nowrap;
   text-overflow: clip;
 }
@@ -254,11 +257,16 @@ input {
 .password-wrapper:hover .copy-button {
   display: block;
 }
+#sudoPassword {
+  visibility: hidden;
+  white-space: pre;
+  font-weight: 700;
+  font-size: 26px;
+}
 .about {
-  padding: 5.5vh 0 9vh;
+  padding: 5vh 0 9vh;
   background-color: #7EC9AC;
   text-align: center;
-
 }
 .about *::selection {
   background-color: #fff;
@@ -315,7 +323,7 @@ input {
   }
   #content {
     width: 100%;
-    padding: 5.5vh 0;
+    padding: 5vh 0;
     box-sizing: border-box;
   }
   #actions {
@@ -348,19 +356,21 @@ input {
     padding: 1.75vh 0 3.5vh;
   }
   .copy-button {
+    top: 37px;
     left: 44%;
   }
   #generate {
     margin-top: 18px;
   }
   #results {
-    margin: 1.75vh 0;
+    margin: 3.5vh 0 0;
   }
   .password-wrapper {
-    padding: 0 8%;
+    padding: 0;
   }
   .password {
-    padding: 10px 0;
+    width: 84%;
+    padding: 0 8% 20px;
   }
   .about {
     padding: 11vh 0;
