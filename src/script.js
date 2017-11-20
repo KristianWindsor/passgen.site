@@ -119,27 +119,21 @@ var maps = {
 			},
 			5:{
 				// 50%
-				'a': ['b','c','d','f','g','h','l','m','n','p','q','r','s','t','v','w','x','z'],
 				'b': ['f','g','z'],
 				'c': ['g','j','l','o','r','u','x','y'],
 				'd': ['a','c','e','i','j','k','o','r','s','u','x','y'],
-				'e': ['b','c','d','f','g','h','l','m','n','p','q','r','s','t','v','w','x','z'],
 				'f': ['a','e','i','o','s','u','y'],
 				'g': ['a','d','e','f','i','o','p','q','s','u','y','z'],
 				'h': ['a','e','g','i','o','s','u','y'],
-				'i': ['b','c','d','f','g','k','l','m','n','p','q','r','s','t','v','w','z'],
 				'j': ['a','e','o','v','w','u','y'],
 				'k': ['a','e','f','g','i','j','l','m','n','p','r','s','u','x','y','z'],
 				'l': ['a','e','i','o','t','u','y','z'],
 				'm': ['a','b','c','e','i','o','r','u','y','z'],
 				'n': ['a','b','c','d','e','i','o','q','s','u','y'],
-				'o': ['b','c','d','f','g','h','k','l','m','n','p','q','r','s','t','v','w','x','z'],
 				'p': ['a','e','h','i','l','o','r','s','u','w','x','y','z'],
 				'r': ['a','e','i','o','q','u','x','y','z'],
-				'u': ['b','c','d','f','g','h','k','l','m','n','p','q','r','s','t','v','x','z'],
 				'w': ['a','e','i','o','u','y'],
-				'x': ['a','e','i','o','u','y','z'],
-				'y': ['c','i','l','m','n','s','z'],
+				'x': ['a','e','i','o','u','y','z']
 			}
 		},
 		"randomChar": {
@@ -631,11 +625,9 @@ function createPassword() {
 // generatePasswords: the generate button was clicked, generate three passwords
 //
 function generatePasswords() {
-	settings.hasGenerated = true;
 	count.generateButtonClicks++;
 	words.currentBatch = [];
-	var i = 0,
-	    div = document.getElementById('results');
+	var div = document.getElementById('results');
 	console.log("== Generating new batch ==");
 
 	// change length and word structure values
@@ -662,17 +654,26 @@ function generatePasswords() {
 	}
 
 	// generate 3 passwords
-	div.innerHTML = "";
-	while (i < 3) {
+	if (!settings.hasGenerated) {
+		div.innerHTML = "";
+	}
+	for (var i = 0; i < 3; i++) {
+		// call the creation of the password
 		passwords[i] = createPassword();
-		var mobilemaybe ="";
-		if (settings.isMobile) {
-			mobilemaybe =" mobile";
+		thePassword = applyLength(passwords[i]["built"][settings.wordStructure], passwords[i]["num"]);
+		if (settings.hasGenerated) {
+			document.getElementById("p"+i).setAttribute("value", thePassword);
+		} else {
+			var mobilemaybe = "";
+			if (settings.isMobile) {
+				mobilemaybe = " mobile";
+			}
+			// set the password in the html
+			div.innerHTML = div.innerHTML + '<div class="password-wrapper'+mobilemaybe+'"><input type="text" id="p'+i+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" /><a id="copy'+i+'" class="copy-button">COPY</a></div>';
 		}
-		div.innerHTML = div.innerHTML + '<div class="password-wrapper'+mobilemaybe+'"><input type="text" id="p' + i + '" class="password" value="' + applyLength(passwords[i]["built"][settings.wordStructure], passwords[i]["num"]) + '" onClick="select()" maxlength="32" spellcheck="false" /><a id="copy'+i+'" class="copy-button">COPY</a></div>';
-		i++;
 	}
 
+	settings.hasGenerated = true;
 	setupCopyToClipBoard();
 }
 
@@ -710,9 +711,10 @@ function settingsChanged() {
 
 	// update html passwords
 	if (settings.hasGenerated) {
-		document.getElementById("p0").setAttribute("value", applyLength(passwords[0]["built"][settings.wordStructure],passwords[0]["num"]));
-		document.getElementById("p1").setAttribute("value", applyLength(passwords[1]["built"][settings.wordStructure],passwords[1]["num"]));
-		document.getElementById("p2").setAttribute("value", applyLength(passwords[2]["built"][settings.wordStructure],passwords[2]["num"]));
+		for (var i = 0; i < 3; i++) {
+			var thePassword = applyLength(passwords[i]["built"][settings.wordStructure],passwords[i]["num"]);
+			document.getElementById("p"+i).setAttribute("value", thePassword);
+		}
 	}
 }
 
@@ -727,6 +729,7 @@ function setupCopyToClipBoard() {
 	for (var i = 0; i < 3; i++) {
 		(function () {
 			var copyName = "#copy" + i.toString();
+			var copyName2 = "copy" + i.toString();
 			var passName = "#p" + i.toString();
 			document.querySelector(copyName).addEventListener("click", function(event) {
 			  document.querySelector(passName).select();
@@ -734,7 +737,7 @@ function setupCopyToClipBoard() {
 			    var successful = document.execCommand("copy");
 			    var msg = successful ? "successful!" : "unsuccessful";
 			    console.log("Copying password to clipboard was " + msg);
-			    document.getElementById(copyName).innerHTML = "Copied!";
+			    document.getElementById(copyName2).innerHTML = "Copied!";
 			  } catch (err) {
 			    console.log("Oops! Looks like copying to clipbaord didn't work?");
 			  }
