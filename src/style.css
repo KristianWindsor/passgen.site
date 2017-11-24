@@ -229,6 +229,8 @@ input {
   padding: 13px 0;
 }
 .password-wrapper.mobile {
+  overflow-x: scroll;
+  overflow-y: hidden;
   white-space: nowrap;
   text-overflow: clip;
 }
