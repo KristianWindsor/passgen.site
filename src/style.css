@@ -228,12 +228,6 @@ input {
   position: relative;
   padding: 13px 0;
 }
-.password-wrapper.mobile {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  text-overflow: clip;
-}
 .password {
   text-align: center;
   width: 100%;
@@ -243,6 +237,13 @@ input {
   font-weight: 700;
   font-size: 26px;
   color: #565656;
+}
+.password-wrapper.mobile .password{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  text-overflow: clip;
 }
 .copy-button {
   position: absolute;
