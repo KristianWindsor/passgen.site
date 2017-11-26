@@ -204,9 +204,8 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 function adjustBodyPosition() {
 	var screenHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 	var bodyHeight = document.getElementById("body").clientHeight;
-	var bodyMarginTop = Math.round(window.getComputedStyle(document.getElementById("body"), null).getPropertyValue('margin-top').replace("px",""));
 
-	if (screenHeight > (bodyHeight + bodyMarginTop) && bodyHeight > 700) {
+	if (screenHeight > bodyHeight && bodyHeight > 700) {
 		document.getElementById("body").style.position = "absolute";
 	} else {
 		document.getElementById("body").style.position = "relative";
