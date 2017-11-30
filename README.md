@@ -1,8 +1,9 @@
 # A Password Generator .Website
 
+![A Password Generator .Website logo](src/icon/a-password-generator-website-logo.png)
+
 [apasswordgenerator.website](http://www.apasswordgenerator.website/)
 
-![A Password Generator .Website logo](src/icon/a-password-generator-website-logo.png)
 ## Project Summary
 
 It's a website that generates passwords.
