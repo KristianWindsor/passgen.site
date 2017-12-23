@@ -11,7 +11,8 @@ var settings = {
 	"hasChangedSettings": false,
 	"isMobile": false,
 	"wordStructure": Number(document.getElementById('wordStructure').value),
-	"passLength": Number(document.getElementById('length').value)
+	"passLength": Number(document.getElementById('length').value),
+	"passwordHTMLTag": ["input","input","input"]
 };
 var count = {
 	"generateButtonClicks": 0,
@@ -191,6 +192,7 @@ var passwords = {};
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 	settings.isMobile = true;
 	document.getElementById("hint").innerHTML = "Tap the generate button below.";
+	settings.passwordHTMLTag = ["p","p","p"]
 	var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 	if (h > w && h > 480 && h < 1020) {
@@ -621,12 +623,60 @@ function createPassword() {
 }
 
 //
+// refreshPasswordHTML: refresh the passwords in the HTML
+//
+// refreshStrength: "hard" or "easy". Hard will reload all the HTML in #results, and soft will just change the actual password text
+//
+function refreshPasswordHTML(refreshStrength) { 
+	var resultsDiv = document.getElementById('results'),
+		thePassword;
+	if (refreshStrength == "hard") {
+		resultsDiv.innerHTML = "";
+		for (var i = 0; i < 3; i++) {
+			thePassword = applyLength(passwords[i]["built"][settings.wordStructure],passwords[i]["num"]);
+			if (settings.isMobile) {
+				settings.passwordHTMLTag = ["p","p","p"];
+				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper mobile" id="passwrap'+i+'"><p id="p'+i+'" class="password" >'+thePassword+'</p><a id="copy'+i+'" class="copy-button">COPY</a></div>';
+			} else {
+				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper"><input type="text" id="p'+i+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" /><a id="copy'+i+'" class="copy-button">COPY</a></div>';
+			}
+		}
+		setupCopyToClipBoard();
+	} else {
+		for (var i = 0; i < 3; i++) {
+			thePassword = applyLength(passwords[i]["built"][settings.wordStructure],passwords[i]["num"]);
+			if (settings.passwordHTMLTag[i] == "input") {
+				document.getElementById("p"+i).setAttribute("value", thePassword);
+			} else {
+				document.getElementById("p"+i).innerHTML = thePassword;
+			}
+		}
+	}
+}
+
+//
+// changePasswordHTMLTag: change a <p> password to <input>
+//
+// id: "0", "1" or "2" that corresponds to one of the three passwords in the HTML
+//
+function changePasswordHTMLTag(id) {
+	// reset all to normal
+	refreshPasswordHTML("hard");
+	// update settings
+	settings.passwordHTMLTag = ["p","p","p"];
+	settings.passwordHTMLTag[id] = "input";
+	// get the password
+	thePassword = applyLength(passwords[id]["built"][settings.wordStructure],passwords[id]["num"]);
+	// rebuild html in password wrapper
+	document.getElementById("passwrap"+id).innerHTML = '<input type="text" id="p'+id+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" /><a id="copy'+id+'" class="copy-button">COPY</a>';
+}
+
+//
 // generatePasswords: the generate button was clicked, generate three passwords
 //
 function generatePasswords() {
 	count.generateButtonClicks++;
 	words.currentBatch = [];
-	var div = document.getElementById('results');
 	console.log("== Generating new batch ==");
 
 	// change length and word structure values
@@ -652,25 +702,11 @@ function generatePasswords() {
 			updateSettingsValues();
 	}
 
-	// generate 3 passwords
-	if (!settings.hasGenerated) {
-		div.innerHTML = "";
-	}
 	for (var i = 0; i < 3; i++) {
-		// call the creation of the password
+		// creates a new password
 		passwords[i] = createPassword();
-		thePassword = applyLength(passwords[i]["built"][settings.wordStructure], passwords[i]["num"]);
-		if (settings.hasGenerated) {
-			document.getElementById("p"+i).setAttribute("value", thePassword);
-		} else {
-			var mobilemaybe = "";
-			if (settings.isMobile) {
-				mobilemaybe = " mobile";
-			}
-			// set the password in the html
-			div.innerHTML = div.innerHTML + '<div class="password-wrapper'+mobilemaybe+'"><input type="text" id="p'+i+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" /><a id="copy'+i+'" class="copy-button">COPY</a></div>';
-		}
 	}
+	refreshPasswordHTML("hard");
 
 	settings.hasGenerated = true;
 	setupCopyToClipBoard();
@@ -694,9 +730,11 @@ function updateSettingsValues() {
 	document.getElementById('lengthDisplay').innerHTML = settings.passLength;
 	document.getElementById('wordStructureLabel').innerHTML = wordStructureText;
 
-	// reset COPY buttons
-	for (var i = 0; i < 3; i++) {
-		document.getElementById("copy"+i.toString()).innerHTML = "COPY";
+	if (settings.hasGenerated) {
+		// reset COPY buttons
+		for (var i = 0; i < 3; i++) {
+			document.getElementById("copy"+i.toString()).innerHTML = "COPY";
+		}
 	}
 }
 
@@ -710,10 +748,7 @@ function settingsChanged() {
 
 	// update html passwords
 	if (settings.hasGenerated) {
-		for (var i = 0; i < 3; i++) {
-			var thePassword = applyLength(passwords[i]["built"][settings.wordStructure],passwords[i]["num"]);
-			document.getElementById("p"+i).setAttribute("value", thePassword);
-		}
+		refreshPasswordHTML("soft");
 	}
 }
 
@@ -730,16 +765,22 @@ function setupCopyToClipBoard() {
 			var copyName = "#copy" + i.toString();
 			var copyName2 = "copy" + i.toString();
 			var passName = "#p" + i.toString();
+			var id = i.toString();
+			// attatch this function to the copy tags
 			document.querySelector(copyName).addEventListener("click", function(event) {
-			  document.querySelector(passName).select();
-			  try {
-			    var successful = document.execCommand("copy");
-			    var msg = successful ? "successful!" : "unsuccessful";
-			    console.log("Copying password to clipboard was " + msg);
-			    document.getElementById(copyName2).innerHTML = "Copied!";
-			  } catch (err) {
-			    console.log("Oops! Looks like copying to clipbaord didn't work?");
-			  }
+				// convert <p> to <input> so its selectable
+				changePasswordHTMLTag(id);
+				// select password
+				document.querySelector(passName).select();
+				// try copy to clipboard
+				try {
+					var successful = document.execCommand("copy");
+					var msg = successful ? "successful!" : "unsuccessful";
+					console.log("Copying password to clipboard was " + msg);
+					document.getElementById(copyName2).innerHTML = "Copied!";
+				} catch (err) {
+					console.log("Oops! Looks like copying to clipbaord didn't work?");
+				}
 			});
 		}());
 	}

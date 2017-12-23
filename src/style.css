@@ -221,7 +221,7 @@ input {
 #results {
   float: left;
   width: 100%;
-  min-height: 156px;
+  min-height: 174px;
   margin-top: 5vh;
 }
 .password-wrapper {
@@ -237,6 +237,15 @@ input {
   font-weight: 700;
   font-size: 26px;
   color: #565656;
+}
+p.password {
+  margin: 0;
+}
+.mobile input.password {
+  width: 84%;
+  margin: 0 8%;
+  margin-top: -8px;
+  padding: 0 0 12px;
 }
 .password-wrapper.mobile .password{
   overflow-x: scroll;
@@ -359,11 +368,12 @@ input {
   }
   #results {
     margin: 3.5vh 0;
+    min-height: 156px;
   }
   .password-wrapper {
     padding: 0;
   }
-  .password {
+  p.password {
     width: 84%;
     padding: 0 8% 20px;
   }
