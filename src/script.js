@@ -768,8 +768,10 @@ function setupCopyToClipBoard() {
 			var id = i.toString();
 			// attatch this function to the copy tags
 			document.querySelector(copyName).addEventListener("click", function(event) {
-				// convert <p> to <input> so its selectable
-				changePasswordHTMLTag(id);
+				if (settings.isMobile) {
+					// convert <p> to <input> so its selectable
+					changePasswordHTMLTag(id);
+				}
 				// select password
 				document.querySelector(passName).select();
 				// try copy to clipboard
