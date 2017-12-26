@@ -231,15 +231,13 @@ input {
 .password {
   text-align: center;
   width: 100%;
+  margin: 0;
   padding: 0;
   border: 0;
   outline: 0;
   font-weight: 700;
   font-size: 26px;
   color: #565656;
-}
-p.password {
-  margin: 0;
 }
 .mobile input.password {
   width: 84%;
@@ -374,6 +372,9 @@ p.password {
     padding: 0;
   }
   p.password {
+    margin-bottom: 20px;
+  }
+  a.password {
     width: 84%;
     padding: 0 8% 20px;
   }

@@ -636,7 +636,7 @@ function refreshPasswordHTML(refreshStrength) {
 			thePassword = applyLength(passwords[i]["built"][settings.wordStructure],passwords[i]["num"]);
 			if (settings.isMobile) {
 				settings.passwordHTMLTag = ["p","p","p"];
-				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper mobile" id="passwrap'+i+'"><p id="p'+i+'" class="password" onClick="changePasswordHTMLTag('+i+')">'+thePassword+'</p><a id="copy'+i+'" class="copy-button">COPY</a></div>';
+				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper mobile" id="passwrap'+i+'"><p class="password"><a id="p'+i+'" class="password" onClick="changePasswordHTMLTag('+i+')">'+thePassword+'</a></p><a id="copy'+i+'" class="copy-button">COPY</a></div>';
 			} else {
 				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper"><input type="text" id="p'+i+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" /><a id="copy'+i+'" class="copy-button">COPY</a></div>';
 			}
