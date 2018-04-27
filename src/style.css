@@ -252,19 +252,6 @@ input {
   white-space: nowrap;
   text-overflow: clip;
 }
-.copy-button {
-  position: absolute;
-  top: 47px;
-  left: 47%;
-  display: none;
-  margin-top: -6px;
-  font-size: 16px;
-  color: #2196f3;
-  cursor: pointer;
-}
-.password-wrapper:hover .copy-button {
-  display: block;
-}
 .about {
   padding: 5vh 0 9vh;
   background-color: #7EC9AC;
@@ -356,10 +343,6 @@ input {
     display: flex;
     flex-direction: column-reverse;
     padding: 1.75vh 0 3.5vh;
-  }
-  .copy-button {
-    top: 37px;
-    left: 44%;
   }
   #generate {
     margin-top: 18px;

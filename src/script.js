@@ -636,12 +636,11 @@ function refreshPasswordHTML(refreshStrength) {
 			thePassword = applyLength(passwords[i]["built"][settings.wordStructure],passwords[i]["num"]);
 			if (settings.isMobile) {
 				settings.passwordHTMLTag = ["p","p","p"];
-				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper mobile" id="passwrap'+i+'"><p class="password"><a id="p'+i+'" class="password" onClick="changePasswordHTMLTag('+i+')">'+thePassword+'</a></p><a id="copy'+i+'" class="copy-button">COPY</a></div>';
+				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper mobile" id="passwrap'+i+'"><p class="password"><a id="p'+i+'" class="password" onClick="changePasswordHTMLTag('+i+')">'+thePassword+'</a></p></div>';
 			} else {
-				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper"><input type="text" id="p'+i+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" /><a id="copy'+i+'" class="copy-button">COPY</a></div>';
+				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper"><input type="text" id="p'+i+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" /></div>';
 			}
 		}
-		setupCopyToClipBoard();
 	} else {
 		for (var i = 0; i < 3; i++) {
 			thePassword = applyLength(passwords[i]["built"][settings.wordStructure],passwords[i]["num"]);
@@ -668,7 +667,7 @@ function changePasswordHTMLTag(id) {
 	// get the password
 	thePassword = applyLength(passwords[id]["built"][settings.wordStructure],passwords[id]["num"]);
 	// rebuild html in password wrapper
-	document.getElementById("passwrap"+id).innerHTML = '<input type="text" id="p'+id+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" /><a id="copy'+id+'" class="copy-button">COPY</a>';
+	document.getElementById("passwrap"+id).innerHTML = '<input type="text" id="p'+id+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" />';
 }
 
 //
@@ -709,7 +708,6 @@ function generatePasswords() {
 	refreshPasswordHTML("hard");
 
 	settings.hasGenerated = true;
-	setupCopyToClipBoard();
 }
 
 //
@@ -729,13 +727,6 @@ function updateSettingsValues() {
 	}
 	document.getElementById('lengthDisplay').innerHTML = settings.passLength;
 	document.getElementById('wordStructureLabel').innerHTML = wordStructureText;
-
-	if (settings.hasGenerated) {
-		// reset COPY buttons
-		for (var i = 0; i < 3; i++) {
-			document.getElementById("copy"+i.toString()).innerHTML = "COPY";
-		}
-	}
 }
 
 //
@@ -749,42 +740,6 @@ function settingsChanged() {
 	// update html passwords
 	if (settings.hasGenerated) {
 		refreshPasswordHTML("soft");
-	}
-}
-
-
-
-
-
-//
-// Copy to clipboard button
-//
-function setupCopyToClipBoard() {
-	for (var i = 0; i < 3; i++) {
-		(function () {
-			var copyName = "#copy" + i.toString();
-			var copyName2 = "copy" + i.toString();
-			var passName = "#p" + i.toString();
-			var id = i.toString();
-			// attatch this function to the copy tags
-			document.querySelector(copyName).addEventListener("click", function(event) {
-				if (settings.isMobile) {
-					// convert <p> to <input> so its selectable
-					changePasswordHTMLTag(id);
-				}
-				// select password
-				document.querySelector(passName).select();
-				// try copy to clipboard
-				try {
-					var successful = document.execCommand("copy");
-					var msg = successful ? "successful!" : "unsuccessful";
-					console.log("Copying password to clipboard was " + msg);
-					document.getElementById(copyName2).innerHTML = "Copied!";
-				} catch (err) {
-					console.log("Oops! Looks like copying to clipbaord didn't work?");
-				}
-			});
-		}());
 	}
 }
 
