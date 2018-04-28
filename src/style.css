@@ -230,22 +230,19 @@ input {
 }
 .password {
   text-align: center;
-  width: 100%;
   margin: 0;
   padding: 0;
   border: 0;
   outline: 0;
-  font-weight: 700;
-  font-size: 26px;
   color: #565656;
 }
-.mobile input.password {
-  width: 84%;
-  margin: 0 8%;
-  margin-top: -8px;
-  padding: 0 0 12px;
+input.password {
+  width: 100%;
+  font-size: 26px;
 }
-.password-wrapper.mobile .password{
+p.password {
+  padding: 13px;
+  font-size: 21px;
   overflow-x: scroll;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
@@ -342,7 +339,8 @@ input {
   #content {
     display: flex;
     flex-direction: column-reverse;
-    padding: 1.75vh 0 3.5vh;
+    padding: 0;
+    padding-bottom: 3.5vh;
   }
   #generate {
     margin-top: 18px;
@@ -353,13 +351,6 @@ input {
   }
   .password-wrapper {
     padding: 0;
-  }
-  p.password {
-    margin-bottom: 20px;
-  }
-  a.password {
-    width: 84%;
-    padding: 0 8% 20px;
   }
   .about {
     padding: 11vh 0;

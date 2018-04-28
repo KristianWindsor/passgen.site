@@ -636,7 +636,7 @@ function refreshPasswordHTML(refreshStrength) {
 			thePassword = applyLength(passwords[i]["built"][settings.wordStructure],passwords[i]["num"]);
 			if (settings.isMobile) {
 				settings.passwordHTMLTag = ["p","p","p"];
-				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper mobile" id="passwrap'+i+'"><p class="password"><a id="p'+i+'" class="password" onClick="changePasswordHTMLTag('+i+')">'+thePassword+'</a></p></div>';
+				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper mobile"><p id="p'+i+'" class="password">'+thePassword+'</p></div>';
 			} else {
 				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper"><input type="text" id="p'+i+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" /></div>';
 			}
@@ -651,23 +651,6 @@ function refreshPasswordHTML(refreshStrength) {
 			}
 		}
 	}
-}
-
-//
-// changePasswordHTMLTag: change a <p> password to <input>
-//
-// id: "0", "1" or "2" that corresponds to one of the three passwords in the HTML
-//
-function changePasswordHTMLTag(id) {
-	// reset all to normal
-	refreshPasswordHTML("hard");
-	// update settings
-	settings.passwordHTMLTag = ["p","p","p"];
-	settings.passwordHTMLTag[id] = "input";
-	// get the password
-	thePassword = applyLength(passwords[id]["built"][settings.wordStructure],passwords[id]["num"]);
-	// rebuild html in password wrapper
-	document.getElementById("passwrap"+id).innerHTML = '<input type="text" id="p'+id+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" />';
 }
 
 //
