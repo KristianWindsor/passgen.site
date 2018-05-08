@@ -365,3 +365,8 @@ p.password {
     font-size: 16px;
   }
 }
+@media (max-width: 350px) {
+  p.password {
+    font-size: 19px;
+  }
+}
