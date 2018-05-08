@@ -260,19 +260,24 @@ p.password {
 .about *::-moz-selection {
   background-color: #fff;
 }
+.about .wrapper {
+  max-width: 684px;
+  margin: 0 auto;
+}
 .subtitle {
   margin: 0 0 20px 0;
   font-weight: 700;
   text-align: center;
 }
 .text {
-  display: inline-block;
-  max-width: 684px;
   margin: 0 4%;
   font-size: 20px;
   line-height: 1.6;
   text-align: justify;
   box-sizing: border-box;
+}
+.text:not(:first-child) {
+  margin-top: 20px;
 }
 .text a {
   text-decoration: none;
@@ -356,7 +361,7 @@ p.password {
     padding: 11vh 0;
   }
   .text {
-    width: 80%;
+    padding: 0 10%;
     font-size: 16px;
   }
 }
