@@ -729,6 +729,22 @@ function settingsChanged() {
 
 
 
+//
+// On Touch Start Hover CSS
+//
+var generateButton = document.getElementById('generate');
+generateButton.addEventListener('touchmove', function(e){
+	generateButton.className = "hover";
+}, false);
+generateButton.addEventListener('touchend', function(e){
+	generateButton.className = "";
+}, false);
+document.getElementById('body').addEventListener('touchend', function(e){
+	generateButton.className = "";
+}, false);
+
+
+
 
 //
 // google analytics

@@ -205,7 +205,7 @@ input {
   text-align: center;
   text-shadow: 1px 1px 1px #3e876c;
 }
-#generate:hover {
+#generate:hover, #generate.hover {
   top: 2px;
   box-shadow: 0 4px #3e876c;
 }
