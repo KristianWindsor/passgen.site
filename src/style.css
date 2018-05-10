@@ -209,7 +209,7 @@ input {
   top: 2px;
   box-shadow: 0 4px #3e876c;
 }
-#generate:active {
+#generate:active:not(.hover) {
   top: 6px;
   box-shadow: 0 0 #000;
 }
