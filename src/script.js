@@ -691,6 +691,7 @@ function generatePasswords() {
 	refreshPasswordHTML("hard");
 
 	settings.hasGenerated = true;
+	ga('send', 'event', 'Generate', 'click', 'Settings changed', settings.wordStructure + ' - ' + settings.passLength);
 }
 
 //
@@ -715,15 +716,16 @@ function updateSettingsValues() {
 //
 // settingsChanged: the html sliders were changed by the user
 //
-function settingsChanged() {
+function settingsChanged(whichSlider) {
 	settings.hasChangedSettings = true;
 	// update global variables
 	updateSettingsValues();
 
 	// update html passwords
 	if (settings.hasGenerated) {
-		refreshPasswordHTML("soft");
+		refreshPasswordHTML('soft');
 	}
+	ga('send', 'event', whichSlider, 'change value', 'Settings changed', settings.passLength);
 }
 
 

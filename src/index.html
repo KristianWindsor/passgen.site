@@ -42,11 +42,11 @@
 							<p class="label">
 								Length: <span id="lengthDisplay">32</span> characters
 							</p>
-							<input type="range" class="trackbar" id="length" min="3" max="32" value="32" oninput="settingsChanged();" onchange="settingsChanged();" />
+							<input type="range" class="trackbar" id="length" min="3" max="32" value="32" oninput="settingsChanged('Length');" onchange="settingsChanged('Length');" />
 							<p class="label bottom">
 								Word Structure: <span id="wordStructureLabel">100%</span>
 							</p>
-							<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="settingsChanged();" onchange="settingsChanged();" />
+							<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="settingsChanged('Word Structure');" onchange="settingsChanged('Word Structure');" />
 						</div>
 						<div class="right">
 							<button id="generate" onclick="generatePasswords()">
@@ -68,10 +68,10 @@
 					</p>
 					<p class="text">
 						All passwords are generated locally in your browser and are not stored anywhere.
-						This password generator is built with Javascript and is all open source. You can <a href="https://github.com/Windso/apasswordgenerator.website" target="_blank">view the code here</a>.
+						This password generator is built with Javascript and is all open source. You can <a href="https://github.com/Windso/apasswordgenerator.website" target="_blank" onclick="ga('send', 'event', 'Github', 'click', 'Link clicked', settings.hasGenerated)">view the code here</a>.
 					</p>
 					<p class="text">
-						You can also reach this website at <a href="http://apassgen.site">apassgen.site</a>.
+						You can also reach this website at <a href="http://apassgen.site" onclick="ga('send', 'event', 'Tiny URL', 'click', 'Link clicked', settings.hasGenerated)">apassgen.site</a>.
 					</p>
 				</div>
 			</div>
