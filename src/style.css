@@ -270,10 +270,11 @@ p.password {
   text-align: center;
 }
 .text {
-  margin: 0 4%;
+  width: 100%;
+  padding: 0 26px;
   font-size: 20px;
   line-height: 1.6;
-  text-align: justify;
+  text-align: left;
   box-sizing: border-box;
 }
 .text:not(:first-child) {
