@@ -1,9 +1,9 @@
-# A Password Generator .Website
+# Password Generator
 
-![A Password Generator .Website logo](src/icon/a-password-generator-website-logo.png)
+![passgen.site logo](src/icon/passgen.site-logo.png)
 
 ### Visit the website 
-This project is live at [apassgen.site](http://apassgen.site/) or [apasswordgenerator.website](http://www.apasswordgenerator.website/).
+This project is live at [passgen.site](https://passgen.site/).
 
 ### Read about it
-I wrote about this project on my blog: [Designing A Password Generator](https://kristianwindsor.com/blog/designing-a-password-generator/)
+I wrote about this project on my blog: [Designing A Password Generator](https://kristianwindsor.com/blog/designing-a-password-generator/).
