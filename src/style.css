@@ -205,11 +205,11 @@ input {
   text-align: center;
   text-shadow: 1px 1px 1px #3e876c;
 }
-#generate:hover {
+#generate:hover, #generate.hover {
   top: 2px;
   box-shadow: 0 4px #3e876c;
 }
-#generate:active {
+#generate:active:not(.hover) {
   top: 6px;
   box-shadow: 0 0 #000;
 }
@@ -230,40 +230,24 @@ input {
 }
 .password {
   text-align: center;
-  width: 100%;
   margin: 0;
   padding: 0;
   border: 0;
   outline: 0;
-  font-weight: 700;
-  font-size: 26px;
   color: #565656;
 }
-.mobile input.password {
-  width: 84%;
-  margin: 0 8%;
-  margin-top: -8px;
-  padding: 0 0 12px;
+input.password {
+  width: 100%;
+  font-size: 26px;
 }
-.password-wrapper.mobile .password{
+p.password {
+  padding: 13px;
+  font-size: 21px;
   overflow-x: scroll;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   white-space: nowrap;
   text-overflow: clip;
-}
-.copy-button {
-  position: absolute;
-  top: 47px;
-  left: 47%;
-  display: none;
-  margin-top: -6px;
-  font-size: 16px;
-  color: #2196f3;
-  cursor: pointer;
-}
-.password-wrapper:hover .copy-button {
-  display: block;
 }
 .about {
   padding: 5vh 0 9vh;
@@ -276,19 +260,25 @@ input {
 .about *::-moz-selection {
   background-color: #fff;
 }
+.about .wrapper {
+  max-width: 684px;
+  margin: 0 auto;
+}
 .subtitle {
   margin: 0 0 20px 0;
   font-weight: 700;
   text-align: center;
 }
 .text {
-  display: inline-block;
-  max-width: 684px;
-  margin: 0 4%;
+  width: 100%;
+  padding: 0 26px;
   font-size: 20px;
   line-height: 1.6;
-  text-align: justify;
+  text-align: left;
   box-sizing: border-box;
+}
+.text:not(:first-child) {
+  margin-top: 20px;
 }
 .text a {
   text-decoration: none;
@@ -329,7 +319,7 @@ input {
     box-sizing: border-box;
   }
   #actions {
-    padding: 0 10%;
+    padding: 0 15%;
   }
   #generate, .left, .right {
     width: 100%;
@@ -355,11 +345,8 @@ input {
   #content {
     display: flex;
     flex-direction: column-reverse;
-    padding: 1.75vh 0 3.5vh;
-  }
-  .copy-button {
-    top: 37px;
-    left: 44%;
+    padding: 0;
+    padding-bottom: 3.5vh;
   }
   #generate {
     margin-top: 18px;
@@ -371,18 +358,15 @@ input {
   .password-wrapper {
     padding: 0;
   }
-  p.password {
-    margin-bottom: 20px;
-  }
-  a.password {
-    width: 84%;
-    padding: 0 8% 20px;
-  }
   .about {
     padding: 11vh 0;
   }
   .text {
-    width: 80%;
     font-size: 16px;
+  }
+}
+@media (max-width: 350px) {
+  p.password {
+    font-size: 19px;
   }
 }

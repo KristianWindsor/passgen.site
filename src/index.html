@@ -2,9 +2,15 @@
 <html lang="en">
 	<head>
 		<title>
-			A Password Generator .website
+			A Password Generator
 		</title>
-		<meta name="description" content="Generate secure, random, pronounceable, memorable, and customizable passwords instantly and easily!">
+		<meta property="og:title" content="A Password Generator" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://www.apasswordgenerator.website/" />
+		<meta property="og:image" content="https://www.apasswordgenerator.website/icon/a-password-generator-website-logo.png" />
+		<meta property="og:description" content="Generate secure but memorable passwords in an instant! Slide the length and word structure to find what works best for you." />
+		<meta property="og:site_name" content="A Password Generator .website" />
+		<meta name="description" content="Generate secure but memorable passwords in an instant! Slide the length and word structure to find what works best for you.">
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 		<link href="style.css" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -22,7 +28,7 @@
 			<div id="mobile-wrapper">
 				<div class="title">
 					<p>
-						A Password Generator .website
+						A Password Generator
 					</p>
 				</div>
 				<noscript>
@@ -34,13 +40,13 @@
 					<div id="actions">
 						<div class="left">
 							<p class="label">
-								Length: <span id="lengthDisplay">8</span>
+								Length: <span id="lengthDisplay">32</span> characters
 							</p>
-							<input type="range" class="trackbar" id="length" min="3" max="32" value="8" oninput="settingsChanged();" onchange="settingsChanged();" />
+							<input type="range" class="trackbar" id="length" min="3" max="32" value="32" oninput="settingsChanged('Length');" onchange="settingsChanged('Length');" />
 							<p class="label bottom">
 								Word Structure: <span id="wordStructureLabel">100%</span>
 							</p>
-							<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="settingsChanged();" onchange="settingsChanged();" />
+							<input type="range" class="trackbar" id="wordStructure" min="0" max="10" value="10" oninput="settingsChanged('Word Structure');" onchange="settingsChanged('Word Structure');" />
 						</div>
 						<div class="right">
 							<button id="generate" onclick="generatePasswords()">
@@ -56,13 +62,18 @@
 				</div>
 			</div>
 			<div class="about">
-				<p class="subtitle">
-					About
-				</p>
-				<p class="text">
-					All passwords are generated locally in your browser and are not stored anywhere.
-					This password generator is built with Javascript and is all open source. You can <a href="https://github.com/Windso/apasswordgenerator.website" target="_blank">view the code here</a>.
-				</p>
+				<div class="wrapper">
+					<p class="subtitle">
+						About
+					</p>
+					<p class="text">
+						All passwords are generated locally in your browser and are not stored anywhere.
+						This password generator is built with Javascript and is all open source. You can <a href="https://github.com/Windso/apasswordgenerator.website" target="_blank" onclick="ga('send', 'event', 'Github', 'click', 'Link clicked', settings.hasGenerated)">view the code here</a>.
+					</p>
+					<p class="text">
+						You can also reach this website at <a href="http://apassgen.site" onclick="ga('send', 'event', 'Tiny URL', 'click', 'Link clicked', settings.hasGenerated)">apassgen.site</a>.
+					</p>
+				</div>
 			</div>
 		</div>
 	</body>
