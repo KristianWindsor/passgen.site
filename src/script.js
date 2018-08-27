@@ -1,5 +1,6 @@
-// A Password Generator .website
-// by Kristian Windsor
+// Password Generator
+// passgen.site
+// Kristian Windsor
 
 
 
