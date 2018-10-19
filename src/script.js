@@ -12,8 +12,7 @@ var settings = {
 	"hasChangedSettings": false,
 	"isMobile": false,
 	"wordStructure": Number(document.getElementById('wordStructure').value),
-	"passLength": Number(document.getElementById('length').value),
-	"passwordHTMLTag": ["input","input","input"]
+	"passLength": Number(document.getElementById('length').value)
 };
 var count = {
 	"generateButtonClicks": 0,
@@ -193,7 +192,6 @@ var passwords = {};
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 	settings.isMobile = true;
 	document.getElementById("hint").innerHTML = "Tap the generate button below.";
-	settings.passwordHTMLTag = ["p","p","p"]
 	var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 	if (h > w && h > 480 && h < 1020) {
@@ -635,21 +633,12 @@ function refreshPasswordHTML(refreshStrength) {
 		resultsDiv.innerHTML = "";
 		for (var i = 0; i < 3; i++) {
 			thePassword = applyLength(passwords[i]["built"][settings.wordStructure],passwords[i]["num"]);
-			if (settings.isMobile) {
-				settings.passwordHTMLTag = ["p","p","p"];
-				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper mobile"><p id="p'+i+'" class="password">'+thePassword+'</p></div>';
-			} else {
-				resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper"><input type="text" id="p'+i+'" class="password" value="'+thePassword+'" onClick="select()" maxlength="32" spellcheck="false" /></div>';
-			}
+			resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper mobile"><div contenteditable="true" id="p'+i+'" class="password" onclick="document.execCommand(\'selectAll\',false,null)">'+thePassword+'</div></div>';
 		}
 	} else {
 		for (var i = 0; i < 3; i++) {
 			thePassword = applyLength(passwords[i]["built"][settings.wordStructure],passwords[i]["num"]);
-			if (settings.passwordHTMLTag[i] == "input") {
-				document.getElementById("p"+i).setAttribute("value", thePassword);
-			} else {
-				document.getElementById("p"+i).innerHTML = thePassword;
-			}
+			document.getElementById("p"+i).innerHTML = thePassword;
 		}
 	}
 }

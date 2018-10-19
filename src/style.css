@@ -235,14 +235,7 @@ input {
   border: 0;
   outline: 0;
   color: #565656;
-}
-input.password {
-  width: 100%;
   font-size: 26px;
-}
-p.password {
-  padding: 13px;
-  font-size: 21px;
   overflow-x: scroll;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
@@ -358,6 +351,10 @@ p.password {
   .password-wrapper {
     padding: 0;
   }
+  .password {
+    padding: 13px;
+    font-size: 21px;
+  }
   .about {
     padding: 11vh 0;
   }
@@ -366,7 +363,7 @@ p.password {
   }
 }
 @media (max-width: 350px) {
-  p.password {
+  .password {
     font-size: 19px;
   }
 }
