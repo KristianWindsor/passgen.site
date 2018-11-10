@@ -1,0 +1,9 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: passgen-site
+spec:
+  selector:
+    app: passgen-site
+  ports:
+    - port: 8003

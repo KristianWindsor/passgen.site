@@ -1,0 +1,16 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: passgen-site
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: passgen-site
+    spec:
+      containers:
+        - name: passgen-site
+          image: kristianwindsor/passgen.site
+          ports:
+              containerPort: 8003
