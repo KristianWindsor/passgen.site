@@ -1,9 +1,13 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: passgen-site
+  labels:
+    app: passgen-site
 spec:
+  type: ClusterIP
   selector:
     app: passgen-site
   ports:
-    - port: 8003
+    - port: 80
+      targetPort: 80
