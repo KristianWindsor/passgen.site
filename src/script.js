@@ -628,12 +628,16 @@ function createPassword() {
 //
 function refreshPasswordHTML(refreshStrength) { 
 	var resultsDiv = document.getElementById('results'),
-		thePassword;
+		thePassword,
+		className = 'password';
+	if (settings.isMobile) {
+		className += ' mobile-password';
+	}
 	if (refreshStrength == "hard") {
 		resultsDiv.innerHTML = "";
 		for (var i = 0; i < 3; i++) {
 			thePassword = applyLength(passwords[i]["built"][settings.wordStructure],passwords[i]["num"]);
-			resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper mobile"><div contenteditable="true" id="p'+i+'" class="password" onclick="document.execCommand(\'selectAll\',false,null)">'+thePassword+'</div></div>';
+			resultsDiv.innerHTML = resultsDiv.innerHTML + '<div class="password-wrapper mobile"><div contenteditable="true" id="p'+i+'" class="'+className+'" onclick="document.execCommand(\'selectAll\',false,null)">'+thePassword+'</div></div>';
 		}
 	} else {
 		for (var i = 0; i < 3; i++) {

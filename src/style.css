@@ -235,11 +235,13 @@ input {
   outline: 0;
   color: #565656;
   font-size: 26px;
+  white-space: nowrap;
+  text-overflow: clip;
+}
+.password.mobile-password {
   overflow-x: scroll;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
-  white-space: nowrap;
-  text-overflow: clip;
 }
 .about {
   padding: 5vh 0 9vh;
