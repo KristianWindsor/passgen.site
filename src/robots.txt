@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.apasswordgenerator.website/sitemap.xml
+Sitemap: https://.passgen.site/sitemap.xml
