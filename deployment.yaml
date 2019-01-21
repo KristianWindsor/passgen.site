@@ -16,3 +16,6 @@ spec:
           image: kristianwindsor/passgen.site
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              cpu: 0m
