@@ -19,6 +19,6 @@ spec:
           serviceName: passgen-site
           servicePort: 80
   tls:
-  - secretName: passgen-cert
+  - secretName: passgen
     hosts:
     - passgen.site
