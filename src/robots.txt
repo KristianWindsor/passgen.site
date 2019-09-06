@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://.passgen.site/sitemap.xml
+Sitemap: https://passgen.site/sitemap.xml
