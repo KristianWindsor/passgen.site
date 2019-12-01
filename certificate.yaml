@@ -1,19 +1,12 @@
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
-  name: passgen
+  name: passgen-cert
 spec:
-  secretName: passgen
+  secretName: passgen-cert
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
   commonName: passgen.site
   dnsNames:
   - passgen.site
-  acme:
-    config:
-    - dns01:
-        provider: route53
-        ingressClass: nginx
-      domains:
-      - passgen.site
