@@ -18,7 +18,8 @@ node {
     }
     stage('Deploy') {
         sh """
-            sed -i "s/passgen.site.*/passgen.site:$buildname/" deployment.yaml
+            sed -i "s/kristianwindsor\\/passgen.site.*/kristianwindsor\\/passgen.site:$buildname/" deployment.yaml
+            cat deployment.yaml
             kubectl apply -f deployment.yaml
         """
     }
