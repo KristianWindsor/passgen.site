@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: my-ingress
+  name: passgen
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
@@ -16,7 +16,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: passgen-site
+          serviceName: passgen
           servicePort: 80
   tls:
   - secretName: passgen-cert

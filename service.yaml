@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: passgen-site
+  name: passgen
   labels:
-    app: passgen-site
+    app: passgen
 spec:
   selector:
-    app: passgen-site
+    app: passgen
   ports:
     - port: 80
       targetPort: 80
