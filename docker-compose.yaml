@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  passgrid:
+    build: .
+    ports:
+      - 80:80
+    volumes:
+      - ./src:/usr/local/apache2/htdocs/
+    restart: always
