@@ -1,0 +1,37 @@
+name: Build and Deploy
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # dockerhub login
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: kristianwindsor
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      # build/push docker image
+      - name: Build and push docker image
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: kristianwindsor/passgen.site:b${{ github.run_number }}
+      # deploy
+      - name: Deploy to cluster
+        uses: steebchen/kubectl@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: set image --record deployment/passgen passgen=kristianwindsor/passgen.site:b${{ github.run_number }}
+      - name: Verify deployment
+        uses: steebchen/kubectl@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: rollout status deployment/passgen
