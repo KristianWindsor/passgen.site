@@ -24,13 +24,13 @@ jobs:
           tags: kristianwindsor/passgen.site:b${{ github.run_number }}
       # deploy
       - name: Deploy to cluster
-        uses: steebchen/kubectl@master
+        uses: steebchen/kubectl@v1.1.0
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
           args: set image --record deployment/passgen passgen=kristianwindsor/passgen.site:b${{ github.run_number }}
       - name: Verify deployment
-        uses: steebchen/kubectl@master
+        uses: steebchen/kubectl@v1.1.0
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
