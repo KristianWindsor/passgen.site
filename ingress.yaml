@@ -1,24 +1,23 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: passgen
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
     kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt
-    kubernetes.io/tls-acme: "true"
 spec:
   rules:
   - host: passgen.site
     http:
       paths:
-      - path: /
+      - pathType: Prefix
+        path: /
         backend:
-          serviceName: passgen
-          servicePort: 80
+          service:
+            name: passgen
+            port:
+              number: 80
   tls:
-  - secretName: passgen-cert
-    hosts:
+  - hosts:
     - passgen.site
+    secretName: passgen-cert
