@@ -26,7 +26,7 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: kristianwindsor/passgen.site:b${{ github.run_number }}
+          tags: kristianwindsor/passgen.site:b${{ github.run_number }}, kristianwindsor/passgen.site:latest
       # deploy
       - name: Deploy to cluster
         uses: steebchen/kubectl@v1.1.0
